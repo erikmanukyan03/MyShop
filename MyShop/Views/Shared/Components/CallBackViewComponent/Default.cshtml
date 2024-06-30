@@ -1,0 +1,47 @@
+﻿@model CustomerVM
+<div class="container">
+    <div class="call__wrapper py-5">
+        <form asp-area="" asp-controller="Customer" asp-action="Add" class="call__form" id="customerForm">
+
+            <label>
+                <span class="form__title">Имя</span>
+                <input asp-for="Name" type="text" placeholder="Имя" required />
+            </label>
+            <label>
+                <span class="form__title">Телефон</span>
+                <input asp-for="PhoneNumber" type="text" placeholder="+ 7" required class="tel" autocomplete="off" />
+                @*<small class="valid-message">Проверка не пройдена</small>*@
+            </label>
+            <div>
+                <span class="form__title">
+                    Комментарий
+                </span>
+                <div class="msg">
+                    <textarea class="msg__textarea" asp-for="Message" type="text" placeholder="Напишите комментарии..."></textarea>
+                </div>
+            </div>
+            <label class="captcha-label">
+            <span class="captcha-text">Введите четырехзначный код, содержащий только цифры:</span>
+            <img src="/captcha" class="captcha-img" />
+            <input asp-for="Captcha" type="text" placeholder="1234" required maxlength="4"/>
+            <span class="captcha-error" id="captchaerror"></span>
+
+            </label>
+
+
+
+            <button class="call__btn" @*disabled*@>Отправить</button>
+        </form>
+        
+        <div class="call__content">
+            <strong class="call__title">Обратный звонок</strong>
+            <p>
+                Оставьте заявку на обратный звонок на нашем сайте - мы
+                свяжемся с вами чтобы ответить на все ваши
+                вопросы. Просто заполните форму с вашим именем, номером
+                телефона и пишите сообщщение.
+            </p>
+            <b>Быстро и удобно!</b>
+        </div>
+    </div>
+</div>

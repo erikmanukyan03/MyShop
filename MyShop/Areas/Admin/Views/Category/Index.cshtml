@@ -1,0 +1,56 @@
+﻿@model List<CategoryVM>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<main>
+    <div class="container">
+        <div class="add__product">
+            <a asp-area="Admin" asp-controller="Category" asp-action="AddEdit" class="add__btn btn">Добавить</a>
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index" asp-route-IsDeleted="@true" class="add__btn btn">Удаленные</a>
+            <a asp-area="Admin" asp-controller="Category" asp-action="Index" asp-route-IsDeleted="@false" class="add__btn btn">Активные</a>
+        </div>
+    </div>
+
+    <section class="product">
+        <div class="container">
+            <div class="product__table">
+                <table class="table">
+                    <tr>
+                        <th>Название</th>
+                        <th>Описание</th>
+                        <th>Количество продуктов</th>
+                        <th>Редактировать</th>
+                        <th>Удалить</th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Description</td>
+                            
+                            @if (item.Products != null)
+                            {
+                                <td>
+                                    @item.Products.Count
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    Нет продуктов
+                                </td>
+                            }
+                            <td class="table__btn "><a asp-area="Admin" asp-controller="Category" asp-action="AddEdit" asp-route-Id="@item.Id">Редактировать</a></td>
+                            <td class="table__btn "><a asp-area="Admin" asp-controller="Category" asp-action="Delete" asp-route-Id="@item.Id">Удалить</a></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </section>
+</main>

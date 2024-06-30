@@ -1,0 +1,30 @@
+﻿@model List<PAVM>
+@{
+    ViewData["Title"] = "AddEditAttribute";
+}
+
+<h1>AddEditAttribute</h1>
+
+<form asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-prodId="@ViewBag.ProdId" asp-route-edit="@ViewBag.Edit">
+    @foreach (var item in Model)
+    {
+        <select multiple name="list">
+            <optgroup label="@item.Name">
+                @foreach (var item1 in item.Values)
+                {
+                    if (ViewBag.Selected.Contains(item1.Id))
+                    {
+                        <option selected value="@item1.Id">@item1.Value</option>
+                    }
+                    else
+                    {
+                        <option value="@item1.Id">@item1.Value</option>
+                    }
+                    
+                }
+            </optgroup>
+
+        </select>
+    }
+    <input type="submit" />
+</form>

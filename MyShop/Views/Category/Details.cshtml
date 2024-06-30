@@ -1,0 +1,48 @@
+﻿@model CategoryVM
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="text-align:center">@Model.Name</h1>
+
+<h6>@Model.Description</h6>
+<br />
+<br />
+<br />
+
+<partial name="_Filter" model="(FilterVM)ViewBag.Filter" />
+
+@if (Model.Products.Count>0)
+{
+<div class="d-flex flex-wrap">
+@foreach(var item in Model.Products){
+        <div class="prods d-flex flex-column">
+            <h5> @item.Title @item.Memory GB (@item.ProdColor)</h5>
+            <br>
+            <div class="prod_icon">
+                <img src="~/assets/img/product/@item.ImageFile">
+            </div>
+            @if (item.Discount > 0)
+            {   
+                <span>@item.FinalPrice.ToString("N0") AMD.</span>
+                <span class="prodprice">@item.Price.ToString("N0") AMD</span>
+                <br />
+            }
+            else
+            {
+                <p>@item.Price.ToString("N0") AMD</p>
+            }
+            <form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@item.Id" asp-route-FinalPrice="@item.FinalPrice" >
+            Count : <input type="number" min="0" max="200" value="1" name="count">
+                <input type="submit" value="Add To Cart" onclick="alert('Added')">
+            </form>
+            <a asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Slug" >See more</a>
+       </div>
+}
+    </div>
+
+}
+else
+{
+    <h6 class="text-center">No matched products</h6>
+}

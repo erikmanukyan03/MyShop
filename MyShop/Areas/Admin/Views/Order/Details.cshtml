@@ -1,0 +1,67 @@
+﻿@model OrderVM
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var carts = ViewBag.Cart as List<CartVM>;
+}
+
+<main>
+
+    <section class="product">
+        <div class="container">
+            <div class="product__table">
+                <h2> Номер заказа @Model.Id </h2>
+                <table class="table">
+                    <tr>
+                        <th>Дата заказа</th>
+                        <th>@Model.OrderDate</th>
+                    </tr>
+
+                </table>
+                <h2>Заказчик</h2>
+                <table class="table">
+
+                    <tr>
+
+                        <th>Имя</th>
+                        <th>@Model.Customer.Name</th>
+                    </tr>
+                    <tr>
+                        <th>Номер тел.</th>
+                        <th>@Model.Customer.PhoneNumber</th>
+                    </tr>
+
+                    <tr>
+                        <th>Email</th>
+                        <th>@Model.Customer.Email</th>
+                    </tr>
+                </table>
+                <h2>Заказ</h2>
+                <table class="table">
+                    <tr>
+                        <th>Название товара</th>
+                        <th>Картина товара</th>
+                        <th>Количество</th>
+                    </tr>
+                    @foreach (var item in carts)
+                    {
+                        <tr>
+
+                            <th>@item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor)</th>
+                            <th>
+
+                                <img width="90px" height="auto" src="~/assets/img/product/@item.Product.Image">
+                            </th>
+                            <th>@item.Count</th>
+                        </tr>
+                    }
+                    <tr>
+                        <th>Итого- @carts.Sum(c=>c.Price)</th>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+    </section>
+</main>

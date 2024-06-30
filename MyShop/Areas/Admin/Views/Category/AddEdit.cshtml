@@ -1,0 +1,19 @@
+﻿@model CategoryAddEditVM
+@{
+    ViewData["Title"] = "AddEdit";
+}
+@{
+    var action = Model.Id == 0 ? "Add" : "Edit";
+}
+<h1>@action</h1>
+
+<form asp-area="Admin" asp-controller="Category" asp-action="AddEdit" method="post">
+    <input asp-for="Id" type="hidden" />
+    <label>Имя : <input asp-for="Name" /></label>
+    <label>Описание : <input asp-for="Description" /></label>
+    @if (Model.Id != 0)
+    {
+        <label> Удалить <input type="checkbox" value="true" asp-for="IsDeleted"></label>
+    }
+    <input type="submit" value="@action" />
+</form>

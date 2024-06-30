@@ -1,0 +1,86 @@
+﻿@using Domain;
+@model ProductVM
+@{
+    ViewData["Title"] = "AddEdit";
+}
+@{
+    var action = Model.Id == 0 ? "Add" : "Edit";
+}
+<h1>@action</h1>
+
+<form asp-area="Admin" asp-controller="Product" asp-action="AddEdit" enctype="multipart/form-data" method="post">
+    <div>
+    <input asp-for="Id" type="hidden" />
+    </div>
+    <div>
+    <label>Имя : <input asp-for="Title" /></label>
+    </div><br>
+    <div>
+    <label>Описание : <input asp-for="Description" /></label>
+    </div><br />
+    <div>
+    <label>Короткое Описание : <input asp-for="ShortDescription" /></label>
+    </div><br>
+    <div>
+        <label>Память : <input type="number" asp-for="Memory" /></label>
+    </div><br>
+    <div>
+    <label>Цена : <input type="number" asp-for="Price" /></label>
+    </div><br>
+    <div>
+    <label>Скидка : <input type="number" asp-for="Discount" /></label>
+    </div><br>
+    <div>
+        Картина :
+        <input type="file" name="formfile" />
+    </div><br>
+   <div>
+    <label>Топовый : <input type="checkbox" asp-for="IsHot" /></label>
+   </div><br>
+    <div>
+        <select asp-for="ProdColor">
+            <option value="#">Выберите цвет</option>
+            @foreach (var item in Enum.GetValues(typeof(ProdColor)))
+            {
+                <option value="@item">@item</option>
+            }
+        </select>
+    </div><br>
+    <div>
+    <select asp-for="CategoryId">
+        <option value="#">Выберите категории</option>
+            @foreach (var  ctg in ViewBag.Categories as List<CategoryName>)
+        {
+            <option value="@ctg.Id">@ctg.Name</option>
+        }
+    </select>
+    </div><br>
+    <div >
+        <label for="text">
+            MetaDescription
+            <input type="text" id="text" asp-for="MetaDescription" />
+        </label>
+    </div><br />
+    <div>
+        <label for="text">
+            PageTitle
+            <input type="text" id="text" asp-for="PageTitle" />
+        </label>
+    </div><br>
+    <div>
+        <label for="text">
+            Slug
+            <input type="text" id="text" asp-for="Slug" />
+        </label>
+    </div><br>
+
+    <div>
+    @if (Model.Id != 0)
+    {
+        <label> Удалить <input type="checkbox" value="true" asp-for="IsDeleted"></label>
+    }
+    </div><br>
+    <div>
+    <input type="submit" value="@action" />
+    </div>
+</form>

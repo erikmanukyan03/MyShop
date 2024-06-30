@@ -1,0 +1,12 @@
+﻿@model PAVM
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+
+<form asp-area="Admin" asp-controller="PA" asp-action="AddEdit">
+    <input type="text" asp-for="Name" />
+    <input type="text" name="values" value="@ViewBag.Values" />
+    <input type="submit" />
+</form>

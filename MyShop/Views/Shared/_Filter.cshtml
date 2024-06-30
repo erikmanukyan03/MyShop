@@ -1,0 +1,39 @@
+﻿@using Domain;
+@model FilterVM
+<form asp-area="" asp-controller="Category" asp-action="Details" asp-route-Id="@ViewBag.CategoryId">
+    <small>MinPrice:</small>
+    <input type="number" min="@ViewBag.ProdMinPrice" step="1" name="MinPrice" value="@Model.MinPrice" />
+    <br />
+    <small>MaxPrice:</small>
+    <input type="number" max="@ViewBag.ProdMaxPrice" name="MaxPrice" value="@Model.MaxPrice" />
+
+    @foreach (var item in ViewBag.Pavs as List<IGrouping<string, Atribute_ValueVM>>)
+    {
+        <p>@item.Key</p>
+        @foreach (var item1 in item)
+        {
+            <input type="checkbox" name="@item.Key" id="@item1.Value" value="@item1.Value" multiple checked="@(ViewBag.Filter.GetType().GetProperty(item.Key)?.GetValue(ViewBag.Filter)?.Contains(item1.Value))">
+            <label for="@item1.Value">@item1.Value</label>
+        }
+    }
+    @if (ViewBag.Memories != null)
+    {
+    <br />
+    Мемоrу:
+        <br />
+        @foreach (var item in ViewBag.Memories as List<string>)
+        {
+            <input type="checkbox" name="Memory" id="@item" value="@item" multiple checked="@(ViewBag.Filter.GetType().GetProperty("Memory")?.GetValue(ViewBag.Filter)?.Contains(item))">
+            <label for="@item">@item</label>
+        }
+        <br />
+    }
+    Color:
+    <br />
+    @foreach (var item in Enum.GetValues(typeof(ProdColor)))
+    {
+        <input type="checkbox" name="Color" id="@item" value="@item" multiple checked="@(ViewBag.Filter.GetType().GetProperty("Color")?.GetValue(ViewBag.Filter)?.Contains($"{item}"))">
+        <label for="@item">@item</label>
+    }
+    <input type="submit" />
+</form>

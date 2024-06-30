@@ -1,0 +1,47 @@
+﻿@model List<PAVM>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Product Attributes</h1>
+<div class="container">
+    <a asp-area="Admin" asp-controller="PA" asp-action="AddEdit" class="add__btn btn">Добавить</a>
+</div>
+
+
+<section class="product">
+    <div class="container">
+        <div class="product__table">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
+
+                </tr>
+
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><span>@item.Name </span></td>
+                        <td>
+                        @foreach (var item1 in item.Values)
+                        {
+                            if (item1 == item.Values.Last())
+                            {
+                                    <span>@item1.Value</span>
+                                    continue;   
+                                }
+                            <span>@item1.Value, </span>
+                        }
+                        </td>
+                        <td class="table__btn "><a asp-area="Admin" asp-controller="PA" asp-action="AddEdit" asp-route-Id="@item.Id">Редактировать</a></td>
+                        <td class="table__btn "><a asp-area="Admin" asp-controller="PA" asp-action="Delete" asp-route-Id="@item.Id">Удалить</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</section>

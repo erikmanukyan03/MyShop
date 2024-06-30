@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="mw-100">
+    <img src="~/img/Untitled.png" class="welcome-img">
+</div>
+<div>
+    <h6 class="text-center">Hot Products</h6>
+    <br />
+<div class="hots">
+@foreach (var item in ViewBag.Hots as List<ShortProductVM>)
+    {
+    <div class="ctg">
+                <br>
+                <div class="form-group">
+                    <p><a asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Slug">@item.Title @item.Memory GB @(item.ProdColor)</a></p>
+                    </div>
+                <div class="form-group">
+                    @foreach (var prd in item.PAVVMs.GroupBy(p => p.Name))
+                    {
+                            <span>@prd.Key :</span>
+                            @foreach (var prd1 in prd)
+                            {
+                                if (prd1 == prd.Last())
+                                {
+                                    <span>@prd1.Value</span>
+                                }
+                                else
+                                {
+                                    <span>@prd1.Value,</span>
+                                }
+                            }
+                        <br />
+                    }
+                </div>
+                <div class="form-group">
+                @if (item.Discount > 0)
+                {
+                    <span>@item.FinalPrice.ToString("N0") AMD.</span>
+                    <span class="prodprice">@item.Price.ToString("N0") AMD</span>
+                }
+                else
+                {
+                    <span>@item.Price.ToString("N0") AMD</span>
+                }
+                </div>
+        <br>
+    </div>
+    }
+</div>
+</div>

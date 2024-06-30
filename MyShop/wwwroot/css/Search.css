@@ -1,0 +1,24 @@
+﻿.search-res {
+    height: 100px;
+    overflow: scroll;
+    overflow-x: hidden;
+    border: solid;
+    background: white;
+    border-radius: 6px;
+}
+
+.search-res-no {
+    border: solid;
+    padding: 5px 10px;
+    background: white;
+}
+
+.search-link {
+    text-decoration: none;
+}
+
+.search-res-prods {
+    border: solid 0.5px;
+    border-radius: 6px;
+    margin: 0;
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<string>
+@{
+    Context.Response.ContentType = "text/xml";
+}
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <loc>http://@Context.Request.Host</loc>
+    <loc>http://@Context.Request.Host/dostavka-i-uslugi</loc>
+    <loc>http://@Context.Request.Host/blog</loc>
+    <loc>http://@Context.Request.Host/o-kompanii</loc>
+
+    @foreach (var item in Model)
+    {
+        <url>
+            <loc>http://@Context.Request.Host/@item</loc>
+            @*<lastmod>2014-09-18T18:54:13+04:00</lastmod>
+        <changefreq>always</changefreq>
+        <priority>1.0</priority>*@
+        </url>
+    }
+
+
+</urlset>

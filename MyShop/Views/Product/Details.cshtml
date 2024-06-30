@@ -1,0 +1,66 @@
+﻿@model ProductVM
+@{
+    Layout = "_Layout";
+}
+<div class="container">
+    <div class="prods_details">
+        <div class="prodimg">
+            <img src="~/assets/img/product/@Model.Image" />
+        </div>
+        <div class="prod_content">
+            <div class="form-group">
+                <h2>@Model.Title @Model.Memory GB (@Model.ProdColor)</h2>
+            </div>
+
+            <div class="form-group">
+                <p><b>@Model.Description</b></p>
+            </div>
+            <div class="form-group">
+                @foreach (var item in Model.PAVVMs.GroupBy(p => p.Name))
+                {
+                    <span>@item.Key :</span>
+                        foreach (var item1 in item)
+                        {
+                            if (item1 == item.Last())
+                            {
+                                <span>@item1.Value</span>
+                            }
+                            else
+                            {
+                                <span>@item1.Value,</span>
+                            }
+                        }
+                    
+
+                    <br />
+                }
+            </div>
+            <div class="form-group">
+                <br />
+                @if (Model.Discount > 0)
+                {
+                    <span>@Model.FinalPrice.ToString("N0") AMD.</span>
+                    <span class="prodprice">@Model.Price.ToString("N0") AMD</span>
+                }
+                else
+                {
+                    <span>@Model.Price.ToString("N0") AMD</span>
+                }
+
+
+            </div>
+            <div class="form-group">
+                <br />
+                @*<p>Discount: @Model.Discount</p>*@
+
+            </div>
+            <div class="form-group">
+                <form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@Model.Id" asp-route-FinalPrice="@ViewBag.FinalPrice" asp-route-fromprodpage="true">
+                    Count : <input type="number" min="0" max="200" value="@ViewBag.Count" name="count">
+                    <input type="submit" value="Add To Cart" onclick="alert('Added')">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/formexecution.js"></script>

@@ -1,0 +1,32 @@
+﻿@model List<CategoryForProduct>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div class="ctgrs">
+@foreach (var item in Model)
+{
+    <div class="ctg">
+            <br>
+            <a asp-area="" asp-controller="Category" asp-action="Details" asp-route-Id="@item.Id">@item.Name</a>
+        <br>
+        <br>
+        @*@item.Description*@
+    </div>
+}
+</div>
+
+<style>
+    .ctgrs{
+        display:flex;
+    }
+    .ctg {
+        /*display:flex;*/
+        width:200px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+        text-align:center;
+        margin:10px;
+    }
+</style>

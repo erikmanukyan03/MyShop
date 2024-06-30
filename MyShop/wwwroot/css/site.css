@@ -1,0 +1,137 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.add__btn {
+    background-color: green;
+    color: white;
+}
+
+.navbar {
+    background-color: #f4efef;
+}
+.nav_height{
+    height:50px;
+}
+
+.welcome-img {
+    width: 100%;
+}
+
+.basket-li {
+    position: absolute;
+    right: 10%;
+}
+
+    .basket-li a {
+        text-decoration: none;
+        display: flex;
+    }
+        .basket-li a p {
+            color: black;
+            border: solid #f4efef;
+            background: white;
+            border-radius:20px;
+        }
+
+.prods {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: calc(30% - 40px);
+    margin: 20px;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+    .prods a {
+        text-decoration: none;
+    }
+.prod-details{
+    width:100px;
+    height:100px;
+}
+
+.prodimg {
+    width: 400px;
+}
+
+    .prodimg img {
+        width: 100%;
+    }
+
+.prods_details {
+    display: flex;
+}
+
+.prod_content {
+    padding: 20px;
+    width: 50%;
+}
+
+.prodprice {
+    text-decoration: line-through;
+    color: darkgray;
+    font-size: 12px;
+}
+
+.prod_icon{
+    width:40%;
+}
+.prod_icon img{
+    width:100%;
+}
+.hots {
+    display: flex;
+    justify-content: space-around;
+}
+.ctg {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding:10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.call {
+    background-color: #f4efef;
+}
+footer {
+    background-color: #f4efef;
+}

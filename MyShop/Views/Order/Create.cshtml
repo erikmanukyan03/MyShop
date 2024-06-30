@@ -1,0 +1,79 @@
+﻿@model OrderVM
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .ctg {
+        /*display:flex;*/
+        /*width: 200px;*/
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+        text-align: center;
+        margin: 10px;
+    }
+</style>
+    <div class="container">
+
+        @if(ViewBag.Carts.Count > 0)
+            {
+        <div class="title">Корзина</div>
+        <div class="basket__wrapper">
+
+            <a asp-area=""  asp-controller="Cart" asp-action="DeleteAll" asp-route-cookieId="@(ViewBag.CookieId)">Delete All</a>
+            @foreach (var item in ViewBag.Carts as List<CartVM>)
+            {
+                <div class="ctg">
+                    <form asp-area="" asp-controller="Cart" asp-action="Update" asp-route-cartId="@item.Id">
+                         @item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor) <br>
+                        Count : <input type="number" value="@item.Count" name="count" min="1" max="200"><br>
+                        Price : @(item.Count*item.Price)  <br>
+                    <br>
+                    </form>
+                    
+                        <a asp-area="" asp-controller="Cart" asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
+                </div>
+            }
+
+            <form asp-area="" asp-controller="Order" asp-action="Create">
+                <div class="form__fields">
+                    <label>
+                        <span class="form__title">Имя</span>
+                        <input asp-for="Customer.Name" type="text"
+                               placeholder="Имя"
+                               required />
+                    </label>
+                    <label>
+                        <span class="form__title">Телефон</span>
+                        <input asp-for="Customer.PhoneNumber"
+                           type="text"
+                               placeholder="+7 123 456 78 90"
+                               required />
+                    </label>
+                    <label>
+                        <span class="form__title">Электронная почта</span>
+                        <input asp-for="Customer.Email"
+                               required
+                           type="email"
+                               placeholder="Ваш электронная почта@mail.ru" />
+                    </label>
+                    <label>
+
+                        <input type="submit" onclick="alert('Your order has succesfully created')">
+                    </label>
+                    </div>
+            </form>
+            </div>
+        }
+        else
+        {
+        <div class="basket__empty">
+            <strong>Корзина пуста!</strong>
+            <p>
+                Просмотрите наши товары и добавьте нужные товары в корзину. Обращайтесь к нам, если у вас
+                возникнут вопросы. Спасибо за выбор нашего магазина!
+            </p>
+            <a asp-area="" asp-controller="Category" asp-action="Index">Перейти в каталог</a>
+        </div>
+        }
+
+    </div>
