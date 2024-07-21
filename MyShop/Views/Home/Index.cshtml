@@ -1,14 +1,94 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
-<div class="mw-100">
-    <img src="~/img/Untitled.png" class="welcome-img">
-</div>
-<div>
-    <h6 class="text-center">Hot Products</h6>
-    <br />
-<div class="hots">
+@section head {
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="~/assets/css/home.css" />
+}
+
+
+<section class="home__banner">
+	<div class="swiper home-banner">
+		<div class="swiper-wrapper">
+			<a href="" class="swiper-slide">
+				<img alt="" src="~/assets/img/banner/580fd5a01b98cc54c233_macbookmecкопия.png" />
+			</a>
+			<a href="" class="swiper-slide">
+				<img alt="" src="~/assets/img/banner/227fac25e3637fd878a5_webBig1920x550.png" />
+			</a>
+			<a href="" class="swiper-slide">
+				<img alt="" src="~/assets/img/banner/1091025300f659243c2d_MecMacBook.png" />
+			</a>
+		</div>
+	</div>
+</section>
+
+
+<section class="top-sales">
+	<div class="container">
+		<div class="top-sales__title title">Լավագույն Վաճառք</div>
+		<div class="top-sales__items">
+			@foreach (var item in ViewBag.Hots as List<ShortProductVM>)
+			{
+				<form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@item.Id" asp-route-FinalPrice="@item.FinalPrice" asp-route-fromprodpage="true" class="top-sales__item addToCartForm">
+					@if (item.Discount > 0)
+					{
+						<div class="item__discount">
+							<div class="discount__image">
+								<img src="~/assets/img/productStatic/badge-154930_1280.png" alt="discount" />
+								<span>@item.Discount%</span>
+
+							</div>
+						</div>
+					}
+					<div class="item__image">
+						<img src="~/assets//img/product/@item.ImageFile" alt="" />
+					</div>
+					<div class="item__name">
+						@item.Title (@item.Memory GB)
+					</div>
+					<div class="item__price">
+						@if (item.Discount > 0)
+						{
+							<del class="del">@item.Price.ToString("N0") AMD</del>
+							<span class="discount">@item.FinalPrice.ToString("N0") AMD</span>
+						}
+						else
+						{
+							<span>@item.Price դր.</span>
+						}
+
+					</div>
+
+					<div class="item__stars">
+						<svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#ED8A19;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path> </g></svg>
+						<svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#ED8A19;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path> </g></svg>
+						<svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#ED8A19;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path> </g></svg>
+						<svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#ED8A19;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path> </g></svg>
+						<svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 47.94 47.94" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#ED8A19;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757 c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042 c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685 c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528 c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956 C22.602,0.567,25.338,0.567,26.285,2.486z"></path> </g></svg>
+					</div>
+					<input type="hidden" value="1" name="count" />
+					<div class="item__buttons">
+						<a asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Slug">Ավելին</a>
+						<button type="submit" class="addToCart">Գնել</button>
+						<lottie-player id="myLottiePlayer"
+									   src="https://lottie.host/embed/655912e2-fbd5-491e-99fd-162ea598aed6/8xKq4bvIxP.json"
+									   background="transparent"
+									   speed="1"
+									   style="width: 300px; height: 300px;"
+									   loop
+									   autoplay></lottie-player>
+					</div>
+				</form>
+
+			}
+
+		</div>
+	</div>
+</section>
+
+@* <div class="hots">
 @foreach (var item in ViewBag.Hots as List<ShortProductVM>)
     {
     <div class="ctg">
@@ -48,5 +128,19 @@
         <br>
     </div>
     }
-</div>
-</div>
+</div>  *@
+
+@section scripts {
+	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script src="~/assets/js/home.js"></script>
+	<script src="~/assets/js/addToBasket.js"></script>
+	<script src="~/assets/js/lottie.js"></script>
+
+
+	<script>
+		document.querySelector('.addToCart').addEventListener('click', function () {
+			const lottiePlayer = document.querySelector('#myLottiePlayer');
+			lottiePlayer.play(); 
+		});
+	</script>
+}

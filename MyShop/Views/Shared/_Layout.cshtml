@@ -1,67 +1,104 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MyShop</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/MyShop.styles.css" asp-append-version="true" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"] - MyShop</title>
+	<link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+	@RenderSection("head", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-              @*  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>*@
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 nav_height">
-                        <li class="nav-item">
-                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyShop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a style="text-align:right" class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a style="text-align:right" class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Create">Cart</a>
-                        </li>
-                        <li>
-                            <form asp-area="" asp-controller="Home" asp-action="Search" method="post" >
-                                <input type="search" name="keyword" id="search" placeholder="ex. Ipxone x" />
-                                <div id="result" class="tag-results hidden"></div>
-                                <div id="loading" class="hidden"><i class="fas fa-spinner fa-spin"></i></div>
-                                <i id="search-icon" class="search-icon fa-solid fa-magnifying-glass"></i>
-                            </form>
-                        </li>
-                        <li class="basket-li">
-                            <a asp-area="" asp-controller="Order" asp-action="Create">
-                                <img src="~/img/cart1.png" />
-                            <p>@await Component.InvokeAsync("BasketCountViewComponent")</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <section class="call bg">@await Component.InvokeAsync("CallBackViewComponent")</section>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; @DateTime.Now.Year - MyShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/search.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+
+	<header class="header">
+		<div class="container">
+			<div class="header__wrapper">
+				<a href="/" class="header__logo">LOGO</a>
+			
+				<div class="header__right">
+					<form class="header__search" asp-area="" asp-controller="Home" asp-action="Search" method="post">
+						<input type="text" name="keyword" id="search" placeholder="Օր. Iphone 15 Pro" />
+						<div id="result" class="tag-results"></div>
+						<div id="loading" class="hidden"><i class="fas fa-spinner fa-spin"></i></div>
+						<i id="search-icon" class="search__icon">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="transparent" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ccc" class="size-1">
+								<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+							</svg>
+
+						</i>
+					</form>
+					<a href="" class="header__link">Մեր մասին</a>
+					<a href="" class="header__link">Կապ մեզ հետ</a>
+					<div class="header__phone">
+						<a href="tel:+37499887766">+374 99 88 77 66</a>
+					</div>
+					<a class="header__basket" asp-area="" asp-controller="Order" asp-action="Create">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" class="size-6">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+						</svg>
+						<span class="basket__count">@await Component.InvokeAsync("BasketCountViewComponent")</span>
+					</a>
+				</div>
+			</div>
+			<nav class="nav">
+				<ul class="nav__list">
+					<li><a href="">Հեռախոսներ</a></li>
+					<li><a href="">Պլանշետներ</a></li>
+					<li><a href="">Ժամացույցներ</a></li>
+					<li><a href="">Հեռուստացույցներ</a></li>
+					<li><a href="">Համակարգիչներ</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+
+
+	@*     <header>
+	<nav class="">
+	<div class="">
+	<div class="navbar-collapse d-sm-inline-flex justify-content-between collapse">
+	<ul class="navbar-nav flex-grow-1 nav_height">
+	<li class="nav-item">
+	<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyShop</a>
+	</li>
+	<li class="nav-item">
+	<a style="text-align:right" class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+	</li>
+	<li class="nav-item">
+	<a style="text-align:right" class="nav-link text-dark" asp-area="" asp-controller="Order" asp-action="Create">Cart</a>
+	</li>
+	<li>
+	<form asp-area="" asp-controller="Home" asp-action="Search" method="post" >
+	<input type="search" name="keyword" id="search" placeholder="ex. Ipxone x" />
+	<div id="result" class="tag-results hidden"></div>
+	<div id="loading" class="hidden"><i class="fas fa-spinner fa-spin"></i></div>
+	<i id="search-icon" class="search-icon fa-solid fa-magnifying-glass"></i>
+	</form>
+	</li>
+	<li class="basket-li">
+	<a asp-area="" asp-controller="Order" asp-action="Create">
+	<img src="~/img/cart1.png" />
+	<p>@await Component.InvokeAsync("BasketCountViewComponent")</p>
+	</a>
+	</li>
+	</ul>
+	</div>
+	</div>
+	</nav>
+	</header> *@
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	<section class="call bg">@await Component.InvokeAsync("CallBackViewComponent")</section>
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; @DateTime.Now.Year - MyShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+		</div>
+	</footer>
+	@RenderSection("scripts", required: false)
 </body>
 </html>
