@@ -5,26 +5,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MyShop.Controllers
 {
-    public class CartController : BaseController
-    {
-        private readonly ICartService _cartService;
-        private readonly IProductService _productService;
-        public CartController(IProductService productService, ICartService cartService)
-        {
-            _productService = productService;
-            _cartService = cartService;
-        }
+	public class CartController : BaseController
+	{
+		private readonly ICartService _cartService;
+		private readonly IProductService _productService;
+		public CartController(IProductService productService, ICartService cartService)
+		{
+			_productService = productService;
+			_cartService = cartService;
+		}
 
-        public ActionResult Delete(int Id) 
-        {
-            _cartService.Delete(Id);
-            return RedirectToAction("Create","Order");
-        }
-        public ActionResult DeleteAll(string cookieId)
-        {
-            _cartService.DeleteAll(cookieId);
-            return RedirectToAction("Create", "Order");
-        }
+		public ActionResult Delete(int Id)
+		{
+			_cartService.Delete(Id);
+			return Json(new { success = true, message = "Product deleted successfully."});
+		}
+		public ActionResult DeleteAll(string cookieId)
+		{
+			_cartService.DeleteAll(cookieId);
+			return RedirectToAction("Index", "Home");
+		}
 		[HttpPost]
 		public IActionResult AddToBasket(int productId, int count, double FinalPrice, bool fromprodpage = false)
 		{
@@ -70,13 +70,13 @@ namespace MyShop.Controllers
 				return Json(new { success = false, message = "An error occurred: " + ex.Message });
 			}
 		}
-		public IActionResult Update(int cartId,int count)
-        {
-            var cart=_cartService.GetForEdit(cartId);
-            cart.Count = count;
-            _cartService.Update(cart);
-            return RedirectToAction("Create", "Order");
+		public IActionResult Update(int cartId, int count)
+		{
+			var cart = _cartService.GetForEdit(cartId);
+			cart.Count = count;
+			_cartService.Update(cart);
+			return Json(new { success = true, message = "Product count updated successfully." });
 
-        }
-    }
+		}
+	}
 }

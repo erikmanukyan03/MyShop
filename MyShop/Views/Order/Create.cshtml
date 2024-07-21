@@ -1,79 +1,87 @@
 ﻿@model OrderVM
 @{
-    ViewData["Title"] = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<style>
-    .ctg {
-        /*display:flex;*/
-        /*width: 200px;*/
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
-        text-align: center;
-        margin: 10px;
-    }
-</style>
-    <div class="container">
 
-        @if(ViewBag.Carts.Count > 0)
-            {
-        <div class="title">Корзина</div>
-        <div class="basket__wrapper">
+@section head {
+	<link rel="stylesheet" href="~/assets/css/cart.css" />
+}
 
-            <a asp-area=""  asp-controller="Cart" asp-action="DeleteAll" asp-route-cookieId="@(ViewBag.CookieId)">Delete All</a>
-            @foreach (var item in ViewBag.Carts as List<CartVM>)
-            {
-                <div class="ctg">
-                    <form asp-area="" asp-controller="Cart" asp-action="Update" asp-route-cartId="@item.Id">
-                         @item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor) <br>
-                        Count : <input type="number" value="@item.Count" name="count" min="1" max="200"><br>
-                        Price : @(item.Count*item.Price)  <br>
-                    <br>
-                    </form>
-                    
-                        <a asp-area="" asp-controller="Cart" asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
-                </div>
-            }
+<section class="cart">
+	<div class="container">
+		@if (ViewBag.Carts.Count > 0)
+		{
+			<div class="cart__title title">Զամբյուղ</div>
 
-            <form asp-area="" asp-controller="Order" asp-action="Create">
-                <div class="form__fields">
-                    <label>
-                        <span class="form__title">Имя</span>
-                        <input asp-for="Customer.Name" type="text"
-                               placeholder="Имя"
-                               required />
-                    </label>
-                    <label>
-                        <span class="form__title">Телефон</span>
-                        <input asp-for="Customer.PhoneNumber"
-                           type="text"
-                               placeholder="+7 123 456 78 90"
-                               required />
-                    </label>
-                    <label>
-                        <span class="form__title">Электронная почта</span>
-                        <input asp-for="Customer.Email"
-                               required
-                           type="email"
-                               placeholder="Ваш электронная почта@mail.ru" />
-                    </label>
-                    <label>
+			<div class="cart__wrapper">
+				<div class="cart__items">
+					<a asp-area="" asp-controller="Cart" asp-action="DeleteAll" asp-route-cookieId="@(ViewBag.CookieId)" class="cart__delete-all">Հեռացնել բոլորը</a>
+					@foreach (var item in ViewBag.Carts as List<CartVM>)
+					{
+						<form asp-area="" asp-controller="Cart" asp-action="Update" asp-route-cartId="@item.Id" class="cart__item" data-cartId="@item.Id">
+							<div class="item__left">
+								<div class="item__photo">
+									<img src="~/assets/img/product/1b5fc06f-bf65-4771-bcb2-b4f7d121d2f3.png" alt="@item.Product.Title" />
+								</div>
+								<div class="item__title">
+									@item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor)
+								</div>
+							</div>
+							<div class="item__right">
+								<div class="item__count count-range">
+									<button type="button" class="dec button count-dec">-</button>
+									<input type="number" class="product-value product-count" id="product-count" name="count" value="@item.Count" min="1" max="200" readonly>
+									<button type="button" class="inc button count-inc">+</button>
+								</div>
+								<div class="item__price product__price">
+									@(item.Count * item.Price)դր.
+								</div>
+								<button type="button" class="item__remove">Հեռացնել</button>
+							</div>
+						</form>
+					}
+				</div>
 
-                        <input type="submit" onclick="alert('Your order has succesfully created')">
-                    </label>
-                    </div>
-            </form>
-            </div>
-        }
-        else
-        {
-        <div class="basket__empty">
-            <strong>Корзина пуста!</strong>
-            <p>
-                Просмотрите наши товары и добавьте нужные товары в корзину. Обращайтесь к нам, если у вас
-                возникнут вопросы. Спасибо за выбор нашего магазина!
-            </p>
-            <a asp-area="" asp-controller="Category" asp-action="Index">Перейти в каталог</a>
-        </div>
-        }
+				<form asp-area="" asp-controller="Order" asp-action="Create" class="cart-order__form">
+					<div class="floating-label-input">
+						<input asp-for="Customer.Name" type="text"
+							   class="form__input"
+							   required />
+						<label class="label">Անուն</label>
+					</div>
+					<div class="floating-label-input">
+						<input asp-for="Customer.PhoneNumber" type="text"
+							   class="form__input"
+							   required />
+						<label class="label">Հեռախոսահամար</label>
+					</div>
+					<div class="floating-label-input">
+						<input asp-for="Customer.Email" type="email"
+							   class="form__input"
+							   required />
+						<label class="label">Էլ. հասցե</label>
+					</div>
+					<button type="submit" class="btn-orange">Պատվիրել</button>
+				</form>
+			</div>
 
-    </div>
+		}
+		else
+		{
+			<div class="cart__empty">
+				<div class="title">Զամբյուղը դատարկ է</div>
+				<p>
+					Ավելացրեք ցանկալի ապրանքները զամբյուղում: Կապվեք մեզ հետ, եթե ունեք
+					հարցեր:<br /> <b>Շնորհակալություն մեր խանութն ընտրելու համար:</b>
+				</p>
+				<a asp-area="" asp-controller="Category" asp-action="Index" class="btn-orange">Կատալոգ</a>
+			</div>
+		}
+	</div>
+</section>
+
+
+@section scripts {
+	<script src="~/assets/js/cart.js"></script>
+}

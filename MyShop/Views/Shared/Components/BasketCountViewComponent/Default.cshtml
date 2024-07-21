@@ -1,22 +1,20 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+	Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Default</title>
-</head>
-<body>
-    @if(Model>99){
-        <span>99+</span>
-    }
-    else
-    {
-        <span>@Model</span>
-    }
-</body>
-</html>
+@if (Model > 99)
+{
+	<span class="basket__count more">
+		99+
+	</span>
+
+}
+else
+{
+	<span class="basket__count">
+		@Model
+	</span>
+	
+
+}

@@ -4,6 +4,7 @@
 
 @section head {
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" href="~/assets/css/home.css" />
 }
 
@@ -70,15 +71,8 @@
 					</div>
 					<input type="hidden" value="1" name="count" />
 					<div class="item__buttons">
-						<a asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Slug">Ավելին</a>
-						<button type="submit" class="addToCart">Գնել</button>
-						<lottie-player id="myLottiePlayer"
-									   src="https://lottie.host/embed/655912e2-fbd5-491e-99fd-162ea598aed6/8xKq4bvIxP.json"
-									   background="transparent"
-									   speed="1"
-									   style="width: 300px; height: 300px;"
-									   loop
-									   autoplay></lottie-player>
+						<a class="btn-orange" asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Slug">Ավելին</a>
+						<button type="submit" class="btn-orange addToCart" id="add-toast">Գնել</button>
 					</div>
 				</form>
 
@@ -132,15 +126,21 @@
 
 @section scripts {
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script src="~/assets/js/home.js"></script>
 	<script src="~/assets/js/addToBasket.js"></script>
-	<script src="~/assets/js/lottie.js"></script>
 
 
 	<script>
-		document.querySelector('.addToCart').addEventListener('click', function () {
-			const lottiePlayer = document.querySelector('#myLottiePlayer');
-			lottiePlayer.play(); 
+		document.getElementById("add-toast").addEventListener("click", function () {
+			Toastify({
+				text: "Ավելացված է զամբյուղում",
+				duration: 3000,
+				style: {
+					background: "linear-gradient(to right, #00b09b, #96c93d)",
+				}
+				
+			}).showToast();
 		});
 	</script>
 }

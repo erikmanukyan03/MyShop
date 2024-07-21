@@ -52,7 +52,7 @@
 				<p>Discount: @Model.Discount</p>
 				</div> *@
 				<form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@Model.Id" asp-route-FinalPrice="@ViewBag.FinalPrice" asp-route-fromprodpage="true" class="addToCartForm" id="addToCart">
-					<div class="pricing-range">
+					<div class="count-range">
 						<button type="button" class="dec button count-dec" data-product="@Model.Id">-</button>
 						<input type="number" class="product-value product-count" id="product-count" name="count" value="@ViewBag.Count" min="0" max="200" readonly>
 						<button type="button" class="inc button count-inc" data-product="@Model.Id">+</button>

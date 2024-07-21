@@ -103,18 +103,18 @@
             height: 50px;
         }
 
-.discount__image {
-    position: relative;
-}
+    .top-sales__item.discount__image {
+        position: relative;
+    }
 
-.top-sales__item .item__discount span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 14px;
-}
+    .top-sales__item .item__discount span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 14px;
+    }
 
 @keyframes discountAnimation {
     0% {
@@ -126,21 +126,13 @@
     }
 }
 
-.item__buttons {
+.top-sales__item .item__buttons {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-top: 10px;
 }
 
-    .item__buttons a, .item__buttons button {
-        color: var(--white);
-        padding: 10px;
-        display: block;
-        font-size: 16px;
-        border: 3px solid #fff;
-        border-radius: 5px;
-        transition: 0.3s ease all;
-        background: var(--orange);
+    .top-sales__item .item__buttons .btn-orange {
         width: 50%;
     }
