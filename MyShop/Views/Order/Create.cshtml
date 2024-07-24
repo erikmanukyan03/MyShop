@@ -20,6 +20,7 @@
 					@foreach (var item in ViewBag.Carts as List<CartVM>)
 					{
 						<form asp-area="" asp-controller="Cart" asp-action="Update" asp-route-cartId="@item.Id" class="cart__item" data-cartId="@item.Id">
+							
 							<div class="item__left">
 								<div class="item__photo">
 									<img src="~/assets/img/product/1b5fc06f-bf65-4771-bcb2-b4f7d121d2f3.png" alt="@item.Product.Title" />
@@ -44,6 +45,7 @@
 				</div>
 
 				<form asp-area="" asp-controller="Order" asp-action="Create" class="cart-order__form">
+					@* axper stex inch dasht petqa input hidden-nerov dir tenam eli baci et anun heraxos hamar captcha *@
 					<div class="floating-label-input">
 						<input asp-for="Customer.Name" type="text"
 							   class="form__input"

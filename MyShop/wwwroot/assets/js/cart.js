@@ -66,30 +66,31 @@
     });
 
 
-    //orderForm.addEventListener("submit", (e) => {
-    //    e.preventDefault();
+    orderForm.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-    //    const formData = new FormData(orderForm);
-    //    const data = {};
-    //    formData.forEach((value, key) => {
-    //        data[key] = value;
-    //    });
+        const formData = new FormData(orderForm);
+        const data = {};
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
 
 
-    //    fetch("/Order/Create", {
-    //        method: "POST",
-    //        headers: {
-    //            "Content-Type": "application/json"
-    //        },
-    //        body: JSON.stringify(data)
-    //    }).then(response => response.json())
-    //        .then(data => {
-    //            if (data.success) {
-    //                window.location.href = "/Home/Index";
-    //            } else {
-    //                console.error("Order submission failed:", data.message);
-    //            }
-    //        })
-    //        .catch(error => console.error('Error:', error));
-    //})
+        fetch("/Order/Create", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    /*window.location.href = "/Home/Index";*/
+                    console.log("asd")
+                } else {
+                    console.error("Order submission failed:", data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    })
 });

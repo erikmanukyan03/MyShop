@@ -13,11 +13,24 @@
 </head>
 <body>
 
+	<div id="loader" style="display: none;">
+		<div class="lds-roller">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+
 	<header class="header">
 		<div class="container">
 			<div class="header__wrapper">
 				<a href="/" class="header__logo">LOGO</a>
-			
+
 				<div class="header__right">
 					<form class="header__search" asp-area="" asp-controller="Home" asp-action="Search" method="post">
 						<input type="text" name="keyword" id="search" placeholder="Օր. Iphone 15 Pro" />
@@ -43,17 +56,20 @@
 					</a>
 				</div>
 			</div>
-			<nav class="nav">
-				<ul class="nav__list">
-					<li><a href="">Հեռախոսներ</a></li>
-					<li><a href="">Պլանշետներ</a></li>
-					<li><a href="">Ժամացույցներ</a></li>
-					<li><a href="">Հեռուստացույցներ</a></li>
-					<li><a href="">Համակարգիչներ</a></li>
-				</ul>
-			</nav>
 		</div>
 	</header>
+
+	<nav class="nav">
+		<div class="container">
+			<ul class="nav__list">
+				<li><a href="">Հեռախոսներ</a></li>
+				<li><a href="">Պլանշետներ</a></li>
+				<li><a href="">Ժամացույցներ</a></li>
+				<li><a href="">Հեռուստացույցներ</a></li>
+				<li><a href="">Համակարգիչներ</a></li>
+			</ul>
+		</div>
+	</nav>
 
 
 
@@ -90,15 +106,17 @@
 	</div>
 	</nav>
 	</header> *@
-		<main role="main" class="pb-3">
-			@RenderBody()
-		</main>
+	<main role="main" class="pb-3">
+		@RenderBody()
+	</main>
 	<section class="call bg">@await Component.InvokeAsync("CallBackViewComponent")</section>
-	<footer class="border-top footer text-muted">
+	<footer class="footer">
 		<div class="container">
-			&copy; @DateTime.Now.Year - MyShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+			<div class="footer">asd</div>
 		</div>
 	</footer>
+
+	<script src="~/assets/js/layout.js"></script>
 	@RenderSection("scripts", required: false)
 </body>
 </html>
