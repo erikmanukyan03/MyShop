@@ -15,9 +15,9 @@ namespace BLL.Extention
             var a= db.Include(c=>c.Products).FirstOrDefault(p=>p.Id == Id);
             return a;
         }
-        public async static Task<List<Category>> GetAll(this DbSet<Category> db, bool IsDeleted)
+        public  static List<Category> GetAllForAdmin(this DbSet<Category> db, bool IsDeleted)
         {
-            return await db.Include(c=>c.Products).Where(c=>c.IsDeleted==IsDeleted).ToListAsync();
+            return  db.Include(c=>c.Products).Where(c=>c.IsDeleted==IsDeleted).ToList();
         }
         public async static Task<List<Category>> GetForProducts(this DbSet<Category> db)
         {
@@ -31,7 +31,7 @@ namespace BLL.Extention
                 //PageTitle=c.PageTitle,
             }).ToListAsync();
         }
-        public async static Task<List<Category>> GetCategoryNames(this DbSet<Category> db)
+        public async static Task<List<Category>> GetAll(this DbSet<Category> db)
         {
             return await db.Where(c => c.IsDeleted == false).Select(c => new Category
             {

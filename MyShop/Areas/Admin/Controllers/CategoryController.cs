@@ -17,7 +17,7 @@ namespace MyShop.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index(bool isDeleted)
         {
-            var list = await _categoryService.GetAll(isDeleted);
+            var list = await _categoryService.GetAll();
             return View(list);
         }
         [HttpGet]

@@ -15,10 +15,11 @@ namespace BLL.Service
         void Add(CategoryAddEditVM model);
         void Update(CategoryAddEditVM models);
         CategoryVM GetById(int Id);
-        Task<List<CategoryVM>> GetAll(bool IsDeleted);
+        Task<List<CategoryName>> GetAll();
         CategoryAddEditVM GetForEdit(int Id);
         void Delete(int Id);
-        Task<List<CategoryName>> CategoryNames();
+        public List<CategoryVM> GetAllForAdmin(bool IsDeleted);
+		//Task<List<CategoryName>> CategoryNames();
         Task<List<CategoryForProduct>> GetForProducts();
         Task<List<ShortProductVM>> Filter(int? categoryId,FilterVM model);
         Task<Tuple<int?, int?>> MinMaxPrice(int categoryId);

@@ -32,7 +32,7 @@ namespace MyShop.Areas.Admin.Controllers
         public async Task<IActionResult> AddEdit(int? Id)
         {
             var entity = Id.HasValue ? _productService.GetById(Id.Value) : new();
-            ViewBag.Categories =await _categoryService.CategoryNames();
+            ViewBag.Categories =await _categoryService.GetAll();
             return View(entity);
         }
         [HttpPost]

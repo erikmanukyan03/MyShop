@@ -4,6 +4,7 @@ using Domain;
 using Domain.Entities;
 using Domain.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -74,32 +75,42 @@ namespace BLL.Service
                 }).ToList(),
             };
         }
-        public async Task<List<CategoryVM>> GetAll(bool IsDeleted)
+        public async Task<List<CategoryName>> GetAll()
         {
-            var categories = new List<CategoryVM>();
+            var categories = new List<CategoryName>();
             if (_cache.TryGetValue("Categories", out categories))
             {
                 return categories;
             }
-            var list = await _context.Categories.GetAll(IsDeleted);
-            categories = list.Select(c => new CategoryVM
+            var list = await _context.Categories.GetAll();
+            categories = list.Select(c => new CategoryName
             {
                 Id = c.Id,
-                Description = c.Description,
                 Name = c.Name,
                 //MetaDescription = c.MetaDescription,
                 //PageTitle = c.PageTitle,
-                //Slug = c.Slug,
-                Products = c.Products.Select(p => new ShortProductVM
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                }).ToList(),
             }).ToList();
             _cache.Set("Categories", categories);
             return categories;
         }
-
+        public  List<CategoryVM> GetAllForAdmin(bool IsDeleted) 
+        {
+            var list = _context.Categories.GetAllForAdmin(IsDeleted);
+            return list.Select(c => new CategoryVM
+			{
+				Id = c.Id,
+				Description = c.Description,
+				Name = c.Name,
+				//MetaDescription = c.MetaDescription,
+				//PageTitle = c.PageTitle,
+				//Slug = c.Slug,
+				Products = c.Products.Select(p => new ShortProductVM
+				{
+					Id = p.Id,
+					Title = p.Title,
+				}).ToList(),
+			}).ToList();
+		}
         public CategoryAddEditVM GetForEdit(int Id)
         {
             var entity = _context.Categories.GetById(Id);
@@ -150,16 +161,16 @@ namespace BLL.Service
             return categories;
         }
 
-        public async Task<List<CategoryName>> CategoryNames()
-        {
-            var list = await _context.Categories.GetCategoryNames();
-            var newlist = list.Select(c => new CategoryName
-            {
-                Id = c.Id,
-                Name = c.Name,
-            }).ToList();
-            return newlist;
-        }
+        //public async Task<List<CategoryName>> CategoryNames()
+        //{
+        //    var list = await _context.Categories.GetAll();
+        //    var newlist = list.Select(c => new CategoryName
+        //    {
+        //        Id = c.Id,
+        //        Name = c.Name,
+        //    }).ToList();
+        //    return newlist;
+        //}
         public async Task<List<ShortProductVM>> Filter(int? categoryId,FilterVM model)
         {
             var list = await _context.Products.GetAll(categoryId,false);
@@ -196,5 +207,5 @@ namespace BLL.Service
         {
             return await _context.Products.MinMaxPrice(categoryId);
         }
-    }
+	}
 }

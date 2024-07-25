@@ -15,9 +15,8 @@ namespace MyShop.Controllers
         }
         public async Task<IActionResult> Index()
 		{
-			var a = await _productService.GetHots();
-			ViewBag.Hots = a;
-			return View();
+			ViewBag.Hots = await _productService.GetHots();
+            return View();
 		}
 		[HttpPost]
         public async Task<IActionResult> Search(string keyword)
