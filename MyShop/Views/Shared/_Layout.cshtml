@@ -29,7 +29,7 @@
 	<header class="header">
 		<div class="container">
 			<div class="header__wrapper">
-				<a href="/" class="header__logo">LOGO</a>
+				<a href="/" class="header__logo">MyShop💻</a>
 
 				<div class="header__right">
 					<form class="header__search" asp-area="" asp-controller="Home" asp-action="Search" method="post">
@@ -43,8 +43,8 @@
 
 						</i>
 					</form>
-					<a href="" class="header__link">Մեր մասին</a>
-					<a href="" class="header__link">Կապ մեզ հետ</a>
+					<a asp-area="" asp-controller="Info" asp-action="AboutUs" class="header__link">Մեր մասին</a>
+					<a asp-area="" asp-controller="Info" asp-action="Contact" class="header__link">Կապ մեզ հետ</a>
 					<div class="header__phone">
 						<a href="tel:+37499887766">+374 99 88 77 66</a>
 					</div>
@@ -102,7 +102,8 @@
 	<section class="call bg">@await Component.InvokeAsync("CallBackViewComponent")</section>
 	<footer class="footer">
 		<div class="container">
-			<div class="footer">asd</div>
+			<div class="footer">MyShop</div>
+
 		</div>
 	</footer>
 
