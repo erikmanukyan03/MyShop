@@ -10,12 +10,14 @@
             width: 100%;
             height: 100%;
         }
-
-.top-sales {
-}
+        .top-sales {
+            margin-bottom: 80px;
+        }
 
 .top-sales__title {
     margin-bottom: 25px;
+    text-align:center;
+
 }
 
 .top-sales__items {
@@ -25,7 +27,6 @@
 }
 
 .top-sales__item {
-    flex: 0 0 19%;
     background: var(--white);
     text-align: center;
     color: #000;
@@ -33,6 +34,9 @@
     border-radius: 10px;
     transition: all 0.3s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
 
     .top-sales__item:hover {
@@ -56,6 +60,7 @@
         margin: 10px 0;
         font-weight: 700;
         font-size: 18px;
+        flex: 1 1 auto;
     }
 
     .top-sales__item .item__price {
@@ -66,7 +71,7 @@
 
         .top-sales__item .item__price del {
             position: absolute;
-            top: -15px;
+            top: 10px;
             left: 0;
             font-size: 14px;
             color: red;
@@ -92,8 +97,8 @@
 
     .top-sales__item .item__discount {
         position: absolute;
-        top: -20px;
-        right: -20px;
+        top: 0px;
+        right: 0px;
         animation: discountAnimation 3s infinite linear;
         z-index: 1
     }
@@ -136,3 +141,76 @@
     .top-sales__item .item__buttons .btn-orange {
         width: 50%;
     }
+
+
+
+
+
+
+:root {
+    --color-light: rgba(255, 255, 255);
+    --color-dark: #202330;
+    --color-transparent: rgba(255, 255, 255, 0);
+}
+
+
+
+.splide {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+    .splide .splide__slide {
+        position: relative;
+        transform: scale(0.9);
+        transition: transform 400ms;
+    }
+
+        .splide .splide__slide .card {
+            position: relative;
+            height: 100%;
+        }
+
+            .splide .splide__slide .card::before {
+                content: "";
+                display: block;
+                background-color: transparent;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform: translate(-20px, -20px);
+                z-index: -2;
+            }
+
+    .splide .is-active {
+        transform: scale(1);
+    }
+.splide__pagination__page.is-active {
+    background: #625a5a !important;
+}
+    .splide__pagination {
+    bottom: -28px !important;
+}
+
+.splide__arrow--prev svg {
+    transform: scaleX(1) !important;
+}
+.splide__arrow svg {
+    width: 30px !important;
+    height: 30px !important;
+    fill: transparent !important;
+}
+.splide__arrow {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+.splide__arrow--prev {
+    left: -5em !important;
+}
+
+
+.splide__arrow--next {
+    right: -5em !important;
+}

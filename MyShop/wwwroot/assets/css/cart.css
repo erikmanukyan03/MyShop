@@ -57,6 +57,7 @@
     .cart__item .item__photo {
         width: 80px;
         height: 80px;
+        flex: 1 0 auto;
     }
 
         .cart__item .item__photo img {
@@ -96,7 +97,7 @@
     margin: 0 auto;
 }
     .cart__empty .title {
-        color: var(--orange);
+        color: var(--green);
     }
 
     .cart__empty p {

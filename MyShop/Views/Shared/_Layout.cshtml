@@ -30,12 +30,11 @@
 		<div class="container">
 			<div class="header__wrapper">
 				<a href="/" class="header__logo">MyShop💻</a>
-
 				<div class="header__right">
 					<form class="header__search" asp-area="" asp-controller="Home" asp-action="Search" method="post">
 						<input type="text" name="keyword" id="search" placeholder="Օր. Iphone 15 Pro" />
-						<div id="result" class="tag-results"></div>
-						<div id="loading" class="hidden"><i class="fas fa-spinner fa-spin"></i></div>
+						<div id="result" class="tag-results hidden"></div>
+						<div id="search-loader" class="search-loader hidden"></div>
 						<i id="search-icon" class="search__icon">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="transparent" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ccc" class="size-1">
 								<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -107,6 +106,7 @@
 		</div>
 	</footer>
 
+	<script src="~/assets/js/search.js"></script>
 	<script src="~/assets/js/layout.js"></script>
 	@RenderSection("scripts", required: false)
 </body>
