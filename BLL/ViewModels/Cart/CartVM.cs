@@ -14,7 +14,7 @@ namespace BLL.ViewModels
 		public string CookieId { get; set; } = null!;
 		public int Count { get; set; }
 		public double? Price { get; set; }
-		public ProductVM Product { get; set; }
+		public ShortProductVM Product { get; set; }
 		public int ProductId { get; set; }
 		public bool IsDeleted { get; set; }
 	}

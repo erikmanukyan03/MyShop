@@ -13,11 +13,11 @@ namespace MyShop.Controllers
             _categoryService = categoryService;
             _productService = productService;
         }
-        public async Task<IActionResult> Index()
-        {
-            var list = await _categoryService.GetForProducts();
-            return View(list);
-        }
+        //public async Task<IActionResult> Index()
+        //{
+        //    var list = await _categoryService.GetForProducts();
+        //    return View(list);
+        //}
         public async Task<IActionResult> Details(int Id,FilterVM? filter) 
         {
             var pr =await _categoryService.MinMaxPrice(Id);

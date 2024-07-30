@@ -1,20 +1,15 @@
 ﻿using BLL.Extention;
 using BLL.ViewModels;
-using BLL.ViewModels.PrPav;
+using BLL.ViewModels.Product;
 using Domain;
 using Domain.Entities;
 using Domain.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Service
 {
-    public class ProductService : IProductService
+	public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
         private readonly IPrPAV _prPAVRepository;
@@ -51,13 +46,16 @@ namespace BLL.Service
             _productRepository.Add(entity);
             _uow.Save();
             _cache.Remove("Products");
-        }
+			_cache.Remove("Hots");
 
-        public void Delete(int Id)
+		}
+
+		public void Delete(int Id)
         {
             _productRepository.Delete(Id);
             _uow.Save();
             _cache.Remove("Products");
+            _cache.Remove("Hots");
         }
 
         public void Update(ProductVM model)
@@ -83,8 +81,10 @@ namespace BLL.Service
             _productRepository.Update(entity);
             _uow.Save();
             _cache.Remove("Products");
-        }
-        public ProductVM GetById(int Id)
+			_cache.Remove("Hots");
+
+		}
+		public ProductVM GetById(int Id)
         {
             var entity = _context.Products.GetById(Id);
             return new ProductVM
@@ -114,40 +114,52 @@ namespace BLL.Service
             };
         }
 
-        public async Task<List<ShortProductVM>> GetAll(int? categoryId, bool IsDeleted)
+        public async Task<List<ProductForSearch>> GetAll(int? categoryId, bool IsDeleted)
         {
-            var list = new List<ShortProductVM>();
+            var list = new List<ProductForSearch>();
             if (_cache.TryGetValue("Products", out list))
             {
                 return list;
             }
 
             var prods = await _context.Products.GetAll(categoryId,IsDeleted);
-            list = prods.Select(p => new ShortProductVM
-            {
+            list = prods.Select(p => new ProductForSearch
+			{
                 Id = p.Id,
                 Title = p.Title,
                 ShortDescription = p.ShortDescription,
-                Discount = p.Discount,
-                Price = p.Price,
-                PAVVMs=p.PAVs.Select(av => new Atribute_ValueVM
+                PAVVMs = p.PAVs.Select(av => new Atribute_ValueVM
                 {
                     Id = av.Id,
                     Name = av.ProductAttribute.Name,
                     Value = av.Value,
                 }).ToList(),
                 ImageFile = p.Image,
-                Slug=p.Slug,
-                FinalPrice = (double)(p.Discount > 0 ? p.Price - p.Price * p.Discount / 100 : p.Price),
+                Slug = p.Slug,
                 Memory = p.Memory,
                 ProdColor = p.ProdColor,
-                CategoryId = p.CategoryId,
             }).ToList();
             _cache.Set("Products", list);
 
             return list;
         }
-
+        public List<ShortProductVM> GetAllForAdmin(int? categoryId, bool IsDeleted)
+        {
+			var list=_context.Products.GetAllForAdmin(categoryId, IsDeleted);
+            return list.Select(p=>new ShortProductVM 
+            {
+                Id=p.Id,
+                ImageFile=p.Image,
+                Discount = p.Discount,
+				FinalPrice = (double)(p.Discount > 0 ? p.Price - p.Price * p.Discount / 100 : p.Price),
+				Price = p.Price,
+                ShortDescription=p.ShortDescription,
+                Memory = p.Memory,
+                ProdColor=p.ProdColor,
+                Slug = p.Slug,
+                Title = p.Title,
+            }).ToList() ;
+		}
         public async Task<List<ShortProductVM>> GetHots()
         {
             var list = new List<ShortProductVM>();
@@ -157,26 +169,17 @@ namespace BLL.Service
             }
             var hots = await _context.Products.GetHots();
             list = hots.Select(p => new ShortProductVM
-            {
+			{
                 Id = p.Id,
                 Title = p.Title,
-                ShortDescription = p.ShortDescription,
                 Discount = p.Discount,
                 Price = p.Price,
-                PAVVMs = p.PAVs.Select(av => new Atribute_ValueVM
-                {
-                    Id = av.Id,
-                    Name = av.ProductAttribute.Name,
-                    Value = av.Value,
-                }).ToList(),
                 ImageFile = p.Image,
                 Memory = p.Memory,
-                MetaDescription = p.MetaDescription,
+                ShortDescription = p.ShortDescription,
                 Slug = p.Slug,
-                PageTitle = p.PageTitle,
                 ProdColor = p.ProdColor,
                 FinalPrice = (double)(p.Discount > 0 ? p.Price - p.Price * p.Discount / 100 : p.Price),
-                CategoryId = p.CategoryId,
             }).ToList();
             _cache.Set("Hots", list);
             return list;
@@ -221,9 +224,9 @@ namespace BLL.Service
             return list;
         }
 
-        public async Task<List<ShortProductVM>> Search(List<ShortProductVM>? list, string[]? splited)
+        public async Task<List<ProductForSearch>> Search(List<ProductForSearch>? list, string[]? splited)
         {
-            var newlist = new List<ShortProductVM>();
+            var newlist = new List<ProductForSearch>();
             foreach (var item in list)
             {
                 int count = 0;

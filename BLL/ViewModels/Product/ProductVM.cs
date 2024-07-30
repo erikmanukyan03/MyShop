@@ -13,7 +13,10 @@ namespace BLL.ViewModels
     {
         public int Id { get; set; }
         public string Title { get; set; }
+        public ProdColor ProdColor { get; set; }
+        public List<Atribute_ValueVM>? PAVVMs { get; set; }
         public string ShortDescription { get; set; }
+        public int Memory { get; set; }
         public string Description { get; set; }
         public string MetaDescription { get; set; }
         public string PageTitle { get; set; }
@@ -24,9 +27,6 @@ namespace BLL.ViewModels
         public int CategoryId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsHot { get; set; }
-        public int Memory { get; set; }
-        public ProdColor ProdColor { get; set; }
         public double FinalPrice { get; set; }
-        public List<Atribute_ValueVM>? PAVVMs { get; set; }
     }
 }
