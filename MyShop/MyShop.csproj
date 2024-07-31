@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\assets\css\admin.css" />
     <_ContentIncludedByDefault Remove="wwwroot\assets\js\addToBasket.js" />
   </ItemGroup>
 

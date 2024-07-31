@@ -1,90 +1,182 @@
 ﻿@using Domain;
 @model ProductVM
 @{
-    ViewData["Title"] = "AddEdit";
+	ViewData["Title"] = "AddEdit";
 }
 @{
-    var action = Model.Id == 0 ? "Add" : "Edit";
+	var action = Model.Id == 0 ? "Add" : "Edit";
 }
-<h1>@action</h1>
+
+@section head {
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js" integrity="sha512-NqYds8su6jivy1/WLoW8x1tZMRD7/1ZfhWG/jcRQLOzV1k1rIODCpMgoBnar5QXshKJGV7vi0LXLNXPoFsM5Zg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+}
+
+<section class="dashboard">
+	<h2>@action</h2>
+
+	<form asp-area="Admin" asp-controller="Product" asp-action="AddEdit" enctype="multipart/form-data" method="post">
+		<input asp-for="Id" type="hidden" />
+		<div class="floating-label-input">
+			<input type="text" asp-for="Title" class="form__input" />
+			<label class="label">Name</label>
+		</div>
+		<div class="floating-label-input">
+			<textarea type="text" asp-for="Description" class="form__input"></textarea>
+			<label class="label">Description</label>
+		</div>
+		<div class="floating-label-input">
+			<input type="text" asp-for="ShortDescription" class="form__input" />
+			<label class="label">Short description</label>
+		</div>
+		<div class="floating-label-input">
+			<input type="number" asp-for="Memory" class="form__input" />
+			<label class="label">Memory</label>
+		</div>
+		<div class="floating-label-input">
+			<input type="number" asp-for="Price" class="form__input" />
+			<label class="label">Price</label>
+		</div>
+		<div class="floating-label-input">
+			<input type="number" asp-for="Discount" class="form__input" />
+			<label class="label">Discount</label>
+		</div>
+		<div class="floating-label-input">
+			Main Image :
+			<input type="file" name="mainImage" />
+		</div>
+		<div class="floating-label-input">
+			Images :
+			<input type="file" name="Images" multiple />
+		</div>
+
+		<div class="floating-label-input">
+			<select asp-for="ProdColor">
+				<option value="#">Выберите цвет</option>
+				@foreach (var item in Enum.GetValues(typeof(ProdColor)))
+				{
+					<option value="@item">@item</option>
+				}
+			</select>
+		</div>
+		<div class="floating-label-input">
+			<select asp-for="CategoryId">
+				<option value="#">Выберите категории</option>
+				@foreach (var ctg in ViewBag.Categories as List<CategoryName>)
+				{
+					<option value="@ctg.Id">@ctg.Name</option>
+				}
+			</select>
+		</div>
+		<div class="floating-label-input">
+			<input type="text" asp-for="MetaDescription" class="form__input" />
+			<label class="label">Meta description</label>
+		</div>
+		<div class="floating-label-input">
+			<input type="text" asp-for="PageTitle" class="form__input" />
+			<label class="label">Page title</label>
+		</div>
+		<div class="floating-label-input">
+			<input type="text" asp-for="Slug" class="form__input" />
+			<label class="label">Slug</label>
+		</div>
+		<div class="input-checkbox">
+			<input type="checkbox" id="isHot" asp-for="IsHot">
+			<label for="isHot">
+				isHot
+			</label>
+		</div>
+		@if (Model.Id != 0)
+		{
+			<div class="input-checkbox">
+				<input type="checkbox" id="isDeleted" value="true" asp-for="IsDeleted">
+				<label for="isDeleted">
+					Delete
+				</label>
+			</div>
+		}
+		<button type="submit" class="btn">@action</button>
+	</form>
+</section>
 
 <form asp-area="Admin" asp-controller="Product" asp-action="AddEdit" enctype="multipart/form-data" method="post">
-    <div>
-    <input asp-for="Id" type="hidden" />
-    </div>
-    <div>
-    <label>Имя : <input asp-for="Title" /></label>
-    </div><br>
-    <div>
-    <label>Описание : <input asp-for="Description" /></label>
-    </div><br />
-    <div>
-    <label>Короткое Описание : <input asp-for="ShortDescription" /></label>
-    </div><br>
-    <div>
-        <label>Память : <input type="number" asp-for="Memory" /></label>
-    </div><br>
-    <div>
-    <label>Цена : <input type="number" asp-for="Price" /></label>
-    </div><br>
-    <div>
-    <label>Скидка : <input type="number" asp-for="Discount" /></label>
-    </div><br>
-    <div>
-        Main Image :
-        <input type="file" name="mainImage" />
-    </div><br>
-    <div>
-       Images :
-        <input type="file" name="Images"  multiple/>
-    </div><br>
-   <div>
-    <label>Топовый : <input type="checkbox" asp-for="IsHot" /></label>
-   </div><br>
-    <div>
-        <select asp-for="ProdColor">
-            <option value="#">Выберите цвет</option>
-            @foreach (var item in Enum.GetValues(typeof(ProdColor)))
-            {
-                <option value="@item">@item</option>
-            }
-        </select>
-    </div><br>
-    <div>
-    <select asp-for="CategoryId">
-        <option value="#">Выберите категории</option>
-            @foreach (var  ctg in ViewBag.Categories as List<CategoryName>)
-        {
-            <option value="@ctg.Id">@ctg.Name</option>
-        }
-    </select>
-    </div><br>
-    <div >
-        <label for="text">
-            MetaDescription
-            <input type="text" id="text" asp-for="MetaDescription" />
-        </label>
-    </div><br />
-    <div>
-        <label for="text">
-            PageTitle
-            <input type="text" id="text" asp-for="PageTitle" />
-        </label>
-    </div><br>
-    <div>
-        <label for="text">
-            Slug
-            <input type="text" id="text" asp-for="Slug" />
-        </label>
-    </div><br>
+	<div>
+		<input asp-for="Id" type="hidden" />
+	</div>
+	<div>
+		<label>Имя : <input asp-for="Title" /></label>
+	</div><br>
+	<div>
+		<label>Описание : <input asp-for="Description" /></label>
+	</div><br />
+	<div>
+		<label>Короткое Описание : <input asp-for="ShortDescription" /></label>
+	</div><br>
+	<div>
+		<label>Память : <input type="number" asp-for="Memory" /></label>
+	</div><br>
+	<div>
+		<label>Цена : <input type="number" asp-for="Price" /></label>
+	</div><br>
+	<div>
+		<label>Скидка : <input type="number" asp-for="Discount" /></label>
+	</div><br>
+	<div>
+		Main Image :
+		<input type="file" name="mainImage" />
+	</div><br>
+	<div>
+		Images :
+		<input type="file" name="Images" multiple />
+	</div><br>
+	<div>
+		<label>Топовый : <input type="checkbox" asp-for="IsHot" /></label>
+	</div><br>
+	<div>
+		<select asp-for="ProdColor">
+			<option value="#">Выберите цвет</option>
+			@foreach (var item in Enum.GetValues(typeof(ProdColor)))
+			{
+				<option value="@item">@item</option>
+			}
+		</select>
+	</div><br>
+	<div>
+		<select asp-for="CategoryId">
+			<option value="#">Выберите категории</option>
+			@foreach (var ctg in ViewBag.Categories as List<CategoryName>)
+			{
+				<option value="@ctg.Id">@ctg.Name</option>
+			}
+		</select>
+	</div><br>
+	<div>
+		<label for="text">
+			MetaDescription
+			<input type="text" id="text" asp-for="MetaDescription" />
+		</label>
+	</div><br />
+	<div>
+		<label for="text">
+			PageTitle
+			<input type="text" id="text" asp-for="PageTitle" />
+		</label>
+	</div><br>
+	<div>
+		<label for="text">
+			Slug
+			<input type="text" id="text" asp-for="Slug" />
+		</label>
+	</div><br>
 
-    <div>
-    @if (Model.Id != 0)
-    {
-        <label> Удалить <input type="checkbox" value="true" asp-for="IsDeleted"></label>
-    }
-    </div><br>
-    <div>
-    <input type="submit" value="@action" />
-    </div>
+	<div>
+		@if (Model.Id != 0)
+		{
+			<label> Удалить <input type="checkbox" value="true" asp-for="IsDeleted"></label>
+		}
+	</div><br>
+	<div>
+		<input type="submit" value="@action" />
+	</div>
 </form>
+

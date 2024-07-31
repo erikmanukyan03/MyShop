@@ -1,19 +1,38 @@
 ﻿@model CategoryAddEditVM
 @{
-    ViewData["Title"] = "AddEdit";
+	ViewData["Title"] = "AddEdit";
 }
 @{
-    var action = Model.Id == 0 ? "Add" : "Edit";
+	var action = Model.Id == 0 ? "Add" : "Edit";
 }
-<h1>@action</h1>
 
-<form asp-area="Admin" asp-controller="Category" asp-action="AddEdit" method="post">
-    <input asp-for="Id" type="hidden" />
-    <label>Имя : <input asp-for="Name" /></label>
-    <label>Описание : <input asp-for="Description" /></label>
-    @if (Model.Id != 0)
-    {
-        <label> Удалить <input type="checkbox" value="true" asp-for="IsDeleted"></label>
-    }
-    <input type="submit" value="@action" />
-</form>
+<section class="dashboard">
+	<h2>@action @Model.Name</h2>
+
+	<form asp-area="Admin" asp-controller="Category" asp-action="AddEdit" method="post">
+		<input asp-for="Id" type="hidden" />
+
+		<div class="floating-label-input">
+			<input type="text" asp-for="Name" class="form__input" />
+			<label class="label">Name</label>
+		</div>
+
+		<div class="floating-label-input">
+			<input type="text" asp-for="Description" class="form__input" />
+			<label class="label">Description</label>
+		</div>
+
+		@if (Model.Id != 0)
+		{
+			<div class="input-checkbox">
+				<input type="checkbox" id="isDeleted" value="true" asp-for="IsDeleted">
+				<label for="isDeleted">
+					Delete
+				</label>
+			</div>
+		}
+		<button type="submit" class="btn">@action</button>
+	</form>
+</section>
+
+

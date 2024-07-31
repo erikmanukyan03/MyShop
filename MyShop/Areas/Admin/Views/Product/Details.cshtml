@@ -1,91 +1,192 @@
 ﻿@model ProductVM
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var a = 0;
+	ViewData["Title"] = "Details";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	var a = 0;
 }
-<main>
-
-    <section class="product">
-        <div class="container">
-            <div class="product__table">
-                <table class="table">
-                    <tr>
-                        <th>Название</th>
-                        <th>Описание</th>
-                        <th>Короткое Описание</th>
-                        <th>Цена</th>
-                        <th>Скидка</th>
-                        <th>Память</th>
-                        <th>Цвет</th>
-                        <th>Категория</th>
-                        <th>Картина продукта</th>
-                        <th>MetaDescription</th>
-                        <th>PageTitle</th>
-                        <th>Slug</th>
-                        <th>Удаленный</th>
-                        <th>Топовый</th>
-                        <th>Редактировать</th>
-                    </tr>
 
 
-                    <tr>
-                        <td>@Model.Title</td>
-                        <td>@Model.Description</td>
-                        <td>@Model.ShortDescription</td>
-                        <td>@Model.Price</td>
-                        <td>@Model.Discount</td>
-                        <td>@Model.Memory GB </td>
-                        <td>@Model.ProdColor</td>
-                        <td>@ViewBag.CategoryName</td>
-                        @if (Model.MainImage != null)
-                        {
-                            <td>
-                                <img src="~/assets/img/product/@Model.MainImage" alt="Image" width="100px" height="100px" class="tm-list-item-img">
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                                No Image
-                            </td>
-                        }
-                        <td>@Model.MetaDescription</td>
-                        <td>@Model.PageTitle</td>
-                        <td>@Model.Slug</td>
-                        <td>@Model.IsDeleted</td>
-                        <td>@Model.IsHot</td>
-                        <td class="table__btn "><a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@Model.Id">Редактировать</a></td>
-                    </tr>
-                </table>
-                <br />
-                <table class="table">
-                   <tr>
-                    <th>Attributes</th>
-                    </tr>
-                    @foreach(var item in Model.PAVVMs.GroupBy(p=>p.Name))
-                    {
-                        <tr>
-                            <td>@item.Key : 
-                                @foreach(var item1 in item)
-                                {
-                                    if (item1 == item.Last())
-                                    {
-                                        @item1.Value
-                                    }
-                                    else
-                                    {
-                                        <span>@item1.Value,</span>
-                                    }
-                                }
 
-                        </tr>
-                    }
-                    <tr><a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@Model.Id" asp-route-edit="@true">Edit attribute</a></tr>
-                </table>
-                <div>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
+<section class="dashboard">
+	<h2>@Model.Title</h2>
+	<a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@Model.Id" class="item__edit">
+		<button type="button" class="btn">Edit</button>
+	</a>
+	<div class="dashboard__details">
+		<div class="dashboard__detail">
+			<span class="name">Name</span>
+			<span>@Model.Title</span>
+		</div>
+		<div class="dashboard__detail big">
+			<span class="name">Description</span>
+			<span>@Model.Description</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Short description</span>
+			<span>@Model.ShortDescription</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Price</span>
+			<span>@Model.Price</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Discount</span>
+			<span>@Model.Discount</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Memory</span>
+			<span>@Model.Memory</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Color</span>
+			<span>@Model.ProdColor</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Category</span>
+			<span>@ViewBag.CategoryName</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Photo</span>
+			@if (Model.MainImage != null)
+			{
+				<img src="~/assets/img/product/@Model.MainImage" alt="Image" width="100px" height="100px" class="tm-list-item-img">
+			}
+			else
+			{
+				<div>
+					No Image
+				</div>
+			}
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Meta Description</span>
+			<span>@Model.MetaDescription</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Page title</span>
+			<span>@Model.PageTitle</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Slug</span>
+			<span>@Model.Slug</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">IsDeleted</span>
+			<span>@Model.IsDeleted</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">IsHot</span>
+			<span>@Model.IsHot</span>
+		</div>
+
+		<div>
+			<strong style="margin-bottom: 10px; display:block">Attributes</strong>
+			@foreach (var item in Model.PAVVMs.GroupBy(p => p.Name))
+			{
+				<div class="dashboard__detail">
+					<span class="name">@item.Key</span>
+					<span>
+						@foreach (var item1 in item)
+						{
+							if (item1 == item.Last())
+							{
+								@item1.Value
+							}
+							else
+							{
+								<span>@item1.Value,</span>
+							}
+						}
+					</span>
+				</div>
+			}
+			<a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@Model.Id" asp-route-edit="@true" class="btn">Edit attributes</a>
+		</div>
+
+	</div>
+</section>
+
+
+
+@* <section class="product">
+	<div class="container">
+		<div class="product__table">
+			<table class="table">
+				<tr>
+					<th>Название</th>
+					<th>Описание</th>
+					<th>Короткое Описание</th>
+					<th>Цена</th>
+					<th>Скидка</th>
+					<th>Память</th>
+					<th>Цвет</th>
+					<th>Категория</th>
+					<th>Картина продукта</th>
+					<th>MetaDescription</th>
+					<th>PageTitle</th>
+					<th>Slug</th>
+					<th>Удаленный</th>
+					<th>Топовый</th>
+					<th>Редактировать</th>
+				</tr>
+
+
+				<tr>
+					<td>@Model.Title</td>
+					<td>@Model.Description</td>
+					<td>@Model.ShortDescription</td>
+					<td>@Model.Price</td>
+					<td>@Model.Discount</td>
+					<td>@Model.Memory GB </td>
+					<td>@Model.ProdColor</td>
+					<td>@ViewBag.CategoryName</td>
+					@if (Model.MainImage != null)
+					{
+						<td>
+							<img src="~/assets/img/product/@Model.MainImage" alt="Image" width="100px" height="100px" class="tm-list-item-img">
+						</td>
+					}
+					else
+					{
+						<td>
+							No Image
+						</td>
+					}
+					<td>@Model.MetaDescription</td>
+					<td>@Model.PageTitle</td>
+					<td>@Model.Slug</td>
+					<td>@Model.IsDeleted</td>
+					<td>@Model.IsHot</td>
+					<td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@Model.Id">Редактировать</a></td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr>
+					<th>Attributes</th>
+				</tr>
+				@foreach (var item in Model.PAVVMs.GroupBy(p => p.Name))
+				{
+					<tr>
+						<td>
+							@item.Key :
+							@foreach (var item1 in item)
+							{
+								if (item1 == item.Last())
+								{
+									@item1.Value
+								}
+								else
+								{
+									<span>@item1.Value,</span>
+								}
+							}
+
+					</tr>
+				}
+				<a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@Model.Id" asp-route-edit="@true" class="btn">Edit attributes</a>
+				<tr></tr>
+			</table>
+		</div>
+	</div>
+</section>
+ *@

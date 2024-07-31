@@ -4,9 +4,8 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
 
-<main>
+
     <div class="container">
         <div class="add__product">
             <a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" class="add__btn btn">Добавить</a>
@@ -14,6 +13,64 @@
             <a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-IsDeleted="@false" class="add__btn btn">Активные</a>
         </div>
     </div>
+
+
+
+	<section class="dashboard">
+		<h2>Category</h2>
+		<div class="dashboard__table">
+			@foreach (var item in Model)
+			{
+				<div class="dashboard__item" data-id="@item.Id">
+					<div class="item__left">
+					<div class="item__title item">@item.Title @item.Memory GB (@item.ProdColor)</div>
+					</div>
+					<div class="item__right">
+					<a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@item.Id" class="item__title attributes">
+						Add attributes
+					</a>
+						<label class="switch">
+							<input type="checkbox" class="archive-toggle" @* data-id="@item.Id" @(item.IsArchived ? "checked" : "") *@ />
+							<span class="slider round"></span>
+						</label>
+						<a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@item.Id" class="item__edit">
+							<svg width="18"
+								 height="19"
+								 viewBox="0 0 18 19"
+								 fill="none"
+								 xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									  clip-rule="evenodd"
+									  d="M16.06 1.08988L17.41 2.43988C18.2 3.21988 18.2 4.48988 17.41 5.26988L4.18 18.4999H0V14.3199L10.4 3.90988L13.23 1.08988C14.01 0.309883 15.28 0.309883 16.06 1.08988ZM2 16.4999L3.41 16.5599L13.23 6.72988L11.82 5.31988L2 15.1399V16.4999Z"
+									  fill="#49454F" />
+							</svg>
+						</a>
+					<a asp-area="Admin" asp-controller="Product" asp-action="Details" asp-route-Id="@item.Id" class="see-more">
+						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="blue" width="25" height="25">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+							<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+						</svg>
+					</a>
+					<a asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-Id="@item.Id" class="item__delete">
+							<svg width="16"
+								 height="19"
+								 viewBox="0 0 16 19"
+								 fill="none"
+								 xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd"
+									  clip-rule="evenodd"
+									  d="M11 0.5V1.5H16V3.5H15V16.5C15 17.6 14.1 18.5 13 18.5H3C1.9 18.5 1 17.6 1 16.5V3.5H0V1.5H5V0.5H11ZM3 16.5H13V3.5H3V16.5ZM5 5.5H7V14.5H5V5.5ZM11 5.5H9V14.5H11V5.5Z"
+									  fill="#B3261E" />
+							</svg>
+						</a>
+					</div>
+				</div>
+			}
+			<div class="dashboard__item new">
+				<a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" class="new-item">+ Add new</a>
+			</div>
+		</div>
+	</section>
 
     <section class="product">
         <div class="container">
@@ -38,10 +95,10 @@
                             <td>@item.ShortDescription</td>
 @*                             <td>@item.Price</td>
                             <td>@item.Discount</td> *@
-                            <td class="table__btn "><a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@item.Id">Добавить атрибуты</a></td>
-                            <td class="table__btn "><a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@item.Id">Редактировать</a></td>
-                            <td class="table__btn "><a asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-Id="@item.Id">Удалить</a></td>
-                            <td class="table__btn "><a asp-area="Admin" asp-controller="Product" asp-action="Details" asp-route-Id="@item.Id">Ещё</a></td>
+                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@item.Id">Добавить атрибуты</a></td>
+                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@item.Id">Редактировать</a></td>
+                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-Id="@item.Id">Удалить</a></td>
+                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="Details" asp-route-Id="@item.Id">Ещё</a></td>
 
                         </tr>
                     }
@@ -49,4 +106,3 @@
             </div>
         </div>
     </section>
-</main>
