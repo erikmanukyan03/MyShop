@@ -12,13 +12,15 @@
 
 .cart__wrapper {
     display: flex;
-    gap: 20px;
+    gap: 0px;
     background: #fff;
-    padding: 10px 15px;
 }
 
 .cart__items {
-    flex: 1 1 auto
+    flex: 1 1 auto;
+    max-height: 400px;
+    overflow: auto;
+    padding: 10px 15px;
 }
 
 .cart__delete-all {
@@ -34,24 +36,48 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 30px;
+    gap: 10px;
     border: 1px solid #ccc;
     color: #000;
     padding: 10px 15px;
     border-radius: 5px;
+    margin-bottom: 10px;
 }
+
+    .cart__item:last-child {
+        margin-bottom: 0;
+    }
+
+    .cart__item .item__title {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        min-width: 119px;
+    }
 
     .cart__item .item__title, .cart__item .item__price {
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 600;
         line-height: 130%;
-        text-align: center;
+       
     }
+
+        .cart__item .item__title a {
+            color: #337ab7;
+        }
+            .cart__item .item__title a:hover {
+                text-decoration: underline;
+            }
+
+            .cart__item .item__info {
+                color: #a4a2a2;
+                font-size: 12px;
+            }
 
     .cart__item .item__left, .cart__item .item__right {
         display: flex;
         align-items: center;
-        gap: 30px;
+        gap: 10px;
     }
 
     .cart__item .item__photo {
@@ -68,20 +94,31 @@
 
     .cart__item .count-range {
         margin-top: 0;
+        max-width: 150px;
     }
 
-    .cart__item .item__remove {
-        background: red;
-        padding: 10px;
-        border-radius: 5px;
-        color: #fff;
-    }
+.count-range button {
+    width: 35px;
+    height: 35px;
+}
+
+.count-range input {
+    font-size: 18px;
+}
+
+.cart__item .item__remove {
+    background: red;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+}
 
 .cart-order__form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 50%;
+    padding: 10px 15px;
 }
 
 .cart__wrapper .btn-orange {
@@ -96,6 +133,7 @@
     max-width: 800px;
     margin: 0 auto;
 }
+
     .cart__empty .title {
         color: var(--green);
     }
@@ -109,3 +147,109 @@
         max-width: 200px;
         margin: 0 auto
     }
+
+@media (max-width: 1200px) {
+    .cart__items {
+        flex: 1 0 600px;
+    }
+
+    .count-range {
+        max-width: 150px;
+    }
+
+        .count-range button {
+            width: 40px;
+            height: 40px;
+        }
+
+    .cart__item .item__left, .cart__item .item__right {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .cart__wrapper {
+        flex-direction: column;
+    }
+
+    .cart__items {
+        flex: auto;
+    }
+
+    .cart-order__form {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cart {
+        padding-top: 20px;
+    }
+
+    .cart__delete-all {
+        font-size: 13px;
+    }
+
+    .cart__item {
+        padding: 10px 8px;
+        position: relative;
+        gap: 5px;
+    }
+
+        .cart__item .item__photo {
+            flex: none;
+        }
+
+        .cart__item .item__remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 7px 11px;
+            font-size: 12px;
+            border-radius: 15px;
+        }
+        .cart__item .count-range {
+            margin-top: 33px;
+        }
+}
+
+@media (max-width: 479px) {
+    .cart__item  {
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .cart__item .item__right {
+    }
+        .cart__item .count-range {
+            margin-top: 0px;
+        }
+    .cart__item .item__left {
+        margin-top: 25px;
+    }
+
+    .cart__item {
+        gap: 10px;
+    }
+
+    .count-range {
+        max-width: 120px;
+    }
+
+        .count-range input {
+            font-size: 15px;
+        }
+
+        .count-range button {
+            width: 30px;
+            height: 30px;
+        }
+}
+
+
+@media (min-width: 767px) {
+    .cart__items::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        cursor: pointer;
+    }
+}

@@ -70,13 +70,23 @@ namespace MyShop.Controllers
 				return Json(new { success = false, message = "An error occurred: " + ex.Message });
 			}
 		}
-		public IActionResult Update(int cartId, int count)
+		public IActionResult Update([FromBody] CartUpdateModel model)
 		{
-			var cart = _cartService.GetForEdit(cartId);
-			cart.Count = count;
-			_cartService.Update(cart);
-			return RedirectToAction("Create", "Order");
+			var cart = _cartService.GetForEdit(model.CartId);
+			if (cart == null)
+			{
+				return Json(new { success = false, message = "Cart not found" });
+			}
 
+			cart.Count = model.Count;
+			_cartService.Update(cart);
+			return Json(new { success = true });
+		}
+
+		public class CartUpdateModel
+		{
+			public int CartId { get; set; }
+			public int Count { get; set; }
 		}
 	}
 }

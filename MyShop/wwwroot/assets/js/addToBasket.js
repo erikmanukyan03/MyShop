@@ -18,7 +18,6 @@
                         if (decrementButton) {
                             const countInput = document.querySelector('.product-count');
                             let countValue = parseInt(countInput.value, 10);
-                            console.log(countInput)
                             let basketCount = parseInt(basketCountElement.textContent, 10);
                             const basketCountResult = basketCount + countValue;
                             if (basketCountResult > 99) {
@@ -27,7 +26,7 @@
                             } else {
                                 basketCountElement.textContent = basketCountResult
                             }
-                            
+
                         } else {
                             let basketCount = parseInt(basketCountElement.textContent, 10);
                             if (!isNaN(basketCount)) {
@@ -49,4 +48,22 @@
                 });
         });
     });
+
+
+
+    const buttons = document.getElementsByClassName("add-toast");
+
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener("click", function () {
+            Toastify({
+                text: "Ավելացված է զամբյուղում",
+                duration: 3000,
+                style: {
+                    background: "linear-gradient(to left, #00b09b, #96c93d)",
+                },
+                position: "right",
+                gravity: "bottom"
+            }).showToast();
+        });
+    }
 });

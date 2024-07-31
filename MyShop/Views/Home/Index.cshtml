@@ -39,7 +39,6 @@
 								<div class="discount__image">
 									<img src="~/assets/img/productStatic/badge-154930_1280.png" alt="discount" />
 									<span>@item.Discount%</span>
-
 								</div>
 							</div>
 						}
@@ -47,7 +46,7 @@
 							<img src="~/assets//img/product/@item.ImageFile" alt="" />
 						</div>
 						<div class="item__name">
-							@item.Title (@item.Memory GB)
+							@item.Title (@item.Memory GB) @item.ProdColor
 						</div>
 						<div class="item__price">
 							@if (item.Discount > 0)
@@ -57,7 +56,7 @@
 							}
 							else
 							{
-								<span>@item.Price դր.</span>
+								<span>@item.Price AMD</span>
 							}
 
 						</div>
@@ -132,25 +131,4 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script src="~/assets/js/home.js"></script>
 	<script src="~/assets/js/addToBasket.js"></script>
-
-
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			const buttons = document.getElementsByClassName("add-toast");
-
-			for (let i = 0; i < buttons.length; i++) {
-				buttons[i].addEventListener("click", function () {
-					Toastify({
-						text: "Ավելացված է զամբյուղում",
-						duration: 3000,
-						style: {
-							background: "linear-gradient(to right, #00b09b, #96c93d)",
-						}
-					}).showToast();
-				});
-			}
-		});
-	</script>
-
-
 }

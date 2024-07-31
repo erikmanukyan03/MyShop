@@ -6,39 +6,47 @@
         const incrementButton = product.querySelector('.count-inc');
         const countInput = product.querySelector('.product-count');
         const productDelete = product.querySelector(".item__remove");
-
+        const productPriceElement = product.querySelector(".product__price");
+        const productPrice = productPriceElement.dataset.price;
         const cartId = product.dataset.cartid;
+        let timeoutId;
 
         function updateCount(delta) {
+            clearTimeout(timeoutId);
+ 
             let currentValue = parseInt(countInput.value, 10);
             let newValue = currentValue + delta;
-            const minValue = parseInt(countInput.min, 10);
-            const maxValue = parseInt(countInput.max, 10);
 
-            newValue = Math.max(newValue, minValue);
+            if (newValue < 1) {
+                newValue = 1;
+            } else if (newValue > 10) {
+                newValue = 10;
+            }
 
-            if (newValue <= maxValue) {
-                countInput.value = newValue;
+            countInput.value = newValue;
 
-                // Fetch to update the server
-                fetch(`/Cart/Update?cartId=${cartId}`, {
+
+            timeoutId = setTimeout(() => {
+                fetch(`/Cart/Update`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ count: newValue })
+                    body: JSON.stringify({ cartId: cartId, count: newValue })
                 })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            console.log(data)
-                            console.log("Update successful");
+                            document.querySelector(".basket__count").textContent = newValue;
+                            productPriceElement.innerHTML = productPrice * newValue + " AMD"
                         } else {
                             console.error("Update failed:", data.message);
                         }
                     })
-                    .catch(error => console.error('Error:', error));
-            }
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }, 500)
         }
 
         if (decrementButton) {
@@ -59,7 +67,12 @@
 
                 fetch(`/Cart/Delete/${cartId}`, { method: "DELETE" }).then(response => response.json()).then(data => {
                     if (data.success) {
-                        product.remove();
+                        if (products.length > 1) {
+                            product.remove();
+
+                        } else {
+                            window.location.href = "/"
+                        }
                     }
                 })
             })

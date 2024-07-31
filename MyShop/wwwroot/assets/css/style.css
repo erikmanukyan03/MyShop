@@ -19,9 +19,9 @@
     }
 
 
-   textarea {
-       font-family: inherit;
-   }
+textarea {
+    font-family: inherit;
+}
 
 :focus, :active {
     outline: none;
@@ -45,7 +45,8 @@ html, body {
     -webkit-text-size-adjust: 100%;
     font-family: "Roboto", sans-serif;
     color: var(--black);
-    background: var(--default-color)
+    background: var(--default-color);
+    scroll-behavior: smooth;
 }
 
 input::-ms-clear {
@@ -92,6 +93,53 @@ main {
     font-size: 26px;
     color: var(--green);
     font-weight: 700;
+}
+.loader__wrapper {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.loader {
+    width: 40px;
+    height: 30px;
+    --c: no-repeat linear-gradient(#000 0 0);
+    background: var(--c) 0 100%/8px 30px, var(--c) 50% 100%/8px 20px, var(--c) 100% 100%/8px 10px;
+    position: relative;
+    clip-path: inset(-100% 0);
+}
+
+    .loader:before {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #000;
+        left: -16px;
+        top: 0;
+        animation: l5-1 2s linear infinite, l5-2 0.5s cubic-bezier(0,200,.8,200) infinite;
+    }
+
+@keyframes l5-1 {
+    0% {
+        left: -16px;
+        transform: translateY(-8px)
+    }
+
+    100% {
+        left: calc(100% + 8px);
+        transform: translateY(22px)
+    }
+}
+
+@keyframes l5-2 {
+    100% {
+        top: -0.1px
+    }
 }
 
 
@@ -152,7 +200,7 @@ main {
 }
 
 .search-icon-mobile {
-    display:none;
+    display: none;
 }
 
 .header__search input {
@@ -340,9 +388,9 @@ nav {
         border-color: var(--green)
     }
 
-    .callback .container {
-        max-width: 800px;
-    }
+.callback .container {
+    max-width: 800px;
+}
 
 .callback__title {
     text-align: center;
@@ -405,9 +453,11 @@ nav {
 .callback .btn-orange {
     width: 100%;
 }
+
 .callback {
     margin-bottom: 20px;
 }
+
 .call__content {
     max-width: 640px
 }
@@ -541,9 +591,6 @@ nav {
 }
 
 @media (max-width: 992px) {
-    header {
-    }
-
     .header__right {
         margin-right: 20px;
     }
@@ -580,6 +627,7 @@ nav {
             transform: rotate(45deg);
             bottom: 54%;
         }
+
         .header__burger.active:before {
             transform: rotate(-45deg);
             top: 40%;
@@ -630,59 +678,74 @@ nav {
         }
 
     .header__pages.active {
-       left: 0;
+        left: 0;
     }
 
         .header__pages.active a {
             color: var(--green);
         }
-    .nav__list li a { 
+
+    .nav__list li a {
         font-size: 16px;
     }
+}
 
 
 @media (max-width: 768px) {
     .container {
-        padding: 0px 10px; 
+        padding: 0px 10px;
     }
+
     .header {
         height: 59px;
     }
+
     nav {
         margin-top: 59px;
     }
+
     main {
         margin-top: 95.2px;
     }
+
     .title {
         font-size: 20px;
         line-height: 130%;
     }
+
     .header__wrapper {
         height: 59px;
     }
+
     .header__search {
         display: none;
     }
+
     .search-icon-mobile {
-      margin-top: 1px;
+        margin-top: 1px;
     }
-    .header__right  svg {
+
+    .header__right svg {
         width: 30px;
     }
+
     .header__logo {
         font-size: 24px;
     }
+
     .header__phone svg {
         width: 30px;
         height: 30px;
     }
+
     .header__pages {
         max-width: 200px;
     }
+
     .search-icon-mobile {
-        display:block;
+        display: block;
     }
+
     .header__search.active {
         display: block;
         position: absolute;
@@ -691,24 +754,46 @@ nav {
         width: 100%;
         max-width: 100%;
     }
-    .header__search.active input {
-        border-radius: 0;
-    }
+
+        .header__search.active input {
+            border-radius: 0;
+        }
+
     .search-loader {
         width: 22px;
         padding: 3px;
     }
+
     .search-res-prods .search-link {
         font-size: 14px;
     }
+
     .nav__list {
-        overflow:auto;
+        overflow: auto;
         gap: 50px;
     }
+
     .home__banner .swiper-slide {
         height: 410px;
     }
+
     .floating-label-input input, .floating-label-input textarea {
         font-size: 14px;
+    }
+}
+
+
+@media (min-width: 1024.99px) {
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        cursor: pointer;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: var(--green-secondary);
+        border-radius: 0px;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: var(--green);
     }
 }

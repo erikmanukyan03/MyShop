@@ -20,14 +20,24 @@
 					@foreach (var item in ViewBag.Carts as List<CartVM>)
 					{
 						<form asp-area="" asp-controller="Cart" asp-action="Update" asp-route-cartId="@item.Id" class="cart__item" data-cartId="@item.Id">
-							
+
 							<div class="item__left">
 								<div class="item__photo">
 									<img src="~/assets/img/product/@item.Product.ImageFile" alt="@item.Product.Title" />
 								</div>
-								<a asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Product.Slug" class="item__title">
-									@item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor)
-								</a>
+								<div class="item__title">
+									<a asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Product.Slug">
+										@item.Product.Title
+									
+									</a>
+									<div class="item__info">
+										@item.Product.Memory GB
+										@item.Product.ProdColor
+									</div>
+									<div class="item__price product__price" data-price="@item.Price">
+										@(item.Count * item.Price) AMD
+									</div>
+								</div>
 							</div>
 							<div class="item__right">
 								<div class="item__count count-range">
@@ -35,12 +45,11 @@
 									<input type="number" class="product-value product-count" id="product-count" name="count" value="@item.Count" min="1" max="200" readonly>
 									<button type="button" class="inc button count-inc">+</button>
 								</div>
-								<div class="item__price product__price">
-									@(item.Count * item.Price)դր.
-								</div>
-								<button type="button" class="item__remove">Հեռացնել</button>
+
+						
 								@* <a asp-area="" asp-controller="Cart" asp-action="Delete" asp-route-Id="@item.Id" class="item__remove">Հեռացնել</a> *@
 							</div>
+								<button type="button" class="item__remove">Հեռացնել</button>
 						</form>
 					}
 				</div>

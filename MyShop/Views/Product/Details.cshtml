@@ -5,10 +5,12 @@
 
 @section head {
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" href="~/assets/css/product.css" />
 }
 <section class="product">
 	<div class="container">
+		<div class="product__title mobile">@Model.Title @Model.Memory GB (@Model.ProdColor)</div>
 		<div class="product__wrapper">
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper">
@@ -28,24 +30,7 @@
 			<div class="product__info">
 				<h1 class="product__title">@Model.Title @Model.Memory GB (@Model.ProdColor)</h1>
 				<p class="product__description">@Model.Description</p>
-				<div class="form-group">
-					@foreach (var item in Model.PAVVMs.GroupBy(p => p.Name))
-					{
-						<span>@item.Key :</span>
-						foreach (var item1 in item)
-						{
-							if (item1 == item.Last())
-							{
-								<span>@item1.Value</span>
-							}
-							else
-							{
-								<span>@item1.Value,</span>
-							}
-						}
-						<br />
-					}
-				</div>
+
 
 				@* <div class="form-group">
 				<br />
@@ -59,21 +44,23 @@
 					</div>
 
 
-					<div class="product__price">
-						@if (Model.Discount > 0)
-						{
-							<span>@Model.FinalPrice.ToString("N0") AMD.</span>
+					@if (Model.Discount > 0)
+					{
+						<div class="product__price disc">
+							<del class="del">@Model.FinalPrice.ToString("N0") AMD.</del>
 							<span class="prodprice">@Model.Price.ToString("N0") AMD</span>
-						}
-						else
-						{
+						</div>
+					}
+					else
+					{
+						<div class="product__price">
 							<span>@Model.Price.ToString("N0") AMD</span>
-						}
+						</div>
+					}
 
-					</div>
 
 
-					<input type="submit" class="addToCart" value="Add To Cart">
+					<input type="submit" class="addToCart add-toast" value="Add To Cart">
 
 
 					@* 	Count : <input type="number" min="0" max="200" value="@ViewBag.Count" name="count">
@@ -83,14 +70,39 @@
 			</div>
 		</div>
 
+		<div class="product-characteristics">
+			<div class="title">Բնութագիր</div>
 
+			<div class="product-characteristics__items">
+				@foreach (var item in Model.PAVVMs.GroupBy(p => p.Name))
+				{
+					<div class="product-characteristics__item">
+						<span>@item.Key :</span>
+
+						@foreach (var item1 in item)
+						{
+							if (item1 == item.Last())
+							{
+								<span>@item1.Value</span>
+							}
+							else
+							{
+								<span>@item1.Value,</span>
+							}
+						}
+					</div>
+
+				}
+			</div>
+
+		</div>
 
 	</div>
 </section>
 
 @section scripts {
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
 			var swiper = new Swiper(".mySwiper", {
@@ -116,7 +128,7 @@
 					countInput.value = currentValue + 1;
 				}
 			});
-			
+
 		});
 
 	</script>

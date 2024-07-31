@@ -25,7 +25,7 @@
 
     const searchForm = document.querySelector(".header__search");
     const searchInput = searchForm.querySelector("input");
-   
+
     document.addEventListener("click", (e) => {
         if (e.target.closest(".search-icon-mobile")) {
             searchForm.classList.add("active");
@@ -71,28 +71,18 @@
                 loader.style.display = "none";
                 sendCallback.style.display = "block";
 
-                clearTimeout(timeoutId); 
+                clearTimeout(timeoutId);
 
                 timeoutId = setTimeout(function () {
                     sendCallback.style.display = "none";
                 }, 2000);
 
-                
             } else {
                 loader.style.display = "none";
                 captchaError.classList.add("active");
                 captchaError.textContent = "Captcha error"
             }
         })
-
-        
     })
-    
-
-
-
-
-
-
 })
 
