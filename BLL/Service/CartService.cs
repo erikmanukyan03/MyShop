@@ -51,16 +51,12 @@ namespace BLL.Service
                 Count = c.Count,
                 IsDeleted = c.IsDeleted,
                 Price = c.Price,
-                Product = new ProductVM
+                Product = new ShortProductVM
                 {
                     Title = c.Product.Title,
-                    CategoryId = c.Product.CategoryId,
-                    Description = c.Product.Description,
-                    Discount = c.Product.Discount,
+                                       Discount = c.Product.Discount,
                     Id = c.Product.Id,
-                    Image = c.Product.Image,
-                    IsDeleted = c.Product.IsDeleted,
-                    IsHot = c.Product.IsHot,
+                    ImageFile = c.Product.Image,
                     Price = c.Product.Price,
                     ShortDescription = c.Product.ShortDescription,
                 },
@@ -94,20 +90,14 @@ namespace BLL.Service
                 IsDeleted = c.IsDeleted,
                 Price = c.Price,
                 ProductId=c.ProductId,
-                Product = new ProductVM
+                Product = new ShortProductVM
                 {
-                    Title = c.Product.Title,
-                    CategoryId = c.Product.CategoryId,
-                    Description = c.Product.Description,
-                    Discount = c.Product.Discount,
                     Id = c.Product.Id,
-                    Image = c.Product.Image,
-                    IsDeleted = c.Product.IsDeleted,
-                    ProdColor= c.Product.ProdColor,
+                    Title = c.Product.Title,
+                    ImageFile = c.Product.Image,
+                    Slug= c.Product.Slug,
                     Memory= c.Product.Memory,
-                    IsHot = c.Product.IsHot,
-                    Price = c.Product.Price,
-                    ShortDescription = c.Product.ShortDescription,
+                    ProdColor= c.Product.ProdColor,
                 },
             }).ToList();
         }
@@ -121,20 +111,21 @@ namespace BLL.Service
                 IsDeleted = c.IsDeleted,
                 Price = c.Price,
                 ProductId = c.ProductId,
-                Product = new ProductVM
+                Product = new ShortProductVM
                 {
                     Title = c.Product.Title,
-                    CategoryId = c.Product.CategoryId,
-                    Description = c.Product.Description,
-                    Discount = c.Product.Discount,
+                    //CategoryId = c.Product.CategoryId,
+                    //Description = c.Product.Description,
+                    //Discount = c.Product.Discount,
                     Id = c.Product.Id,
-                    Image = c.Product.Image,
-                    IsDeleted = c.Product.IsDeleted,
+                    ImageFile = c.Product.Image,
+                    //IsDeleted = c.Product.IsDeleted,
                     ProdColor = c.Product.ProdColor,
                     Memory = c.Product.Memory,
-                    IsHot = c.Product.IsHot,
-                    Price = c.Product.Price,
-                    ShortDescription = c.Product.ShortDescription,
+                    Slug = c.Product.Slug,
+                    //IsHot = c.Product.IsHot,
+                    //Price = c.Product.Price,
+                    //ShortDescription = c.Product.ShortDescription,
                 },
             }).ToList();
         }

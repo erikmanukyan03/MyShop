@@ -1,5 +1,6 @@
 ﻿using BLL.Service;
 using BLL.ViewModels;
+using BLL.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 using MyShop.Models;
 using System.Diagnostics;
@@ -22,7 +23,7 @@ namespace MyShop.Controllers
         public async Task<IActionResult> Search(string keyword)
 		{
 			var list = await _productService.GetAll(null, false);
-			var newlist=new List<ShortProductVM>();
+			var newlist=new List<ProductForSearch>();
 			var splited = keyword?.Split(" ");
 			if(splited.Length > 0) {
 				newlist=await _productService.Search(list,splited);

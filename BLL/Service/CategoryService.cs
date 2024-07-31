@@ -67,8 +67,6 @@ namespace BLL.Service
                 //Slug=entity.Slug,
                 Products = entity.Products.Select(p => new ShortProductVM
                 {
-                    MetaDescription=p.MetaDescription,
-                    PageTitle=p.PageTitle,
                     Slug=p.Slug,
                     Id = p.Id,
                     Title = p.Title,
@@ -133,33 +131,33 @@ namespace BLL.Service
             _cache.Remove("ShortCategories");
         }
 
-        public async Task<List<CategoryForProduct>> GetForProducts()
-        {
-            var categories = new List<CategoryForProduct>();
-            if (_cache.TryGetValue("ShortCategories", out categories))
-            {
-                return categories;
-            }
-            var list = await _context.Categories.GetForProducts();
-            categories = list.Select(c => new CategoryForProduct
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Products = c.Products.Select(p => new ShortProductVM
-                {
-                    Id = p.Id,
-                    Title = p.Title,
-                    Discount = p.Discount,
-                    Memory=p.Memory,
-                    ProdColor=p.ProdColor,
-                    ShortDescription = p.ShortDescription,
-                    CategoryId = c.Id,
-                    Price = p.Price,
-                }).ToList(),
-            }).ToList();
-            _cache.Set("ShortCategories", categories);
-            return categories;
-        }
+        //public async Task<List<CategoryForProduct>> GetForProducts()
+        //{
+        //    var categories = new List<CategoryForProduct>();
+        //    if (_cache.TryGetValue("ShortCategories", out categories))
+        //    {
+        //        return categories;
+        //    }
+        //    var list = await _context.Categories.GetForProducts();
+        //    categories = list.Select(c => new CategoryForProduct
+        //    {
+        //        Id = c.Id,
+        //        Name = c.Name,
+        //        Products = c.Products.Select(p => new ShortProductVM
+        //        {
+        //            Id = p.Id,
+        //            Title = p.Title,
+        //            Discount = p.Discount,
+        //            Memory=p.Memory,
+        //            ProdColor=p.ProdColor,
+        //            ShortDescription = p.ShortDescription,
+        //            CategoryId = c.Id,
+        //            Price = p.Price,
+        //        }).ToList(),
+        //    }).ToList();
+        //    _cache.Set("ShortCategories", categories);
+        //    return categories;
+        //}
 
         //public async Task<List<CategoryName>> CategoryNames()
         //{
@@ -183,24 +181,16 @@ namespace BLL.Service
         {
             Id = p.Id,
             Title = p.Title,
-            ShortDescription = p.ShortDescription,
-            Price = p.Price,
-            Discount = p.Discount,
-            CategoryId = p.CategoryId,
-            ProdColor=p.ProdColor,
-            Memory=p.Memory,
             Slug=p.Slug,
-            MetaDescription=p.MetaDescription,
-            PageTitle=p.PageTitle,
-            PAVVMs = p.PAVs.Select(av => new Atribute_ValueVM
-            {
-                Id = av.Id,
-                Name = av.ProductAttribute.Name,
-                Value = av.Value,
-            }).ToList(),
-            ImageFile = p.Image,
+            ImageFile=p.Image,
+            Memory=p.Memory,
+            ProdColor=p.ProdColor,
+            Price=p.Price,
+            //ShortDescription=p.ShortDescription,
+            Discount=p.Discount,
             FinalPrice = (double)(p.Discount > 0 ? p.Price - p.Price * p.Discount / 100 : p.Price),
-        }).ToList();
+
+		}).ToList();
             return filteredProducts;
         }
         public async Task<Tuple<int?, int?>> MinMaxPrice(int categoryId)

@@ -41,7 +41,27 @@ namespace BLL.Extention
             }).ToListAsync();
             return list;
         }
-        public static async Task<Tuple<int?,int?>> MinMaxPrice(this DbSet<Product> db,int categoryId)
+		public static List<Product> GetAllForAdmin(this DbSet<Product> db, int? categoryId, bool IsDeleted)
+		{
+			var list = db.Include(p => p.PAVs).ThenInclude(pa => pa.ProductAttribute).Include(c => c.Category).Where(c => c.IsDeleted == IsDeleted && (c.CategoryId == categoryId || categoryId == null)).Select(p => new Product
+			{
+				Id = p.Id,
+				Title = p.Title,
+				ShortDescription = p.ShortDescription,
+				Price = p.Price,
+				Image = p.Image,
+				Discount = p.Discount,
+				Memory = p.Memory,
+				ProdColor = p.ProdColor,
+				MetaDescription = p.MetaDescription,
+				Slug = p.Slug,
+				PageTitle = p.PageTitle,
+				PAVs = p.PAVs,
+				CategoryId = p.CategoryId,
+			}).ToList();
+			return list;
+		}
+		public static async Task<Tuple<int?,int?>> MinMaxPrice(this DbSet<Product> db,int categoryId)
         {
             ////Chem jogm
             var min= await db.Include(p=>p.Category).Where(p=>p.CategoryId==categoryId).OrderBy(p => p.Discount != 0 ? p.Price - p.Price * p.Discount / 100 : p.Price).Select(p=> p.Discount != 0 ? p.Price - p.Price * p.Discount / 100 : p.Price).FirstOrDefaultAsync();

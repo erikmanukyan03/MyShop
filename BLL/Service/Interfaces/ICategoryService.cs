@@ -20,7 +20,7 @@ namespace BLL.Service
         void Delete(int Id);
         public List<CategoryVM> GetAllForAdmin(bool IsDeleted);
 		//Task<List<CategoryName>> CategoryNames();
-        Task<List<CategoryForProduct>> GetForProducts();
+        //Task<List<CategoryForProduct>> GetForProducts();
         Task<List<ShortProductVM>> Filter(int? categoryId,FilterVM model);
         Task<Tuple<int?, int?>> MinMaxPrice(int categoryId);
     }

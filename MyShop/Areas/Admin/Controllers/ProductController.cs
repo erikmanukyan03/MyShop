@@ -23,9 +23,9 @@ namespace MyShop.Areas.Admin.Controllers
             _webHost = webHost;
             _paService = paService;
         }
-        public async Task<IActionResult> Index(bool IsDeleted)
+        public IActionResult Index(bool IsDeleted)
         {
-            var list = await _productService.GetAll(null,IsDeleted);
+            var list =  _productService.GetAllForAdmin(null,IsDeleted);
             return View(list);
         }
         [HttpGet]

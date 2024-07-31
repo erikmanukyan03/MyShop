@@ -134,14 +134,13 @@ namespace BLL.Service
                 {
                     Count = c.Count,
                     Price = c.Price,
-                    Product = new ProductVM
+                    Product = new ShortProductVM
                     {
-                        Description = c.Product.Description,
                         Discount = c.Product.Discount,
                         ShortDescription = c.Product.ShortDescription,
                         Title = c.Product.Title,
                         Price = c.Product.Price,
-                        Image = c.Product.Image,
+                        ImageFile = c.Product.Image,
                     },
                 }).ToList(),
             };
