@@ -36,13 +36,18 @@ namespace BLL.Service
                 Discount = model.Discount,
                 Memory = model.Memory,
                 ProdColor= model.ProdColor,
-                Image = model.Image,
+                MainImage = model.MainImage,
                 Price = model.Price,
                 MetaDescription= model.MetaDescription,
                 Slug= model.Slug,
                 PageTitle= model.PageTitle,
                 IsHot = model.IsHot,
-            };
+				Images = model.Images.Select(pi => new ProductImage
+				{
+					ImageFile = pi.ImageFile,
+					ProductId = pi.ProductId,
+				}).ToList(),
+			};
             _productRepository.Add(entity);
             _uow.Save();
             _cache.Remove("Products");
@@ -68,7 +73,7 @@ namespace BLL.Service
                 CategoryId = model.CategoryId,
                 Description = model.Description,
                 Discount = model.Discount,
-                Image = model.Image,
+                MainImage = model.MainImage,
                 Memory = model.Memory,
                 ProdColor = model.ProdColor,
                 Price = model.Price,
@@ -77,7 +82,12 @@ namespace BLL.Service
                 PageTitle = model.PageTitle,
                 IsDeleted = model.IsDeleted,
                 IsHot = model.IsHot,
-            };
+				Images = model.Images.Select(pi => new ProductImage
+				{
+					ImageFile = pi.ImageFile,
+					ProductId = pi.ProductId,
+				}).ToList(),
+			};
             _productRepository.Update(entity);
             _uow.Save();
             _cache.Remove("Products");
@@ -95,7 +105,7 @@ namespace BLL.Service
                 CategoryId = entity.CategoryId,
                 Description = entity.Description,
                 Discount = entity.Discount,
-                Image = entity.Image,
+                MainImage = entity.MainImage,
                 Memory = entity.Memory,
                 ProdColor = entity.ProdColor,
                 Price = entity.Price,
@@ -104,7 +114,13 @@ namespace BLL.Service
                 MetaDescription = entity.MetaDescription,
                 Slug = entity.Slug,
                 PageTitle = entity.PageTitle,
-                PAVVMs = entity.PAVs.Select(av => new Atribute_ValueVM
+				Images = entity.Images.Select(pi => new ProductImageVM
+				{
+					ImageFile = pi.ImageFile,
+					Id = pi.Id,
+					ProductId = pi.Id,
+				}).ToList(),
+				PAVVMs = entity.PAVs.Select(av => new Atribute_ValueVM
                 {
                     Id = av.Id,
                     Name = av.ProductAttribute.Name,
@@ -134,7 +150,7 @@ namespace BLL.Service
                     Name = av.ProductAttribute.Name,
                     Value = av.Value,
                 }).ToList(),
-                ImageFile = p.Image,
+                ImageFile = p.MainImage,
                 Slug = p.Slug,
                 Memory = p.Memory,
                 ProdColor = p.ProdColor,
@@ -149,13 +165,14 @@ namespace BLL.Service
             return list.Select(p=>new ShortProductVM 
             {
                 Id=p.Id,
-                ImageFile=p.Image,
+                ImageFile=p.MainImage,
                 Discount = p.Discount,
 				FinalPrice = (double)(p.Discount > 0 ? p.Price - p.Price * p.Discount / 100 : p.Price),
 				Price = p.Price,
                 ShortDescription=p.ShortDescription,
                 Memory = p.Memory,
                 ProdColor=p.ProdColor,
+                
                 Slug = p.Slug,
                 Title = p.Title,
             }).ToList() ;
@@ -174,7 +191,7 @@ namespace BLL.Service
                 Title = p.Title,
                 Discount = p.Discount,
                 Price = p.Price,
-                ImageFile = p.Image,
+                ImageFile = p.MainImage,
                 Memory = p.Memory,
                 ShortDescription = p.ShortDescription,
                 Slug = p.Slug,
@@ -255,10 +272,16 @@ namespace BLL.Service
                 CategoryId = entity.CategoryId,
                 Description = entity.Description,
                 Discount = entity.Discount,
-                Image = entity.Image,
+                MainImage = entity.MainImage,
                 Memory = entity.Memory,
                 ProdColor = entity.ProdColor,
-                Price = entity.Price,
+				Images = entity.Images.Select(pi => new ProductImageVM
+				{
+					ImageFile = pi.ImageFile,
+					Id = pi.Id,
+					ProductId = pi.Id,
+				}).ToList(),
+				Price = entity.Price,
                 IsDeleted = entity.IsDeleted,
                 IsHot = entity.IsHot,
                 MetaDescription = entity.MetaDescription,
@@ -281,5 +304,11 @@ namespace BLL.Service
                  .ToList();
             return url;
         }
-    }
+		public void DeleteImage(int ImageId)
+		{
+			_productRepository.DeleteImage(ImageId);
+			_uow.Save();
+		}
+
+	}
 }

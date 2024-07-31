@@ -38,10 +38,10 @@
                         <td>@Model.Memory GB </td>
                         <td>@Model.ProdColor</td>
                         <td>@ViewBag.CategoryName</td>
-                        @if (Model.Image != null)
+                        @if (Model.MainImage != null)
                         {
                             <td>
-                                <img src="~/assets/img/product/@Model.Image" alt="Image" width="100px" height="100px" class="tm-list-item-img">
+                                <img src="~/assets/img/product/@Model.MainImage" alt="Image" width="100px" height="100px" class="tm-list-item-img">
                             </td>
                         }
                         else

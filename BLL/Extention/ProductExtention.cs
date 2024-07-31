@@ -14,11 +14,11 @@ namespace BLL.Extention
     {
         public static Product GetById(this DbSet<Product> db, int Id)
         {
-            return db.Include(p=>p.Category).Include(P=>P.PAVs).ThenInclude(p=>p.ProductAttribute).FirstOrDefault(p => p.Id == Id);
+            return db.Include(p => p.Category).Include(P => P.PAVs).ThenInclude(p => p.ProductAttribute).Include(p=>p.Images).FirstOrDefault(p => p.Id == Id);
         }
         public static Product GetBySlug(this DbSet<Product> db, string slug)
         {
-            return db.Include(p => p.Category).Include(P => P.PAVs).ThenInclude(p => p.ProductAttribute).FirstOrDefault(p => p.Slug == slug);
+            return db.Include(p => p.Category).Include(P => P.PAVs).ThenInclude(p => p.ProductAttribute).Include(p => p.Images).FirstOrDefault(p => p.Slug == slug);
         }
 
         public async static Task<List<Product>> GetAll(this DbSet<Product> db, int? categoryId, bool IsDeleted)
@@ -29,7 +29,7 @@ namespace BLL.Extention
                 Title = p.Title,
                 ShortDescription = p.ShortDescription,
                 Price = p.Price,
-                Image=p.Image,
+                MainImage=p.MainImage,
                 Discount = p.Discount,
                 Memory=p.Memory,
                 ProdColor=p.ProdColor,
@@ -49,7 +49,7 @@ namespace BLL.Extention
 				Title = p.Title,
 				ShortDescription = p.ShortDescription,
 				Price = p.Price,
-				Image = p.Image,
+				MainImage = p.MainImage,
 				Discount = p.Discount,
 				Memory = p.Memory,
 				ProdColor = p.ProdColor,
@@ -81,7 +81,7 @@ namespace BLL.Extention
                 Title = p.Title,
                 ShortDescription = p.ShortDescription,
                 Price = p.Price,
-                Image = p.Image,
+                MainImage = p.MainImage,
                 PAVs=p.PAVs,
                 Discount = p.Discount,
                 CategoryId = p.CategoryId,
@@ -98,7 +98,7 @@ namespace BLL.Extention
                 Title = p.Title,
                 ShortDescription = p.ShortDescription,
                 Price = p.Price,
-                Image = p.Image,
+                MainImage = p.MainImage,
                 Discount = p.Discount,
                 Slug=p.Slug,
                 PAVs=p.PAVs,
