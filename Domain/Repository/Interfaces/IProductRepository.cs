@@ -11,6 +11,7 @@ namespace Domain.Repository
 	{
 		public void Add(Product model);
 		public void Delete(int Id);
+		public void DeleteImage(int imageId);
 		public void Update(Product model);
 	}
 }

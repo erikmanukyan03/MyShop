@@ -13,7 +13,7 @@ namespace Domain.Entities
         public string Title { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
-        public string? Image { get; set; }
+        public string? MainImage { get; set; }
         public int Price { get; set; }
         public int? Discount { get; set; }
         public bool HasDiscount { get; set; }
@@ -25,7 +25,9 @@ namespace Domain.Entities
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
         public ICollection<ProductAttributeValue> PAVs { get; set; }
-        public int CategoryId { get; set; }
+		public ICollection<ProductImage> Images { get; set; }
+
+		public int CategoryId { get; set; }
         public int Memory { get; set; }
         public ProdColor ProdColor { get; set; }
         public bool IsDeleted { get; set; }

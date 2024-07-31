@@ -36,19 +36,39 @@ namespace MyShop.Areas.Admin.Controllers
             return View(entity);
         }
         [HttpPost]
-        public IActionResult AddEdit(ProductVM model, IFormFile formFile)
+        public IActionResult AddEdit(ProductVM model, IFormFile mainImage, List<IFormFile> Images)
         {
-            if (formFile == null)
+            if (Images == null)
             {
-                model.Image = null;
+                model.Images = null;
             }
             else
             {
-                var filename=Guid.NewGuid() + System.IO.Path.GetExtension(formFile.FileName);
+                model.Images = new();
+                foreach (var item in Images)
+                {
+                    string fileName = Guid.NewGuid() + System.IO.Path.GetExtension(item.FileName);
+                    string path = $"{_webHost.WebRootPath}/assets/img/product/{fileName}";
+                    model.Images.Add(new ProductImageVM()
+                    {
+                        ImageFile = fileName,
+                        ProductId = model.Id
+                    });
+                    using var fileStream = new FileStream(path, FileMode.Create);
+                    item.CopyTo(fileStream);
+                }
+            }
+            if (mainImage == null)
+            {
+                model.MainImage = null;
+            }
+            else
+            {
+                var filename=Guid.NewGuid() + System.IO.Path.GetExtension(mainImage.FileName);
                 var path = $"{_webHost.WebRootPath}/assets/img/product/{filename}";
-                model.Image = filename;
+                model.MainImage = filename;
                 using var filestream=new FileStream(path, FileMode.Create);
-                formFile.CopyTo(filestream);
+                mainImage.CopyTo(filestream);
             }
             if (model.Id == 0)
             {

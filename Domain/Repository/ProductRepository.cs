@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,10 @@ namespace Domain.Repository
 			entity.Discount = model.Discount;
 			entity.Memory= model.Memory;
 			entity.Price=model.Price;
-			entity.Image=model.Image == null ? entity.Image : model.Image;
+			if (model.MainImage != null)
+			{
+				entity.MainImage = model.MainImage;
+			}
 			entity.IsDeleted = model.IsDeleted;
 			entity.ProdColor = model.ProdColor;
 			entity.CategoryId = model.CategoryId;
@@ -44,7 +48,10 @@ namespace Domain.Repository
 			entity.MetaDescription= model.MetaDescription;
 			//entity.PAV= model.PAV;
 		}
-		//public void AddAttributes(int prodId)
+		public void DeleteImage(int ImageId)
+		{
+			_context.ProductImages.Where(pi => pi.Id == ImageId).ExecuteDelete();
+		}
 	}
 }
 

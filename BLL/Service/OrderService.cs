@@ -140,7 +140,7 @@ namespace BLL.Service
                         ShortDescription = c.Product.ShortDescription,
                         Title = c.Product.Title,
                         Price = c.Product.Price,
-                        ImageFile = c.Product.Image,
+                        ImageFile = c.Product.MainImage,
                     },
                 }).ToList(),
             };

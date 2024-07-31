@@ -21,7 +21,8 @@ namespace BLL.ViewModels
         public string MetaDescription { get; set; }
         public string PageTitle { get; set; }
         public string Slug { get; set; }
-        public string? Image { get; set; }
+        public string? MainImage { get; set; }
+        public List<ProductImageVM> Images { get; set; }
         public int Price { get; set; }
         public int? Discount { get; set; }
         public int CategoryId { get; set; }

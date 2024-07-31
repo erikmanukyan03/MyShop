@@ -182,7 +182,7 @@ namespace BLL.Service
             Id = p.Id,
             Title = p.Title,
             Slug=p.Slug,
-            ImageFile=p.Image,
+            ImageFile=p.MainImage,
             Memory=p.Memory,
             ProdColor=p.ProdColor,
             Price=p.Price,
