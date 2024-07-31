@@ -75,7 +75,7 @@ namespace MyShop.Controllers
 			var cart = _cartService.GetForEdit(cartId);
 			cart.Count = count;
 			_cartService.Update(cart);
-			return Json(new { success = true, message = "Product count updated successfully." });
+			return RedirectToAction("Create", "Order");
 
 		}
 	}

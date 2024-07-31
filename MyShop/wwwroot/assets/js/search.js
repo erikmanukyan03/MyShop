@@ -1,6 +1,9 @@
 function LiveSearch() {
     let value = document.getElementById('search').value;
 
+
+
+
     if (!value) {
         document.getElementById('result').innerHTML = '';
         document.getElementById('result').classList.add('hidden');
@@ -50,6 +53,7 @@ function hideLoadingSpinner() {
     document.getElementById('search-loader').classList.add('hidden');
     document.getElementById('search-icon').style.display = 'inline';
 }
+
 
 document.addEventListener('click', function (event) {
     if (!event.target.closest('#result, #search')) {
