@@ -134,7 +134,7 @@
     margin-top: 10px;
 }
 
-    .top-sales__item .item__buttons .btn-orange {
+    .top-sales__item .item__buttons .btn-green {
         width: 50%;
     }
 
@@ -177,7 +177,7 @@
         font-size: 16px;
     }
 
-    .top-sales__item .btn-orange {
+    .top-sales__item .btn-green {
         font-size: 14px;
     }
     .top-sales__item .item__name {

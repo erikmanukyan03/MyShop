@@ -15,35 +15,27 @@
 			<div class="swiper mySwiper">
 				<div class="swiper-wrapper">
 					<div class="product__img swiper-slide">
-						<img src="~/assets/img/product/@Model.MainImage" />
+						<img src="~/assets/img/product/@Model.MainImage" alt="@Model.Title" />
 					</div>
-					<div class="product__img swiper-slide">
-						@foreach(var item in Model.Images)
-						{
-						<img src="~/assets/img/product/@item.ImageFile" />
-						}
-					</div>
-				</>
+					@foreach (var item in Model.Images)
+					{
+						<div class="product__img swiper-slide">
+							<img src="~/assets/img/product/@item.ImageFile" alt="@Model.Title" />
+						</div>
+					}
+				</div>
 				<div class="swiper-pagination"></div>
 			</div>
-
 			<div class="product__info">
 				<h1 class="product__title">@Model.Title @Model.Memory GB (@Model.ProdColor)</h1>
 				<p class="product__description">@Model.Description</p>
 
-
-				@* <div class="form-group">
-				<br />
-				<p>Discount: @Model.Discount</p>
-				</div> *@
 				<form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@Model.Id" asp-route-FinalPrice="@ViewBag.FinalPrice" asp-route-fromprodpage="true" class="addToCartForm" id="addToCart">
 					<div class="count-range">
 						<button type="button" class="dec button count-dec" data-product="@Model.Id">-</button>
 						<input type="number" class="product-value product-count" id="product-count" name="count" value="@ViewBag.Count" min="0" max="200" readonly>
 						<button type="button" class="inc button count-inc" data-product="@Model.Id">+</button>
 					</div>
-
-
 					@if (Model.Discount > 0)
 					{
 						<div class="product__price disc">
@@ -57,19 +49,11 @@
 							<span>@Model.Price.ToString("N0") AMD</span>
 						</div>
 					}
-
-
-
 					<input type="submit" class="addToCart add-toast" value="Add To Cart">
-
-
-					@* 	Count : <input type="number" min="0" max="200" value="@ViewBag.Count" name="count">
-					<input type="submit" value="Add To Cart" onclick="alert('Added')"> *@
 				</form>
 
 			</div>
 		</div>
-
 		<div class="product-characteristics">
 			<div class="title">Բնութագիր</div>
 

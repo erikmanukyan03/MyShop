@@ -354,7 +354,7 @@ svg {
     padding: 10px 15px;
 }
 
-.cart__wrapper .btn-orange {
+.cart__wrapper .btn-green {
     width: 100%;
 }
 
@@ -376,7 +376,7 @@ svg {
         font-size: 16px;
     }
 
-    .cart__empty .btn-orange {
+    .cart__empty .btn-green {
         max-width: 200px;
         margin: 0 auto
     }

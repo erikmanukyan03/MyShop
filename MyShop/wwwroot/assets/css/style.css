@@ -370,7 +370,7 @@ nav {
         resize: none;
     }
 
-.btn-orange {
+.btn-green {
     color: var(--white);
     padding: 10px;
     display: inline-block;
@@ -382,11 +382,11 @@ nav {
     line-height: 1;
 }
 
-    .btn-orange:hover {
-        color: var(--green);
-        background: var(--white);
-        border-color: var(--green)
-    }
+.btn-green:hover {
+    color: var(--green);
+    background: var(--white);
+    border-color: var(--green)
+}
 
 .callback .container {
     max-width: 800px;
@@ -450,7 +450,7 @@ nav {
     font-size: 15px;
 }
 
-.callback .btn-orange {
+.callback .btn-green {
     width: 100%;
 }
 
