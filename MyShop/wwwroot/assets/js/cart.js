@@ -81,6 +81,7 @@
 
 
     orderForm.addEventListener("submit", (e) => {
+        const sendMessage = document.querySelector(".send-message__container");
         e.preventDefault();
 
         const formData = new FormData(orderForm);
@@ -95,11 +96,22 @@
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                Customer: {
+                    Name: data.Name,
+                    PhoneNumber: data.PhoneNumber,
+                    Email: data.Email
+                },
+              
+            })
         }).then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    /*window.location.href = "/Home/Index";*/
+                    sendMessage.style.display = "block";
+                    const closeBtn = sendMessage.querySelector(".bottomHalf a");
+                    closeBtn.addEventListener("click", () => {
+                        window.location.href = "/";
+                    })
                     console.log("asd")
                 } else {
                     console.error("Order submission failed:", data.message);
