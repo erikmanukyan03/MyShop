@@ -1,6 +1,5 @@
 ﻿using BLL.Service;
 using BLL.ViewModels;
-using BLL.ViewModels.Product;
 using Microsoft.AspNetCore.Mvc;
 using MyShop.Models;
 using System.Diagnostics;

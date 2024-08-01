@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.ViewModels.Product
+namespace BLL.ViewModels
 {
 	public class ProductForSearch
 	{

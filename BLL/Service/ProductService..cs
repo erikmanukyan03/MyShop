@@ -1,6 +1,5 @@
 ﻿using BLL.Extention;
 using BLL.ViewModels;
-using BLL.ViewModels.Product;
 using Domain;
 using Domain.Entities;
 using Domain.Repository;

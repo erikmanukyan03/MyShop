@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using BLL.ViewModels.Product;
 
 namespace BLL.Service
 {
