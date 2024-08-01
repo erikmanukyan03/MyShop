@@ -930,15 +930,17 @@ button.btn, a.btn {
     border-radius: 100px;
     padding: 10px 24px;
 }
+
 a.btn {
     display: inline-block;
     margin-top: 20px;
     transition: 0.3s ease all
 }
-    button.btn.red {
-        color: #fff;
-        background-color: #b3261e;
-    }
+
+button.btn.red {
+    color: #fff;
+    background-color: #b3261e;
+}
 
 button.btn:hover, a.btn:hover {
     opacity: 0.8;
@@ -965,15 +967,52 @@ button.btn:hover, a.btn:hover {
 
 
 .dashboard__detail {
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
     border: 1px solid #fff;
     padding: 10px;
 }
+
+.dashboard__detail.bigger {
+    display:block;
+}
+
+    .dashboard__detail.bigger .flex {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        border-bottom: 1px solid var(--color-default);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    } 
+
     .dashboard__detail .name {
         color: var(--color-default)
     }
+
     .dashboard__detail.big {
         flex-direction: column;
         gap: 10px;
     }
+
+.multiple-select {
+    padding: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+    .multiple-select optgroup {
+        text-align: center;
+    }
+
+        .multiple-select optgroup option {
+            margin-bottom: 10px;
+        }
+
+        .userInfo {
+            display:flex;
+            align-items:center;
+            position:absolute;
+            top:20px;
+            right: 20px;
+        }

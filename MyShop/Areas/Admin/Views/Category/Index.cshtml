@@ -25,7 +25,7 @@
 				</div>
 				<div class="item__right">
 					<label class="switch">
-						<input type="checkbox" class="archive-toggle"@*  data-id="@item.Id" @(item.IsArchived ? "checked" : "") *@ />
+						<input type="checkbox" class="archive-toggle" data-id="@item.Id" @(item.IsDeleted ? "checked" : "")  />
 						<span class="slider round"></span>
 					</label>
 					<a asp-area="Admin" asp-controller="Category" asp-action="AddEdit" asp-route-Id="@item.Id" class="item__edit">

@@ -42,13 +42,14 @@
 
     .top-sales__item .item__image {
         width: 180px;
+        max-height: 180px;
         margin: 0 auto;
     }
 
         .top-sales__item .item__image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
     .top-sales__item .item__name {

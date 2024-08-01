@@ -1,67 +1,100 @@
 ﻿@model OrderVM
 @{
-    ViewData["Title"] = "Detail";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
-    var carts = ViewBag.Cart as List<CartVM>;
+	ViewData["Title"] = "Detail";
+	Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+	var carts = ViewBag.Cart as List<CartVM>;
 }
 
-<main>
 
-    <section class="product">
-        <div class="container">
-            <div class="product__table">
-                <h2> Номер заказа @Model.Id </h2>
-                <table class="table">
-                    <tr>
-                        <th>Дата заказа</th>
-                        <th>@Model.OrderDate</th>
-                    </tr>
+<section class="dashboard">
+	<h2> Номер заказа @Model.Id </h2>
+	<div class="dashboard__details">
+		<div class="dashboard__detail">
+			<span class="name">Date</span>
+			<span>@Model.OrderDate</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Name</span>
+			<span>@Model.Customer.Name</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Phone number</span>
+			<span>@Model.Customer.PhoneNumber</span>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Email</span>
+			<span>@Model.Customer.Email</span>
+		</div>
+		<div class="dashboard__detail bigger">
+			@foreach (var item in carts)
+			{
+				<div class="flex">
+					<div>
+						<span>@item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor)</span>
+					</div>
+					<div>
+						<img width="90px" height="auto" src="~/assets/img/product/@item.Product.ImageFile">
+					</div>
+					<div>
+						<span>@item.Count</span>
+					</div>
+				</div>
+			}
 
-                </table>
-                <h2>Заказчик</h2>
-                <table class="table">
-
-                    <tr>
-
-                        <th>Имя</th>
-                        <th>@Model.Customer.Name</th>
-                    </tr>
-                    <tr>
-                        <th>Номер тел.</th>
-                        <th>@Model.Customer.PhoneNumber</th>
-                    </tr>
-
-                    <tr>
-                        <th>Email</th>
-                        <th>@Model.Customer.Email</th>
-                    </tr>
-                </table>
-                <h2>Заказ</h2>
-                <table class="table">
-                    <tr>
-                        <th>Название товара</th>
-                        <th>Картина товара</th>
-                        <th>Количество</th>
-                    </tr>
-                    @foreach (var item in carts)
-                    {
-                        <tr>
-
-                            <th>@item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor)</th>
-                            <th>
-
-                                <img width="90px" height="auto" src="~/assets/img/product/@item.Product.ImageFile">
-                            </th>
-                            <th>@item.Count</th>
-                        </tr>
-                    }
-                    <tr>
-                        <th>Итого- @carts.Sum(c=>c.Price)</th>
-                    </tr>
-                </table>
+		</div>
+		<div class="dashboard__detail">
+			<span class="name">Total</span>
+			<span>@carts.Sum(c => c.Price) AMD</span>
+		</div>
+	</div>
+</section>
 
 
-            </div>
-        </div>
-    </section>
-</main>
+@* <table class="table">
+	<tr>
+		<th>Дата заказа</th>
+		<th>@Model.OrderDate</th>
+	</tr>
+
+</table>
+<h2>Заказчик</h2>
+<table class="table">
+
+	<tr>
+
+		<th>Имя</th>
+		<th>@Model.Customer.Name</th>
+	</tr>
+	<tr>
+		<th>Номер тел.</th>
+		<th>@Model.Customer.PhoneNumber</th>
+	</tr>
+
+	<tr>
+		<th>Email</th>
+		<th>@Model.Customer.Email</th>
+	</tr>
+</table>
+<h2>Заказ</h2>
+<table class="table">
+	<tr>
+		<th>Название товара</th>
+		<th>Картина товара</th>
+		<th>Количество</th>
+	</tr>
+	@foreach (var item in carts)
+	{
+		<tr>
+
+			<th>@item.Product.Title @item.Product.Memory GB (@item.Product.ProdColor)</th>
+			<th>
+
+				<img width="90px" height="auto" src="~/assets/img/product/@item.Product.ImageFile">
+			</th>
+			<th>@item.Count</th>
+		</tr>
+	}
+	<tr>
+		<th>Итого- @carts.Sum(c => c.Price)</th>
+	</tr>
+</table> *@
