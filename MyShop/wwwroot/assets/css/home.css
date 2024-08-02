@@ -2,14 +2,11 @@
     margin-bottom: 20px;
 }
 
-    .home__banner .swiper-slide {
+    .home__banner .swiper-slide img{
+        width: 100%;
+        height: 100%;
+        object-fit:cover;
     }
-
-        .home__banner .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
 
 .top-sales {
     margin-bottom: 80px;
@@ -147,12 +144,7 @@
     height: 378px;
 }
 
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+
 
 .swiper-button-next, .swiper-button-prev {
     color: var(--white);
@@ -185,6 +177,7 @@
     }
     .top-sales__item .item__image {
         width: 120px;
+        height: 120px;
     }
 
     .swiper-button-next:after, .swiper-button-prev:after, .top-sales__item .item__price del {

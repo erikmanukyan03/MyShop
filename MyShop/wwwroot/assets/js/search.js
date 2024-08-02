@@ -1,9 +1,6 @@
 function LiveSearch() {
     let value = document.getElementById('search').value;
 
-
-
-
     if (!value) {
         document.getElementById('result').innerHTML = '';
         document.getElementById('result').classList.add('hidden');

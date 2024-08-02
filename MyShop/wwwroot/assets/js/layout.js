@@ -47,35 +47,25 @@
 
     callbackForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        loader.style.display = "block";
+        loader.style.display = "flex";
         const sendCallback = document.getElementById("send-callback")
         const captchaError = document.getElementById("captchaerror");
-
         const formData = new FormData(callbackForm);
-        const data = {}
-        formData.forEach((value, key) => {
-            data[key] = value;
-        })
 
 
-        let timeoutId;
 
         fetch("/Customer/Add", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
+            body: formData
         }).then(response => response.json()).then(data => {
             if (data.success) {
                 loader.style.display = "none";
                 sendCallback.style.display = "block";
 
-                clearTimeout(timeoutId);
-
-                timeoutId = setTimeout(function () {
-                    sendCallback.style.display = "none";
-                }, 2000);
+                const closeBtn = sendMessage.querySelector(".bottomHalf a");
+                closeBtn.addEventListener("click", () => {
+                    window.location.href = "/";
+                })
 
             } else {
                 loader.style.display = "none";
