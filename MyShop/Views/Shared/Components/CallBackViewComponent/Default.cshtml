@@ -52,7 +52,7 @@
 	<div class="container">
 		<div class="callback__title title">Ունե՞ք հարցեր: Կապնվեք մեզ հետ</div>
 		<div class="call__wrapper">
-			<form asp-area="" asp-controller="Customer" asp-action="Add" id="callback">
+			<form asp-area="" asp-controller="Customer" asp-action="Add">   @* id="callback" *@
 				<input type="hidden" asp-for="Id"/>
 				<div class="floating-label-input">
 					<input asp-for="Name" type="text"

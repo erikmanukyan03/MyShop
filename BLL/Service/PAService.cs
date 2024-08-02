@@ -29,6 +29,7 @@ namespace BLL.Service
             var entity = new ProductAttribute
             {
                 Name = model.Name,
+                AttributeType=model.AttributeType,
                 AttributeValues = model.Values.Select(p => new ProductAttributeValue
                 {
                     ProductAttributeId = p.ProductAttributeId,
@@ -53,6 +54,7 @@ namespace BLL.Service
             {
                 Id = Id,
                 Name = model.Name,
+                AttributeType= model.AttributeType,
                 Values = model.AttributeValues.Select(ap => new PAVVM
                 {
                     Id = ap.Id,
@@ -74,6 +76,7 @@ namespace BLL.Service
                 {
                     Id = item.Id,
                     Name = item.Name,
+                    AttributeType=item.AttributeType,
                     Values = item.AttributeValues.Select(ap => new PAVVM
                     {
                         Id = ap.Id,
@@ -95,6 +98,7 @@ namespace BLL.Service
                 {
                     Id = item.Id,
                     Name = item.Name,
+                    AttributeType= item.AttributeType,
                     Values = item.AttributeValues.Select(ap => new PAVVM
                     {
                         Id = ap.Id,
@@ -111,6 +115,7 @@ namespace BLL.Service
         {
             var entity = _context.ProductAttributes.GetById(model.Id);
             entity.Name=model.Name;
+            entity.AttributeType=model.AttributeType;
             entity.AttributeValues = model.Values.Select(p => new ProductAttributeValue
             {
                 Id = p.Id,

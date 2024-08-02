@@ -102,91 +102,12 @@
 			}
 			<a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@Model.Id" asp-route-edit="@true" class="btn">Edit attributes</a>
 		</div>
-
-	</div>
-</section>
-
-
-
-@* <section class="product">
-	<div class="container">
-		<div class="product__table">
-			<table class="table">
-				<tr>
-					<th>Название</th>
-					<th>Описание</th>
-					<th>Короткое Описание</th>
-					<th>Цена</th>
-					<th>Скидка</th>
-					<th>Память</th>
-					<th>Цвет</th>
-					<th>Категория</th>
-					<th>Картина продукта</th>
-					<th>MetaDescription</th>
-					<th>PageTitle</th>
-					<th>Slug</th>
-					<th>Удаленный</th>
-					<th>Топовый</th>
-					<th>Редактировать</th>
-				</tr>
-
-
-				<tr>
-					<td>@Model.Title</td>
-					<td>@Model.Description</td>
-					<td>@Model.ShortDescription</td>
-					<td>@Model.Price</td>
-					<td>@Model.Discount</td>
-					<td>@Model.Memory GB </td>
-					<td>@Model.ProdColor</td>
-					<td>@ViewBag.CategoryName</td>
-					@if (Model.MainImage != null)
-					{
-						<td>
-							<img src="~/assets/img/product/@Model.MainImage" alt="Image" width="100px" height="100px" class="tm-list-item-img">
-						</td>
-					}
-					else
-					{
-						<td>
-							No Image
-						</td>
-					}
-					<td>@Model.MetaDescription</td>
-					<td>@Model.PageTitle</td>
-					<td>@Model.Slug</td>
-					<td>@Model.IsDeleted</td>
-					<td>@Model.IsHot</td>
-					<td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@Model.Id">Редактировать</a></td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr>
-					<th>Attributes</th>
-				</tr>
-				@foreach (var item in Model.PAVVMs.GroupBy(p => p.Name))
-				{
-					<tr>
-						<td>
-							@item.Key :
-							@foreach (var item1 in item)
-							{
-								if (item1 == item.Last())
-								{
-									@item1.Value
-								}
-								else
-								{
-									<span>@item1.Value,</span>
-								}
-							}
-
-					</tr>
-				}
-				<a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@Model.Id" asp-route-edit="@true" class="btn">Edit attributes</a>
-				<tr></tr>
-			</table>
+		<div>
+		@foreach(var item in Model.Images)
+		{
+			<img src="~/assets//img/product/@item.ImageFile" width="10px" />
+			<a asp-area="Admin" asp-controller="Product" asp-action="DeleteImage" asp-route-Id="@Model.Id" asp-route-imageId="@item.Id">Delete</a>
+		}
 		</div>
 	</div>
 </section>
- *@

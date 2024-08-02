@@ -29,6 +29,7 @@ namespace Domain.Repository
         {
            var model= _context.ProductAttributes.FirstOrDefault(p => p.Id == productAttribute.Id);
             model.Name= productAttribute.Name;
+            model.AttributeType= productAttribute.AttributeType;
             model.AttributeValues= productAttribute.AttributeValues;
         }
     }

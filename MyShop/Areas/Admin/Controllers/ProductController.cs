@@ -108,6 +108,11 @@ namespace MyShop.Areas.Admin.Controllers
             _productService.AddEditAttribute(prodId,list,edit);
             return RedirectToAction("Details",  new { Id = prodId });
         }
+        public IActionResult DeleteImage(int Id,int imageId)
+        {
+            _productService.DeleteImage(imageId);
+            return RedirectToAction("Details",new { Id = Id });
+        }
 
     }
 }

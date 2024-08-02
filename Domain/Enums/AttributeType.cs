@@ -27,9 +27,6 @@ namespace Domain.Enums
         Miakcichner,
         [Display(Name = "Միացություններ")]
         Miacutyunner,
-        [Display(Name = "Memory")]
-        Memory,
-
     }
 
 }
