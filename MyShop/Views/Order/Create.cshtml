@@ -102,18 +102,26 @@
 					<input type="hidden" name="CookieId" value="" />
 					<div class="floating-label-input">
 						<input name="Name" type="text"
+							   id="orderName"
 							   class="form__input"
 							   required />
 						<label class="label">Անուն</label>
 					</div>
-					<div class="floating-label-input">
+					<div class="floating-label-input tel">
+						<div class="input-code">
+							<img src="~/assets/img/armenia.png" alt="flag armenia" />
+							<span>+374</span>
+						</div>
 						<input name="PhoneNumber" type="text"
 							   class="form__input"
+							   id="orderPhoneNumber"
 							   required />
 						<label class="label">Հեռախոսահամար</label>
+						<span id="orderPhoneError" class="error-message">Հեռախոսահամարը գոյություն չունի</span>
 					</div>
 					<div class="floating-label-input">
 						<input name="Email" type="email"
+							   id="orderEmail"
 							   class="form__input"
 							   required />
 						<label class="label">Էլ. հասցե</label>

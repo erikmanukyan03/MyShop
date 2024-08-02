@@ -55,17 +55,25 @@
 				<div class="floating-label-input">
 					<input asp-for="Name" type="text"
 						   class="form__input"
+						   id="callbackName"
 						   required />
 					<label class="label">Անուն</label>
 				</div>
-				<div class="floating-label-input">
+				<div class="floating-label-input tel">
+					<div class="input-code">
+						<img src="~/assets/img/armenia.png" alt="flag armenia" />
+						<span>+374</span>
+					</div>
 					<input asp-for="PhoneNumber" type="text"
 						   class="form__input"
+						   id="callbackPhoneNumber"
 						   required />
 					<label class="label">Հեռախոսահամար</label>
+					<span id="callbackPhoneError" class="error-message">Հեռախոսահամարը գոյություն չունի</span>
 				</div>
 				<div class="floating-label-input">
 					<textarea asp-for="Message"
+							  id="callbackMessage"
 							  class="form__input"
 							  required></textarea>
 					<label class="label">Հաղորդագրություն</label>
@@ -73,11 +81,10 @@
 				<label class="captcha-label">
 					<span class="captcha-text">Captcha</span>
 					<img src="/captcha" class="captcha-img" />
-					<input asp-for="Captcha" type="text" placeholder="1234" required maxlength="4" />
+					<input asp-for="Captcha" type="text" placeholder="1234" required maxlength="4" id="callbackCaptcha" />
 					<span class="captcha-error" id="captchaerror"></span>
-
 				</label>
-				<button type="submit" class="btn-green">Ուղարկել</button>
+				<button type="submit" class="btn-green" disabled>Ուղարկել</button>
 			</form>
 		</div>
 	</div>

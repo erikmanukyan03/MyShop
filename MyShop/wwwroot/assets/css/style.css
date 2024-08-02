@@ -557,7 +557,38 @@ nav {
     position: relative;
     margin-bottom: 10px;
 }
+    .floating-label-input.tel {
+        display:flex;
+        align-items:center;
+    }
+        .floating-label-input.tel .input-code {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+        }
+        .floating-label-input.tel img {
+            width: 30px;
+        }
+        .floating-label-input.tel input {
+            padding-left: 85px;
 
+        }
+        .floating-label-input.tel .input-code span {
+            color: #1d1b20;
+            font-size: 16px;
+            font-weight: 400;
+        }
+.error-message {
+    position:absolute;
+    right: 10px;
+    display:none;
+    color: red;
+    font-size: 12px;
+}
+    .error-message.active {
+        display:block;
+    }
     .floating-label-input .label {
         background-color: var(--default-color);
         color: #49454f;
@@ -601,14 +632,14 @@ nav {
     }
 
 .btn-green {
-    color: var(--white);
     padding: 10px;
     display: inline-block;
     font-size: 16px;
+    color: var(--white);
     border: 3px solid transparent;
+    background: var(--green);
     border-radius: 5px;
     transition: 0.3s ease all;
-    background: var(--green);
     line-height: 1;
 }
 
@@ -617,6 +648,15 @@ nav {
     background: var(--white);
     border-color: var(--green)
 }
+.callback .btn-green:disabled, .cart-order__form .btn-green:disabled {
+    opacity: .3
+}
+    .callback .btn-green:disabled:hover, .cart-order__form .btn-green:disabled:hover {
+        color: var(--white);
+        border: 3px solid transparent;
+        background: var(--green);
+        cursor: no-drop;
+    }
 
 .callback .container {
     max-width: 800px;

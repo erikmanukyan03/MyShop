@@ -12,8 +12,12 @@ namespace BLL.ViewModels
     public class CustomerVM
     {
         public int Id { get; set; }
-        public string? Name { get; set; }
-        public string PhoneNumber { get; set; }
+		[Required(ErrorMessage = "Գրեք ձեր անունը")]
+		public string Name { get; set; }
+		[Required(ErrorMessage = "Նշեք հեռախոսահամար")]
+		[RegularExpression(@"^(99|91|93|96|98|77|43|41|94|95|55)[0-9]{6}$",
+		   ErrorMessage = "Այդպիսի համար գոյություն չունի")]
+		public string PhoneNumber { get; set; }
         public string? Address { get; set; }
         public string? Email { get; set; }
         public CustomerType CustomerType { get; set; }
