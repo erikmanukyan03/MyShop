@@ -471,6 +471,15 @@ main {
     gap: 20px;
 }
 
+.header__compare {
+    position: relative
+}
+
+    .header__compare svg {
+        width: 45px;
+        height: 45px;
+    }
+
 .header__basket {
     display: block;
     position: relative;
@@ -481,7 +490,7 @@ main {
         height: 50px;
     }
 
-    .header__basket span.basket__count {
+    .header__basket span.basket__count, .header__compare span {
         position: absolute;
         top: -5px;
         right: -5px;
@@ -498,9 +507,15 @@ main {
         font-size: 14px;
     }
 
-        .header__basket span.basket__count.more {
-            font-size: 11px;
-        }
+.header__compare span {
+    width: 15px;
+    height: 15px;
+    font-size: 12px;
+}
+
+.header__basket span.basket__count.more {
+    font-size: 11px;
+}
 
 nav {
     margin-top: 79px;
@@ -786,7 +801,7 @@ nav {
         flex-direction: column;
         align-items: start;
         gap: 20px;
-        overflow:hidden;
+        overflow: hidden;
     }
 
         .footer__wrapper .nav__list li a {
@@ -829,12 +844,12 @@ nav {
         height: 40px;
     }
 
-    .footer__phone a {
-        font-size: 16px;
-        color:#fff;
-        margin-bottom: 15px;
-        display:block;
-    }
+.footer__phone a {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 15px;
+    display: block;
+}
 
 .footer__item .item__contact .item__info.footer__social {
     display: flex;
@@ -849,26 +864,28 @@ nav {
     border-top: 1px solid #fff;
     padding-top: 20px;
 }
+
     .footer__copyright a {
-        text-decoration:underline;
+        text-decoration: underline;
         color: #fff;
         margin-right: 10px;
     }
-    .tag-results {
-        scrollbar-width: thin;
-        top: 50px;
-        background: #fff;
-        width: 100%;
-        height: fit-content;
-        max-height: 450px;
-        overflow-y: auto;
-        border-radius: 0;
-        position: absolute;
-        bottom: 0;
-        z-index: 10000;
-        border: 1px solid var(--green);
-        font-weight: 400;
-    }
+
+.tag-results {
+    scrollbar-width: thin;
+    top: 50px;
+    background: #fff;
+    width: 100%;
+    height: fit-content;
+    max-height: 450px;
+    overflow-y: auto;
+    border-radius: 0;
+    position: absolute;
+    bottom: 0;
+    z-index: 10000;
+    border: 1px solid var(--green);
+    font-weight: 400;
+}
 
     .tag-results.hidden {
         display: none;
@@ -956,6 +973,16 @@ nav {
     .header__right a {
         font-size: 18px;
     }
+}
+
+@media (max-width: 1200px) {
+    .header__right {
+        gap: 16px;
+    }
+
+        .header__right a {
+            font-size: 16px;
+        }
 }
 
 
@@ -1053,16 +1080,18 @@ nav {
         right: 20px;
         background: var(--green);
         border-radius: 50%;
-        width: 70px;
-        height: 70px;
+        width: 60px;
+        height: 60px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
-
         .header__basket span.basket__count {
             top: 5px;
             right: 8px;
+            font-size: 11px;
+            width: 17px;
+            height: 17px;
         }
 
     .header__pages.active {
@@ -1133,7 +1162,12 @@ nav {
     .header__pages {
         max-width: 200px;
     }
-
+    .header__compare span {
+        width: 12px;
+        height: 12px;
+        font-size: 12px;
+        top: 0;
+    }
     .search-icon-mobile {
         display: block;
     }
@@ -1180,15 +1214,18 @@ nav {
     .footer {
         padding: 30px 0;
     }
+
     .footer__wrapper {
         gap: 30px;
         flex-wrap: wrap;
         justify-content: space-around;
     }
-    .footer__wrapper .footer__item.logo {
-        width: 100%;
-        text-align:center;
-    }
+
+        .footer__wrapper .footer__item.logo {
+            width: 100%;
+            text-align: center;
+        }
+
         .footer__wrapper .header__logo {
             font-size: 24px;
         }
@@ -1198,12 +1235,15 @@ nav {
     .nav__list li a {
         font-size: 10px;
     }
-    .footer__wrapper  {
-        flex-direction:column;
+
+    .footer__wrapper {
+        flex-direction: column;
     }
+
         .footer__wrapper .footer__item.logo {
-            text-align:left;
+            text-align: left;
         }
+
     .footer__copyright {
         font-size: 12px;
         line-height: 150%;
