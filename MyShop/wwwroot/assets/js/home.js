@@ -40,6 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     });
 
+
+    $(function () {
+        $('.slider').slick({
+            autoplay: true,
+            autoplaySpeed: 0,
+            speed: 5000,
+            arrows: false,
+            swipe: false,
+            slidesToShow: 6,
+            cssEase: 'linear',
+            pauseOnFocus: false,
+            pauseOnHover: false,
+            rtl: true
+        });
+    });
+
 })
 
 
