@@ -25,7 +25,7 @@
 					<i class="search-icon-mobile">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="transparent" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" class="size-1">
 								<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-							</svg>
+									</svg>
 
 						</i>
 					<form class="header__search" asp-area="" asp-controller="Home" asp-action="Search" method="post">
@@ -61,7 +61,13 @@
 			</div>
 		</div>
 	</header>
-	@await Component.InvokeAsync("NavViewComponent")
+
+	<nav class="nav">
+	<div class="container">
+		@await Component.InvokeAsync("NavViewComponent")
+	</div>
+</nav>
+	
 
 
 
@@ -105,9 +111,47 @@
 	<section class="call bg">@await Component.InvokeAsync("CallBackViewComponent")</section>
 	<footer class="footer">
 		<div class="container">
-			<div class="footer">MyShop</div>
+			<div class="footer__wrapper">
+				<div class="footer__item">
+					<div class="item__field">
+						<a href="/" class="header__logo"><b>My</b>mobile</a>
+					</div>
+				</div>
+				<div class="footer__item">
+					<div class="item__pages item__field">
+						<div class="item__info">
+							<a asp-area="" asp-controller="Info" asp-action="AboutUs" class="header__link">Մեր մասին</a>
+						<a asp-area="" asp-controller="Info" asp-action="Contact" class="header__link">Կապ մեզ հետ</a>
+						@await Component.InvokeAsync("NavViewComponent")
+						</div>
+					</div>
+				</div>
+				
+				<div class="footer__item">
+					<div class="item__contact item__field">
+						
+						<div class="item__info">
+							<div>Աշխատանքային ժամերը:</div>
+							<span>Երկ-Շբթ 10:00 -  20:00 </span>
+							<span>Կիրակի 11:00 - 19:00</span>
+							</div>
 
-		</div>
+							<div class="item__info">
+							<div>Առաքում:</div>
+							<span>1 աշխատանքային օր</span>
+						</div>
+						<div class="item__info">
+							<div class="footer__phone">
+
+
+						<a href="tel:+37499887766">
+							<span>+374 99 88 77 66</span>
+						</a>
+					</div>
+							</div>
+					</div>
+				</div>
+			</div>
 	</footer>
 
 	<script src="~/assets/js/search.js"></script>
