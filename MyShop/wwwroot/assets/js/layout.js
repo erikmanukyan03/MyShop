@@ -28,15 +28,15 @@
 
     document.addEventListener("click", (e) => {
         if (e.target.closest(".search-icon-mobile")) {
-            searchForm.classList.add("active");
-            searchInput.focus();
+            searchForm?.classList.add("active");
+            searchInput?.focus();
         }
-        else if (searchForm.classList.contains('active') && !e.target.closest(".header__search")) {
-            searchForm.classList.remove('active');
+        else if (searchForm?.classList.contains('active') && !e.target.closest(".header__search")) {
+            searchForm?.classList.remove('active');
         }
     });
 
-    searchForm.addEventListener("click", (e) => {
+    searchForm?.addEventListener("click", (e) => {
         e.stopPropagation();
     });
 
@@ -93,21 +93,23 @@
         } = fields;
 
 
-        const isPhoneValid = phoneRegex.test(phoneInput.value.trim());
+        const isPhoneValid = phoneInput ? phoneRegex.test(phoneInput.value.trim()) : true;
         const isEmailValid = emailInput ? emailInput.value.trim() !== '' : true;
-        const isNameFilled = nameInput.value.trim() !== '';
-        const isMessageFilled = messageInput ? messageInput.value.trim() !== '' : true; // Optional
-        const isCaptchaLengthValid = captchaInput ? captchaInput.value.trim().length === captchaLength : true; // Optional
+        const isNameFilled = nameInput ? nameInput.value.trim() !== '' : true;
+        const isMessageFilled = messageInput ? messageInput.value.trim() !== '' : true;
+        const isCaptchaLengthValid = captchaInput ? captchaInput.value.trim().length === captchaLength : true;
 
         // Управление отображением ошибки
-        if (phoneInput.value.length === 0 || isPhoneValid) {
-            errorMessage.classList.remove("active");
+        if (phoneInput?.value.length === 0 || isPhoneValid) {
+            errorMessage?.classList.remove("active");
         } else {
-            errorMessage.classList.add("active");
+            errorMessage?.classList.add("active");
         }
 
         // Активация/деактивация кнопки
-        sendFormButton.disabled = !(isPhoneValid && isNameFilled && isEmailValid && isMessageFilled && isCaptchaLengthValid);
+        if (sendFormButton) {
+            sendFormButton.disabled = !(isPhoneValid && isNameFilled && isEmailValid && isMessageFilled && isCaptchaLengthValid);
+        }
     }
 
     // Обработка формы обратной связи
@@ -134,10 +136,10 @@
         });
     }
 
-    phoneInput.addEventListener('input', onCallbackFieldInput);
-    nameInput.addEventListener('input', onCallbackFieldInput);
-    messageInput.addEventListener('input', onCallbackFieldInput);
-    captchaInput.addEventListener('input', onCallbackFieldInput);
+    phoneInput?.addEventListener('input', onCallbackFieldInput);
+    nameInput?.addEventListener('input', onCallbackFieldInput);
+    messageInput?.addEventListener('input', onCallbackFieldInput);
+    captchaInput?.addEventListener('input', onCallbackFieldInput);
 
 
 
@@ -150,7 +152,7 @@
     const orderNameInput = document.getElementById('orderName');
     const orderEmailInput = document.getElementById('orderEmail');
     const orderErrorMessage = document.getElementById('orderPhoneError');
-    const sendOrderButton = orderForm.querySelector(".btn-green");
+    const sendOrderButton = orderForm?.querySelector(".btn-green");
     const armenianOrderPhoneRegex = /^(99|91|93|96|98|77|43|41|94|95|55)[0-9]{6}$/;
 
     function onOrderFieldInput() {
@@ -167,9 +169,9 @@
         });
     }
 
-    orderPhoneInput.addEventListener('input', onOrderFieldInput);
-    orderNameInput.addEventListener('input', onOrderFieldInput);
-    orderEmailInput.addEventListener('input', onOrderFieldInput);
+    orderPhoneInput?.addEventListener('input', onOrderFieldInput);
+    orderNameInput?.addEventListener('input', onOrderFieldInput);
+    orderEmailInput?.addEventListener('input', onOrderFieldInput);
 
     // Начальная валидация для формы заказа
     onOrderFieldInput();

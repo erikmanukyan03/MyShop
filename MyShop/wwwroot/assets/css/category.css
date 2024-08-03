@@ -398,3 +398,9 @@
     }
 }
 
+
+@media (max-width: 479px) {
+    .category {
+        padding-top: 10px;
+    }
+}
