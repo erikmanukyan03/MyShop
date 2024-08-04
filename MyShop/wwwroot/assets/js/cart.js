@@ -13,7 +13,6 @@
 
         function updateCount(delta) {
             clearTimeout(timeoutId);
- 
             let currentValue = parseInt(countInput.value, 10);
             let newValue = currentValue + delta;
 
@@ -22,9 +21,7 @@
             } else if (newValue > 10) {
                 newValue = 10;
             }
-
             countInput.value = newValue;
-
 
             timeoutId = setTimeout(() => {
                 fetch(`/Cart/Update`, {
@@ -37,7 +34,14 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            document.querySelector(".basket__count").textContent = newValue;
+                            const basketCountElement = document.querySelector(".basket__count");
+                            let totalBasketCount = 0;
+
+                            document.querySelectorAll('.product-count').forEach(input => {
+                                totalBasketCount += parseInt(input.value, 10);
+                            });
+
+                            basketCountElement.textContent = totalBasketCount;
                             productPriceElement.innerHTML = productPrice * newValue + " AMD"
                         } else {
                             console.error("Update failed:", data.message);
