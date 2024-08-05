@@ -961,6 +961,17 @@ nav {
     }
 }
 
+
+.item__compare {
+    position: absolute;
+    cursor: pointer;
+}
+
+.item__compare svg {
+        width: 25px;
+        height: 25px;
+    }
+
 @media (max-width: 1440px) {
     .header__search {
         max-width: 300px;

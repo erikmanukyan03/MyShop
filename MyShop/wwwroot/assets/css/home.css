@@ -34,15 +34,6 @@
         -webkit-box-shadow: -4px 4px 49px 0px rgba(132,116,116,0.75);
         -moz-box-shadow: -4px 4px 49px 0px rgba(132,116,116,0.75);
     }
-    .top-sales__item .item__compare {
-        position: absolute;
-        cursor:pointer;
-    }
-
-        .top-sales__item .item__compare svg {
-            width: 25px;
-            height: 25px;
-        }
     .top-sales__item .item__image {
         width: 180px;
         height: 180px;

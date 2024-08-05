@@ -1,9 +1,12 @@
 ﻿@model ProductVM
 @{
 	Layout = "_Layout";
+	ViewData["Title"] = $"Mymobile - {Model.Title}";
 }
 
 @section head {
+	<meta name="description" content="@Model.MetaDescription" />
+@* 	<meta name="keywords" content="@Model.MetaKeywords" /> *@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" href="~/assets/css/product.css" />
