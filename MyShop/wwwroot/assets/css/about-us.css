@@ -1,0 +1,93 @@
+﻿.about-us {
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
+.about-us__title {
+    margin-bottom: 30px;
+}
+
+.about-us__wrapper {
+    background: #fff;
+    padding: 20px;
+}
+
+    .about-us__wrapper h1 {
+        font-size: 20px;
+        line-height: 130%;
+        display:block;
+        margin-bottom: 20px;
+    }
+
+    .about-us__wrapper p {
+        margin-bottom: 30px;
+        line-height: 150%;
+    }
+
+    .about-us__wrapper b {
+        color: var(--green);
+    }
+
+    .about-us__wrapper .why-choose-us strong {
+        font-size: 20px;
+        color: var(--green);
+        margin-bottom: 20px;
+        display: block;
+    }
+    .about-us__wrapper .why-choose-us {
+        clear:both;
+    }
+    .about-us__wrapper .why-choose-us ul {
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+        .about-us__wrapper .why-choose-us ul li {
+            line-height: 130%;
+        }
+
+        .about-us__welcome {
+        }
+.welcome__content {
+    text-align:justify;
+}
+
+.about-us__welcome img {
+   float:left;
+   max-width: 50%;
+   max-height: 300px;
+   margin: 0 15px 10px 0;
+}
+
+
+@media (max-width: 992px) {
+    .about-us__wrapper {
+        padding: 10px;
+    }
+    .about-us__wrapper h1 {
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+        .about-us__wrapper p {
+            margin-bottom: 15px;
+        }
+}
+
+@media (max-width: 479px) {
+    .about-us {
+        padding-top: 10px;
+    }
+    .about-us__welcome {
+        display:flex;
+        flex-direction:column-reverse;
+    }
+    .about-us__welcome img {
+        float: none;
+        max-height: auto;
+        max-width: 100%;
+    }
+    .about-us__title {
+        margin-bottom: 15px;
+    }
+}

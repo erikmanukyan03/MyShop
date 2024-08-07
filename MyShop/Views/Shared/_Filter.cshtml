@@ -3,6 +3,12 @@
 
 
 <form asp-area="" asp-controller="Category" asp-action="Details" asp-route-Id="@ViewBag.CategoryId">
+	<div class="filter__close" style="display: none">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+			<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+		</svg>
+
+	</div>
 	<div class="filter__memory filter__item"՚ style="margin-top: 0; margin-bottom: 20px;">
 		<span>Գին</span>
 	</div>
@@ -38,7 +44,7 @@
 
 		</div>
 	}
-	<div class="filter__memory filter__item">
+	<div class="filter__color filter__item">
 		<span>Գույն</span>
 		@foreach (var item in Enum.GetValues(typeof(ProdColor)))
 		{

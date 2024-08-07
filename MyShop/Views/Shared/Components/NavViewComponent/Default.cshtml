@@ -1,11 +1,9 @@
 ﻿@model List<CategoryName>
-<nav class="nav">
-	<div class="container">
-		<ul class="nav__list">
-			@foreach (var item in Model)
-			{
-				<li><a asp-area="" asp-controller="Category" asp-action="Details" asp-route-Id="@item.Id">@item.Name</a></li>
-			}
-		</ul>
-	</div>
-</nav>
+<ul class="nav__list">
+	@foreach (var item in Model)
+	{
+		<li><a asp-area="" asp-controller="Category" asp-action="Details" asp-route-Id="@item.Id">@item.Name</a></li>
+	}
+</ul>
+
+

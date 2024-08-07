@@ -1,9 +1,12 @@
 ﻿@model CategoryVM
 @{
-	ViewData["Title"] = "Details";
+
+	ViewData["Title"] = $"Mymobile - {Model.Name}";
 }
 
 @section head {
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" href="~/assets/css/category.css" />
 }
@@ -11,6 +14,24 @@
 <section class="category">
 	<div class="container">
 		<div class="category__title title">@Model.Name</div>
+		<div class="category__filter-icon">
+			<div class="icon-filter">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+				</svg>
+				<span>Ֆիլտրել</span>
+			</div>
+			<div class="category__direction">
+				<svg id="horizontal" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+				</svg>
+				<svg id="vertical" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125Z" />
+				</svg>
+
+			</div>
+
+		</div>
 		<div class="category__wrapper">
 			<div class="category__filter">
 				<partial name="_Filter" model="(FilterVM)ViewBag.Filter" />
@@ -21,40 +42,49 @@
 				<div class="category__items">
 					@foreach (var item in Model.Products)
 					{
-						<form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@item.Id" asp-route-FinalPrice="@item.FinalPrice" class="category__item addToCartForm">
-							@if (item.Discount > 0)
-							{
-								<div class="item__discount">
-									<div class="discount__image">
-										<img src="~/assets/img/productStatic/badge-154930_1280.png" alt="discount" />
-										<span>@item.Discount%</span>
-									</div>
-								</div>
-							}
-							<div class="item__image">
-								<img src="~/assets/img/product/@item.ImageFile" alt="@item.Title" />
-							</div>
-							<div class="item__name">
-								@item.Title (@item.Memory GB) @item.ProdColor
-							</div>
-							<div class="item__price">
+						<div class="category__columns">
+							<form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@item.Id" asp-route-FinalPrice="@item.FinalPrice" class="category__item addToCartForm">
 								@if (item.Discount > 0)
 								{
-									<del class="del">@item.Price.ToString("N0") AMD</del>
-									<span class="discount">@item.FinalPrice.ToString("N0") AMD</span>
+									<div class="item__discount">
+										<div class="discount__image">
+											<img src="~/assets/img/productStatic/badge-154930_1280.png" alt="discount" />
+											<span>@item.Discount%</span>
+										</div>
+									</div>
 								}
-								else
-								{
-									<span>@item.Price AMD</span>
-								}
+								<div class="item__compare" title="Համեմատել">
+									<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+										<path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+									</svg>
+								</div>
+								<div class="item__image">
+									<img src="~/assets/img/product/@item.ImageFile" alt="@item.Title" />
+								</div>
+								<div class="item__info">
+									<div class="item__name">
+										@item.Title (@item.Memory GB) @item.ProdColor
+									</div>
+									<div class="item__price">
+										@if (item.Discount > 0)
+										{
+											<del class="del">@item.Price.ToString("N0") AMD</del>
+											<span class="discount">@item.FinalPrice.ToString("N0") AMD</span>
+										}
+										else
+										{
+											<span>@item.Price AMD</span>
+										}
 
-							</div>
-							<input type="hidden" value="1" name="count" />
-							<div class="item__buttons">
-								<a class="btn-green" asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Slug">Ավելին</a>
-								<button type="submit" class="btn-green addToCart add-toast">Գնել</button>
-							</div>
-						</form>
+									</div>
+									<input type="hidden" value="1" name="count" />
+									<div class="item__buttons">
+										<a class="btn-green" asp-area="" asp-controller="Product" asp-action="Details" asp-route-slug="@item.Slug">Ավելին</a>
+										<button type="submit" class="btn-green addToCart add-toast">Գնել</button>
+									</div>
+								</div>
+							</form>
+						</div>
 					}
 				</div>
 			}
@@ -69,5 +99,6 @@
 
 @section scripts {
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+	<script src="~/assets/js/category.js"></script>
 	<script src="~/assets/js/addToBasket.js"></script>
 }

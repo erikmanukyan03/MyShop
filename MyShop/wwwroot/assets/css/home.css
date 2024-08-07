@@ -1,15 +1,11 @@
 ﻿.home__banner {
     margin-bottom: 20px;
 }
-
-    .home__banner .swiper-slide {
+    .home__banner .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
-
-        .home__banner .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
 
 .top-sales {
     margin-bottom: 80px;
@@ -23,7 +19,6 @@
 
 .top-sales__item {
     background: var(--white);
-    text-align: center;
     color: #000;
     padding: 15px;
     border-radius: 10px;
@@ -39,10 +34,9 @@
         -webkit-box-shadow: -4px 4px 49px 0px rgba(132,116,116,0.75);
         -moz-box-shadow: -4px 4px 49px 0px rgba(132,116,116,0.75);
     }
-
     .top-sales__item .item__image {
         width: 180px;
-        max-height: 180px;
+        height: 180px;
         margin: 0 auto;
     }
 
@@ -52,32 +46,28 @@
             object-fit: contain;
         }
 
-    .top-sales__item .item__name {
+    .top-sales__item .item__field {
+        display:flex;
+        justify-content:space-between;
         margin: 10px 0;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 14px;
         flex: 1 1 auto;
+        position:relative;
     }
-
-    .top-sales__item .item__price {
-        font-size: 20px;
-        font-weight: 900;
-        position: relative;
-    }
-
-        .top-sales__item .item__price del {
-            position: absolute;
-            top: 10px;
-            left: 0;
-            font-size: 14px;
+        .top-sales__item .item__field span {
+        color: var(--green);
+        }
+        .top-sales__item .item__field .field__title {
+            color: #209097;
+        }
+        .top-sales__item  del {
+            position:absolute;
+            right: 30px;
+            top: -10px;
+            font-size: 11px;
             color: red;
         }
-
-        .top-sales__item .item__price .discount {
-            display: block;
-            margin-top: 30px;
-        }
-
 
     .top-sales__item .item__stars {
         display: flex;
@@ -130,6 +120,7 @@
 .top-sales__item .item__buttons {
     display: flex;
     align-items: center;
+    text-align:center;
     gap: 10px;
     margin-top: 10px;
 }
@@ -138,35 +129,38 @@
         width: 50%;
     }
 
-.swiper {
-    width: 100%;
-    height: 100%;
-}
-
-.swiper-wrapper {
-    height: 378px;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+    .swiper {
+        border-radius: 10px;
+    }
 .swiper-button-next, .swiper-button-prev {
     color: var(--white);
+    opacity: .7;
 }
 
     .swiper-button-next:after, .swiper-button-prev:after {
-        font-size: 25px;
+        font-size: 15px;
         background: var(--green-secondary);
         padding: 10px;
         border-radius: 5px;
     }
+.manufacturers {
+    margin: 30px 0; 
+}
 
-@media (max-width: 768px) {
-    .top-sales {
+    .manufacturers .img {
+        width: 100%;
+        height: 120px;
+    }
+
+        .manufacturers .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+
+    @media (max-width: 768px) {
+        .top-sales {
         margin-bottom: 40px;
     }
     .swiper-wrapper {
@@ -177,19 +171,18 @@
         font-size: 16px;
     }
 
-    .top-sales__item .btn-green {
-        font-size: 14px;
-    }
+  
     .top-sales__item .item__name {
         padding: 0 12px;
     }
     .top-sales__item .item__image {
         width: 120px;
+        height: 120px;
     }
-
-    .swiper-button-next:after, .swiper-button-prev:after, .top-sales__item .item__price del {
-        font-size: 13px;
-    }
+  
+        .swiper-button-next:after, .swiper-button-prev:after, .top-sales__item .item__price del {
+            font-size: 13px;
+        }
 
     .swiper-button-next {
         right: 0 !important;
@@ -197,5 +190,29 @@
 
     .swiper-button-prev {
         left: 0 !important;
+    }
+}
+
+@media (max-width: 479px) {
+    .top-sales__item .item__field .field__title, .top-sales__item .item__field span {
+        font-size: 12px;
+    }
+    .top-sales__item del {
+        font-size: 10px;
+    }
+    .top-sales__item .item__field {
+        margin: 7px 0;
+    }
+    .top-sales__item .item__stars {
+        margin-top: 5px;
+    }
+    .top-sales__item .item__buttons {
+        gap: 4px;
+    }
+    .top-sales__item .btn-green {
+        font-size: 12px;
+    }
+    .top-sales__item {
+        padding: 10px;
     }
 }

@@ -1,0 +1,49 @@
+﻿.compare {
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+    .compare__title {
+        margin-bottom: 20px;
+    }
+    .compare__table {
+        width: 99%;
+        color: black;
+        font-size: 13px;
+        background-color: transparent;
+        border: 1px solid #ddd;
+        max-width: 100%;
+        margin-bottom: 20px;
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+
+    .compare__table td:first-child {
+        background-color: #F9F9F9;
+        color: #323232;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .compare__table > tbody > tr > td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        line-height: 1.42857143;
+        width: 20%;
+        text-align: center;
+    }
+
+    .compare__table > tbody > tr > td img {
+        height: 70px;
+    }
+.table__img {
+    position: relative;
+}
+.remove__item svg {
+    width: 20px;
+    height: 20px;
+    color: red;
+    position: absolute;
+    top: 50%;
+    transform:translateY(-50%)
+}

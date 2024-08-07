@@ -26,7 +26,20 @@ namespace MyShop.Controllers
                 ModelState.AddModelError("Captcha", "Текст с картинки введен неверно");
                 return Json(new { success = false, error = "captcha" });
             }
-            model.CustomerType = role;
+			if (!ModelState.IsValid)
+			{
+				return Json(new
+				{
+					success = false,
+					errors = ModelState.ToDictionary(
+					x => x.Key,
+					x => x.Value.Errors.Select(e => e.ErrorMessage).ToArray()
+				)
+				});
+			}
+
+
+			model.CustomerType = role;
             var cId = _customerService.Add(model);
             var customer = _customerService.GetById(cId);
             var body = await this.RenderViewToStringAsync("EmailForMe", customer);
