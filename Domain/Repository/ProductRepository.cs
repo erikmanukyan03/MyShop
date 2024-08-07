@@ -40,6 +40,7 @@ namespace Domain.Repository
 			{
 				entity.MainImage = model.MainImage;
 			}
+			entity.Images= model.Images;
 			entity.IsDeleted = model.IsDeleted;
 			entity.ProdColor = model.ProdColor;
 			entity.CategoryId = model.CategoryId;

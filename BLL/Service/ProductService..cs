@@ -278,7 +278,7 @@ namespace BLL.Service
 				{
 					ImageFile = pi.ImageFile,
 					Id = pi.Id,
-					ProductId = pi.Id,
+					ProductId = pi.ProductId,
 				}).ToList(),
 				Price = entity.Price,
                 IsDeleted = entity.IsDeleted,
