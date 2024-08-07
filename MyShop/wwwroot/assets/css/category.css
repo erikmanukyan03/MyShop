@@ -6,6 +6,7 @@
     .category .not-found {
         font-size: 30px;
         text-align: center;
+        width: 100%;
     }
 
 .category__wrapper {
@@ -194,13 +195,14 @@
         position: fixed;
         left: -100%;
         top: 0;
-        width: 100%;
+        width: 300px;
         border-radius: 0px;
         transition: left 0.3s ease;
-        min-width: 100%;
+        min-width: 300px;
         height: 100%;
         overflow: auto;
         z-index: 1000;
+        margin-right: 0;
     }
 
         .category__filter form {
@@ -231,10 +233,10 @@
     .filter__close {
         background: #fff;
         position: fixed;
-        right: 10px;
         z-index: 1;
         border-radius: 50%;
         cursor: pointer;
+        left: 250px;
     }
 
     .category__wrapper.active .filter__close {
@@ -306,5 +308,11 @@
         width: 20px;
         height: 20px;
     }
-    
+    .category__filter {
+        width: 250px;
+        min-width: 250px;
+    }
+    .filter__close {
+        left: 205px;
+    }
 }

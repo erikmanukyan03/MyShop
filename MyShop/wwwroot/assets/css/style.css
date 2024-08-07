@@ -1221,7 +1221,15 @@ nav {
     .tag-results {
         top: 46px;
     }
-
+    .captcha-img {
+        max-width: 80px;
+        padding: 10px 0 0px 14px;
+    }
+    .captcha-label input {
+        max-width: 90px;
+        padding: 6px;
+        font-size: 16px;
+    }
     .footer {
         padding: 30px 0;
     }

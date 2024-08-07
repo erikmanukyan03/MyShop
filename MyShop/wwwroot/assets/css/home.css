@@ -46,10 +46,15 @@
             object-fit: contain;
         }
 
+        @media (max-width: 992px) {
+            .manufacturers .img {
+                height: 75px;
+            }
+        }
 
     @media (max-width: 768px) {
         .top-sales {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
         .swiper-button-next:after, .swiper-button-prev:after, .top-sales__item .item__price del {
             font-size: 13px;
@@ -62,5 +67,13 @@
     .swiper-button-prev {
         left: 0 !important;
     }
+        
 }
 
+
+
+@media (max-width: 479px) {
+    .manufacturers .img {
+        height: 38px;
+    }
+}

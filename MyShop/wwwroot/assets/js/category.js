@@ -54,4 +54,37 @@
     verticalSvg.addEventListener('click', handleClick);
 
 
+
+    function sendAjaxRequest() {
+        const form = document.getElementById('filter-form');
+        const categoryId = form.dataset.categoryid;
+        console.log(categoryId)
+        const formData = new FormData(form);
+        const queryString = new URLSearchParams(formData).toString().split("&__");
+        const splitQueryString = queryString[0]
+        fetch(`/Category/Details/${categoryId}?${splitQueryString}`, {
+            method: 'GET',
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.text();
+                } else {
+                    throw new Error('Network response was not ok.');
+                }
+            })
+            .then(data => {
+                const tempContainer = document.createElement('div');
+                tempContainer.innerHTML = data;
+
+                const newItemsContent = tempContainer.querySelector('.category__items').innerHTML;
+
+                document.querySelector('.category__items').innerHTML = newItemsContent;
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    document.querySelectorAll('input[type="checkbox"], input[type="number"]').forEach(input => {
+        input.addEventListener('change', sendAjaxRequest);
+    });
+
 })
