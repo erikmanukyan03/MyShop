@@ -1,0 +1,190 @@
+﻿.card .item {
+    background: var(--white);
+    color: #000;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+
+
+    .card .item .item__image {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+    }
+   
+        .card .item .item__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .card .item .item__field {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+        font-weight: 700;
+        font-size: 14px;
+        flex: 1 1 auto;
+        position: relative;
+    }
+       
+
+        .card .item .item__field span {
+            color: var(--green);
+        }
+
+        .card .item .item__field .field__title {
+            color: #209097;
+        }
+
+    .card .item del {
+        position: absolute;
+        right: 30px;
+        top: -10px;
+        font-size: 11px;
+        color: red;
+    }
+
+    .card .item .item__stars {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 15px;
+    }
+
+        .card .item .item__stars svg {
+            width: 15px;
+            height: 15px;
+        }
+
+    .card .item .item__discount {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        animation: discountAnimation 3s infinite linear;
+        z-index: 1
+    }
+
+        .card .item .item__discount img {
+            width: 40px;
+            height: 40px;
+        }
+
+
+    .card .item.discount__image {
+        position: relative;
+    }
+
+    .card .item .item__discount span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-size: 12px;
+    }
+
+@keyframes discountAnimation {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.card .item .item__buttons {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+    .card .item .item__buttons .btn-green {
+        width: 50%;
+    }
+
+    @media (min-width: 1024px) {
+        .card .item:hover .item__image {
+            transform: scale(1.1)
+        }
+    }
+
+@media (max-width: 992px) {
+    .card .item .item__image {
+        height: 130px;
+        width: 130px;
+    }
+}
+
+@media (max-width: 479px) {
+    .card .item {
+        padding: 8px;
+    }
+
+        .card .item .item__field .field__title, .card .item .item__field span {
+            font-size: 10px;
+        }
+
+        .card .item del {
+            font-size: 9px;
+        }
+
+        .card .item .item__field {
+            margin: 7px 0;
+        }
+
+        .card .item .item__stars {
+            margin-top: 5px;
+        }
+
+        .card .item .item__buttons {
+            gap: 4px;
+        }
+
+        .card .item .btn-green {
+            font-size: 12px;
+        }
+        .category__columns.card .item .btn-green {
+            padding: 7px;
+            font-size: 10px;
+        }
+        .card .item .item__discount img {
+            width: 30px;
+            height: 30px;
+        }
+    .category__wrapper.horizontal .card .item .item__discount img {
+        width: 50px;
+        height: 50px;
+    }
+    .category__wrapper.vertical .card.category__columns .item .item__discount img {
+        width: 24px;
+        height: 24px;
+    }
+    .category__wrapper.vertical .card.category__columns .item .item__discount {
+        right: -6px;
+    }
+
+    .card .item .item__discount span {
+        font-size: 10px;
+    }
+    .card.category__columns .item__discount span {
+        font-size: 8px;
+    }
+    .category__wrapper.horizontal .item__discount span {
+        font-size: 12px;
+    }
+    .card.category__columns .item .item__image {
+        height: 120px;
+        width: 120px;
+    }
+}

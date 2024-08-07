@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css" integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="~/assets/css/card.css" />
 	<link rel="stylesheet" href="~/assets/css/home.css" />
 }
 
@@ -34,10 +35,10 @@
 	<div class="container">
 		<div class="top-sales__title title">Լավագույն Վաճառք</div>
 		<div class="swiper top-sales-slider">
-			<div class="swiper-wrapper">
+			<div class="swiper-wrapper card">
 				@foreach (var item in ViewBag.Hots as List<ShortProductVM>)
 				{
-					<form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@item.Id" asp-route-FinalPrice="@item.FinalPrice" asp-route-fromprodpage="true" class="top-sales__item addToCartForm swiper-slide">
+					<form asp-area="" asp-controller="Cart" asp-action="AddToBasket" asp-route-productId="@item.Id" asp-route-FinalPrice="@item.FinalPrice" asp-route-fromprodpage="true" class="top-sales__item item addToCartForm swiper-slide">
 						@if (item.Discount > 0)
 						{
 							<div class="item__discount">

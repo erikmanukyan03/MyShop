@@ -99,6 +99,7 @@
 .category__wrapper.vertical .category__columns {
     flex: 0 0 25%;
     padding: 0 8px;
+    margin-bottom: 16px;
 }
 
 .category__wrapper.horizontal .category__columns {
@@ -109,24 +110,7 @@
     margin-top: 9px;
 }
 
-.category__wrapper .item__info {
-    display: flex;
-    flex-direction: column;
-}
 
-.category__item {
-    background: var(--white);
-    text-align: center;
-    color: #000;
-    padding: 15px;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
-    position:relative;
-}
 
 .category__wrapper.horizontal .category__item {
     flex-direction: row;
@@ -135,139 +119,33 @@
     padding: 10px;
 }
 
-.category__item:hover {
-    box-shadow: -4px 4px 49px 0px rgba(132,116,116,0.75);
-    -webkit-box-shadow: -4px 4px 49px 0px rgba(132,116,116,0.75);
-    -moz-box-shadow: -4px 4px 49px 0px rgba(132,116,116,0.75);
-}
+    .category__wrapper.horizontal .category__item:hover {
+        background: #f5f3f3;
+        transform: scale(1)
+    }
 
-.category__wrapper.horizontal .category__item .item__image {
-    width: 120px;
-    height: 120px;
-}
-
-.category__wrapper.vertical .category__item .item__image {
-    width: 180px;
-    height: 180px;
-}
-
-.category__wrapper.vertical .category__item .item__image {
-    margin: 0 auto;
-}
-
-.category__item .item__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.category__item .item__name {
-    font-weight: 700;
-    font-size: 14px;
-}
-
-.category__wrapper.vertical .category__item .item__name {
-    flex: 1 1 auto;
-    margin: 10px 0;
-    font-size: 18px;
-}
-
-.category__item .item__price {
-    font-weight: 900;
-    position: relative;
-    font-size: 16px;
-}
-
-.category__wrapper.vertical .category__item .item__price {
-    font-size: 20px;
-}
-
-.category__item .item__price del {
-    position: absolute;
+.category__wrapper.horizontal .item__compare {
+    left: auto;
+    right: 20px;
     top: 10px;
-    left: 0;
-    font-size: 14px;
-    color: red;
+}
+.category__wrapper.horizontal .item__discount {
+    left: -10px;
+    right: auto;
 }
 
-.category__item .item__price .discount {
-    display: block;
-    margin-top: 30px;
-}
-
-
-.category__item .item__discount {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    animation: discountAnimation 3s infinite linear;
-    z-index: 1
-}
-
-.category__wrapper.horizontal .category__item .item__discount {
-    position:static;
-    order: 3;
-    margin: 0 25px;
-
-}
-
-    .category__wrapper.horizontal .category__item .item__compare {
-        order: 4;
-        position:static;
-    }
-
-    .category__item .item__discount img {
-        width: 50px;
-        height: 50px;
-    }
-
-
-.category__wrapper.horizontal .item__discount img {
-    width: 70px;
-    height: 70px;
-}
-.category__wrapper.horizontal .item__discount span {
-    font-size: 17px;
-}
-.category__item.discount__image {
-    position: relative;
-}
-
-.category__item .item__discount span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 14px;
-}
-
-
-
-@keyframes discountAnimation {
-    0% {
-        transform: rotate(0deg)
-    }
-
-    100% {
-        transform: rotate(360deg)
-    }
-}
-
-.category__item .item__buttons {
-    display: flex;
-    align-items: center;
+.category__wrapper.horizontal .card .item .item__field {
     gap: 10px;
-    margin-top: 10px;
+    text-align:center;
+    flex-direction:column;
 }
+    .category__wrapper.horizontal .card .item .item__field.disc {
+        max-width: 190px;
+    }
 
-.category__wrapper.horizontal .category__item .item__buttons .btn-green {
-    font-size: 12px;
-    width: 50%;
-}
-
-.category__wrapper.vertical .category__item .item__buttons .btn-green {
-    width: 50%;
+.category__wrapper.horizontal .card .item del {
+    top: auto;
+    bottom: -20px;
 }
 
 @media (max-width: 1440px) {
@@ -280,6 +158,13 @@
     .category__wrapper.vertical .category__columns {
         flex: 0 0 50%;
     }
+    .category__wrapper.horizontal .card .item .item__image {
+        width: 120px;
+        height: 120px;
+    }
+    .category__wrapper.horizontal .card .item del {
+       right: 0;
+    }
 }
 
 @media (max-width: 992px) {
@@ -290,18 +175,17 @@
         .category .not-found {
             font-size: 18px;
         }
+
     .icon-filter {
         display: flex;
-        align-items:center;
+        align-items: center;
         gap: 10px;
     }
+
     .category__wrapper.vertical .category__columns {
         flex: 0 0 33.333%;
     }
-    .category__wrapper.horizontal .category__items {
-        max-width: 500px;
-        margin: 0 auto;
-    }
+
     .category__wrapper {
         margin-top: 30px;
     }
@@ -334,7 +218,7 @@
     .category__filter-icon {
         display: flex;
         justify-content: space-between;
-        align-items:center;
+        align-items: center;
         gap: 10px;
         margin-top: 20px;
     }
@@ -365,60 +249,51 @@
 
 @media (max-width: 768px) {
     .category__wrapper.vertical .category__columns {
-        flex: 0 0 50%;
+        flex: 0 0 49%;
         padding: 0 3px;
+        margin-bottom: 6px;
     }
+
     .category__wrapper.vertical .category__items {
         margin: 0 -5px;
     }
-   
-    .category__wrapper.vertical .category__item .item__name, .category__wrapper.vertical .category__item .item__price, .category__item .item__price {
-        font-size: 13px;
+    .category__wrapper.horizontal .category__item {
+        flex-direction: column;
+        align-items: stretch;
     }
-       
-        .category__item .item__price del {
-            font-size: 12px;
-        }
-    .category__wrapper.vertical .category__item .item__price .discount {
-        margin-top: 13px;
+
+    .category__wrapper.horizontal .card .item .item__field {
+        flex-direction: row;
     }
-        .category__wrapper.vertical .category__item .item__price del {
-            top: 0;
+
+        .category__wrapper.horizontal .card .item .item__field.disc {
+            max-width: 100%;
         }
+
+    .category__wrapper.horizontal .card .item del {
+        bottom: -15px;
+        font-size: 11px;
+    }
+
+    .category__wrapper.horizontal .card .item .item__image {
+        width: 160px;
+        height: 160px;
+    }
+
+    .category__wrapper.horizontal .card .item .item__field .field__title, .category__wrapper.horizontal .card .item .item__field span {
+        font-size: 14px;
+    }
     .category__item .item__buttons {
         gap: 4px;
     }
-    .category__wrapper.vertical .category__item .item__image {
-        width: 130px;
-        height: 130px;
+
+    .category__wrapper.horizontal .card .item .item__buttons {
+        margin-top: 15px;
     }
-    .category__item {
-        padding: 8px;
-    }
-        .category__item .item__discount img {
-            width: 30px;
-            height: 30px;
+
+        .category__wrapper.horizontal .card .item .item__buttons .btn-green {
+            font-size: 14px;
         }
-        .category__item .item__discount span {
-            font-size: 10px;
-        }
-
-    .category__item .btn-green {
-        font-size: 12px;
-        padding: 5px;
-    }
-
-    .category__wrapper.horizontal .item__discount img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .category__wrapper.horizontal .item__discount span {
-        font-size: 11px;
-    }
-    .category__wrapper.horizontal .category__item .item__discount {
-        margin: 0 10px;
-    }
 }
 
 
@@ -426,33 +301,10 @@
     .category {
         padding-top: 10px;
     }
-    .category__wrapper.horizontal .category__item .item__discount {
-        position:absolute !important;
-        right: -10px;
-        top: -10px;
-    }
-    .category__wrapper.horizontal .category__item {
-        padding: 5px;
-    }
+  
     .item__compare svg {
         width: 20px;
         height: 20px;
     }
-    .category__item .item__name {
-        font-size: 12px;
-    }
-    .category__wrapper.horizontal .category__item .item__compare {
-        position: absolute;
-        top: -7px;
-        left: -10px;
-        background: #fff;
-        border-radius: 50%;
-    }
-    .category__wrapper.horizontal .item__discount img {
-        width: 27px;
-        height: 27px;
-    }
-    .category__wrapper.horizontal .item__discount  span {
-        font-size: 9px;
-    }
+    
 }

@@ -24,7 +24,7 @@ namespace BLL.ViewModels
         public string? MainImage { get; set; }
         public List<ProductImageVM> Images { get; set; }
         public int Price { get; set; }
-        public int? Discount { get; set; }
+        public int? Discount = 0;
         public int CategoryId { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsHot { get; set; }
