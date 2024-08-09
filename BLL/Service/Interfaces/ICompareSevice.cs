@@ -1,0 +1,18 @@
+﻿using BLL.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BLL.Service.Interfaces
+{
+	public interface ICompareSevice
+	{
+		void Add(CompareVM model);
+		void Delete(int Id);
+		void DeleteAll(string cookieId, int categoryId);
+		List<CompareVM> GetAll(string cookieId);
+
+	}
+}

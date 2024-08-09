@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Domain.Repository
 
 		public void Delete(int Id)
 		{
-			var entity = _context.Compares.FirstOrDefault(c => c.Id == Id);
+			var entity = _context.Compares.Where(c => c.Id == Id).ExecuteDelete();
 		}
 		public void DeleteAll(string cookieId,int categoryId)
 		{

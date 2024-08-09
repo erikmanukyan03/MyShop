@@ -6,16 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.ViewModels.Compare
+namespace BLL.ViewModels
 {
 	public class CompareVM
 	{
-		public class Compare
-		{
-			public int Id { get; set; }
-			public string CookieId { get; set; } = null!;
-			public int ProductId { get; set; }
-			public int CategoryId { get; set; }
-		}
+		public int Id { get; set; }
+		public string CookieId { get; set; } = null!;
+		public List<ProductCompareVM> Products { get; set; }
+		public int CategoryId { get; set; }
 	}
 }
