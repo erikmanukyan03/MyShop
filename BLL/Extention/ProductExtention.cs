@@ -16,7 +16,11 @@ namespace BLL.Extention
         {
             return db.Include(p => p.Category).Include(P => P.PAVs).ThenInclude(p => p.ProductAttribute).Include(p=>p.Images).FirstOrDefault(p => p.Id == Id);
         }
-        public static Product GetBySlug(this DbSet<Product> db, string slug)
+		public static List<Product> GetByIds(this DbSet<Product> db, List<int> Ids)
+		{
+            return db.Include(p => p.Category).Include(P => P.PAVs).ThenInclude(p => p.ProductAttribute).Include(p => p.Images).Where(p => Ids.Contains(p.Id)).ToList();
+		}
+		public static Product GetBySlug(this DbSet<Product> db, string slug)
         {
             return db.Include(p => p.Category).Include(P => P.PAVs).ThenInclude(p => p.ProductAttribute).Include(p => p.Images).FirstOrDefault(p => p.Slug == slug);
         }

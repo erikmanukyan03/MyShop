@@ -12,7 +12,7 @@ namespace BLL.ViewModels
 	{
 		public int Id { get; set; }
 		public string CookieId { get; set; } = null!;
-		public List<ProductCompareVM> Products { get; set; }
+		public ProductCompareVM Product { get; set; }
 		public int CategoryId { get; set; }
 	}
 }

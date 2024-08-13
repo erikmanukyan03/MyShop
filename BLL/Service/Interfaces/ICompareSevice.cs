@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Service.Interfaces
+namespace BLL.Service
 {
 	public interface ICompareSevice
 	{
-		void Add(CompareVM model);
+		void Add(int prodId,string cookieId,int categoryId);
 		void Delete(int Id);
 		void DeleteAll(string cookieId, int categoryId);
 		List<CompareVM> GetAll(string cookieId);

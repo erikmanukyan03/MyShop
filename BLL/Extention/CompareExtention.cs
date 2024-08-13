@@ -8,21 +8,22 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Extention
+namespace BLL
 {
     public static class CompareExtention
     {
         public static List<Compare> GetAll(this DbSet<Compare> db,string cookieId)
         {
-            return db.Where(c=>c.CookieId==cookieId).Include(c=>c.Products).ToList();
+            return db.Where(c=>c.CookieId==cookieId).ToList();
         }
-        public static List<Compare> GetByCookie(this DbSet<Compare> db, string cookieId)
+        public static Compare GetByCookie(this DbSet<Compare> db, string cookieId,int prodId)
         {
-            return db.Where(c => c.CookieId == cookieId).Include(c => c.Products).ToList();
+            return db.FirstOrDefault(c => c.CookieId == cookieId && prodId==prodId);
         }
-        public static Compare GetForEdit(this DbSet<Compare> db,int Id)
+        public static bool IsCompared(this DbSet<Compare> db, string cookieId, int prodId)
         {
-            return db.FirstOrDefault(c => c.Id == Id);
+            return db.Any(c => c.CookieId == cookieId && prodId == prodId);
         }
-    }
+
+	}
 }
