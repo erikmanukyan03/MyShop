@@ -36,6 +36,7 @@ namespace Domain.Repository
 			entity.Discount = model.Discount;
 			entity.Memory= model.Memory;
 			entity.Price=model.Price;
+			entity.Vendor=model.Vendor;
 			if (model.MainImage != null)
 			{
 				entity.MainImage = model.MainImage;

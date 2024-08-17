@@ -12,7 +12,7 @@ namespace BLL.Service
 		void Add(int prodId,string cookieId,int categoryId);
 		void Delete(int Id);
 		void DeleteAll(string cookieId, int categoryId);
-		List<CompareVM> GetAll(string cookieId);
+        Dictionary<string, List<string>> GetAll(string cookieId);
 
 	}
 }

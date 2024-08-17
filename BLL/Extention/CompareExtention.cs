@@ -12,9 +12,10 @@ namespace BLL
 {
     public static class CompareExtention
     {
-        public static List<Compare> GetAll(this DbSet<Compare> db,string cookieId)
+        public static List<int> GetAll(this DbSet<Compare> db,string cookieId)
         {
-            return db.Where(c=>c.CookieId==cookieId).ToList();
+            return db.Where(c=>c.CookieId==cookieId).Select(p=>p.ProductId).ToList();
+            
         }
         public static Compare GetByCookie(this DbSet<Compare> db, string cookieId,int prodId)
         {

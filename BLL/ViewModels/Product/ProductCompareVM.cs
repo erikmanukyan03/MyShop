@@ -16,10 +16,6 @@ namespace BLL.ViewModels
 		public int Memory { get; set; }
 		public string Slug { get; set; }
 		public string? ImageFile { get; set; }
-		public int Price { get; set; }
-		public int? Discount = 0;
-		public int CategoryId { get; set; }
-		public bool IsHot { get; set; }
-		public double FinalPrice { get; set; }
+		public double Price { get; set; }
 	}
 }

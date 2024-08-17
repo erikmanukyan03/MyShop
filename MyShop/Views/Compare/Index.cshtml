@@ -1,4 +1,4 @@
-﻿@model List<CompareVM>
+﻿@model Dictionary<string,List<string>>
 @section head {
     @* <meta name="description" content="Կոնտակտային էջ My Mobile-ի համար: Կապվեք մեզ հետ հեռախոսով, էլ.փոստով կամ այցելեք մեր գրասենյակ:" /> *@
     <link rel="stylesheet" href="~/assets/css/compare.css" />
@@ -8,7 +8,17 @@
         <div class="compare__title title">Համեմատել</div>
         <table class="compare__table">
             <tbody>
-                <tr>
+                @foreach(var item in Model)
+                {
+                    <tr>    
+                        <td>@item.Key</td>
+                        @foreach(var item1 in item.Value)
+                        {
+                            <td>@Html.Raw(item1)</td>
+                        }
+                    </tr>
+                }
+                @*      <tr>
                     <td>Անուն</td>
                     <td>Iphone 15 Pro</td>
                     <td>Iphone 15 Pro</td>
@@ -58,7 +68,7 @@
                     <td>
                         82x174.4x19.2 мм
                     </td>
-                </tr>
+                </tr> *@
             </tbody>
         </table>
     </div>

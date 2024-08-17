@@ -12,11 +12,10 @@ namespace MyShop.Controllers
             _productService = productService;
         }
         //[Route("{slug}")]
-        public IActionResult Details(string slug,int count=1,string Memory= "")
+        public IActionResult Details(string slug,int count=1)
         {
             var model = _productService.GetBySlug(slug);
             ViewBag.Count = count;
-            ViewBag.Memory = Memory;
             ViewBag.FinalPrice = model.FinalPrice;
             return View(model);
         }

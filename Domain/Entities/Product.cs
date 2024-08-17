@@ -14,6 +14,7 @@ namespace Domain.Entities
         public string ShortDescription { get; set; }
         public string Description { get; set; }
         public string? MainImage { get; set; }
+        public string Vendor {  get; set; }
         public int Price { get; set; }
         public int? Discount { get; set; }
         public bool HasDiscount { get; set; }
@@ -24,9 +25,9 @@ namespace Domain.Entities
         public DateTime? EndDiscount { get; set; }
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+        public ICollection<ProductVariant> Variants { get; set; }
         public ICollection<ProductAttributeValue> PAVs { get; set; }
 		public ICollection<ProductImage> Images { get; set; }
-
 		public int CategoryId { get; set; }
         public int Memory { get; set; }
         public ProdColor ProdColor { get; set; }
