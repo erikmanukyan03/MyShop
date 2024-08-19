@@ -19,16 +19,19 @@ namespace BLL.Service
 	{
 		private readonly ICompareRepository _compareRepository;
 		private readonly IUOW _uow;
+		private readonly IProductService _productService;
 		private readonly MyShopDb _context;
-		public CompareService(ICompareRepository compareRepository, IUOW uow, MyShopDb context)
+		public CompareService(ICompareRepository compareRepository, IUOW uow, MyShopDb context,IProductService product)
 		{
 			_compareRepository = compareRepository;
 			_uow = uow;
+			_productService = product;
 			_context = context;
 		}
-		public void Add(int prodId, string cookieId, int categoryId)
+		public void Add(int prodId, string cookieId)
 		{
-			if (!_context.Compares.IsCompared(cookieId, prodId))
+			var categoryId = _productService.GetById(prodId).CategoryId;
+			if (_context.Compares.IsCompared(cookieId, prodId))
 			{
 				var entity = new Compare
 				{
@@ -82,7 +85,7 @@ namespace BLL.Service
             {
                 foreach (var item1 in item.GetType().GetProperties())
                 {
-                    if (item1.Name == "Id")
+                    if (item1.Name == "Id" || item1.Name=="Slug")
                     {
                         continue;
                     }
@@ -106,12 +109,13 @@ namespace BLL.Service
                         {
 							if (item1.Name == "Title")
 							{
-                                var linkHtml = $"<a asp-area=\"\" asp-controller=\"Product\" asp-acton=\"Details\" aso-route-slug=\"{item.Slug}\"\">{item1.GetValue(item)?.ToString()}</a>";
+                                var linkHtml = $"<a href=\"/Product/Details/?slug={item.Slug}&count=1\">{item1.GetValue(item)?.ToString()}</a>";
                                 dict[item1.Name] = new List<string> { linkHtml };
                             }
 							else if (item1.Name == "ImageFile")
 							{
-                                dict[item1.Name] = new List<string> { $"<img src=\"/assets/img/product/{item1.GetValue(item)?.ToString()}\" />" };
+                                dict[item1.Name] = new List<string> { $"<img src=\"/assets/img/product/{item1.GetValue(item)?.ToString()}\" /> <a href=\"/Compare/Delete/?Id={item.Id}\">x</a>" };
+
                             }
 							else
 							{
@@ -122,13 +126,13 @@ namespace BLL.Service
                         {
                             if (item1.Name == "Title")
                             {
-                                var linkHtml = $"<a asp-area=\"\" asp-controller=\"Product\" asp-acton=\"Details\" aso-route-slug=\"{item.Slug}\"\">{item1.GetValue(item)?.ToString()}</a>";
+                                var linkHtml = $"<a href=\"/Product/Details/?slug={item.Slug}&count=1\">{item1.GetValue(item)?.ToString()}</a>";
                                 dict[item1.Name].Add(linkHtml);
 
                             }
                             else if (item1.Name == "ImageFile")
                             {
-                                dict[item1.Name].Add($"<img src=\"/assets/img/product/{item1.GetValue(item)?.ToString()}\" />");
+                                dict[item1.Name].Add($"<img src=\"/assets/img/product/{item1.GetValue(item)?.ToString()}\" /> <a href=\"/Compare/Delete/?Id={item.Id}\">x</a>");
                             }
 							else { 
                             dict[item1.Name].Add(item1.GetValue(item)?.ToString());

@@ -9,7 +9,7 @@ namespace BLL.Service
 {
 	public interface ICompareSevice
 	{
-		void Add(int prodId,string cookieId,int categoryId);
+		void Add(int prodId,string cookieId);
 		void Delete(int Id);
 		void DeleteAll(string cookieId, int categoryId);
         Dictionary<string, List<string>> GetAll(string cookieId);

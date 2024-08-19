@@ -23,7 +23,7 @@ namespace Domain.Repository
 
 		public void Delete(int Id)
 		{
-			var entity = _context.Compares.Where(c => c.Id == Id).ExecuteDelete();
+			var entity = _context.Compares.Where(c => c.ProductId == Id).ExecuteDelete();
 		}
 		public void DeleteAll(string cookieId,int categoryId)
 		{

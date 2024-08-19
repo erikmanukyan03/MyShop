@@ -27,10 +27,11 @@ namespace MyShop.Controllers
             _compareSevice.DeleteAll(cookieId, categoryId);
             return RedirectToAction("Index");
         }
-        //public IActionResult Add(int prodId)
-        //{
-
-        //}
+        public IActionResult Add(int prodId)
+        {
+            _compareSevice.Add(prodId, CookieId);
+            return RedirectToAction("Index");
+        }
 
     }
 }
