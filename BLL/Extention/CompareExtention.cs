@@ -24,8 +24,13 @@ namespace BLL
         }
         public static bool IsCompared(this DbSet<Compare> db, string cookieId, int prodId)
         {
-            return db.Any(c => c.CookieId == cookieId && prodId == prodId);
+            return db.Any(c => c.CookieId == cookieId && c.ProductId == prodId);
+
+        }
+        public static int GetCount(this DbSet<Compare> db, string cookieId)
+        {
+            return db.Where(c => c.CookieId == cookieId).Count();
         }
 
-	}
+    }
 }

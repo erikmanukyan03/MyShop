@@ -177,6 +177,7 @@ namespace BLL.Service
         (model.ScreenSize == null || p.PAVs.Any(av => av.ProductAttribute.Name == "ScreenSize" && model.ScreenSize.Contains(av.Value))) &&
         (model.Memory == null || model.Memory.Contains($"{p.Memory}GB")) &&
         (model.Color==null || model.Color.Contains($"{p.ProdColor}"))&&
+        (model.Vendor==null || model.Vendor.Contains($"{p.Vendor}"))&&
         ((p.Discount==0 && p.Price>model.MinPrice&&p.Price<=model.MaxPrice)|| (p.Discount >= 0 && p.Price - p.Price * p.Discount / 100 >= model.MinPrice && p.Price - p.Price * p.Discount / 100 <= model.MaxPrice))).Select(p => new ShortProductVM
         {
             Id = p.Id,

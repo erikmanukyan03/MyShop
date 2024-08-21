@@ -29,5 +29,6 @@ namespace BLL.ViewModels
         public bool IsDeleted { get; set; }
         public bool IsHot { get; set; }
         public double FinalPrice { get; set; }
+        public string Vendor { get; set; }
     }
 }

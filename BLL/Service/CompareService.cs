@@ -31,7 +31,7 @@ namespace BLL.Service
 		public void Add(int prodId, string cookieId)
 		{
 			var categoryId = _productService.GetById(prodId).CategoryId;
-			if (_context.Compares.IsCompared(cookieId, prodId))
+			if (!_context.Compares.IsCompared(cookieId, prodId) && _context.Compares.GetCount(cookieId)<3)
 			{
 				var entity = new Compare
 				{
@@ -143,5 +143,10 @@ namespace BLL.Service
             }
 			return dict;
 		}
-	}
+
+        public int GetCount(string cookieId)
+        {
+			return _context.Compares.GetCount(cookieId);
+        }
+    }
 }

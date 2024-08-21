@@ -30,7 +30,7 @@ namespace MyShop.Controllers
         public IActionResult Add(int prodId)
         {
             _compareSevice.Add(prodId, CookieId);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
     }

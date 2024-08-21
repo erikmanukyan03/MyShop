@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Migrations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace BLL.ViewModels
         public List<string> Memory { get; set; }
         public List<string> ScreenSize { get; set; }
         public List<string> Color { get; set; }
+        public List<string> Vendor { get; set; }
 
     }
 }

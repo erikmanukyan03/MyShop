@@ -27,6 +27,8 @@ namespace BLL.Service
         List<string> GetProductUrls();
         List<ShortProductVM> GetAllForAdmin(int? categoryId, bool IsDeleted);
         public void DeleteImage(int ImageId);
+        List<string> GetVendors(int categoryId);
 
-	}
+
+    }
 }

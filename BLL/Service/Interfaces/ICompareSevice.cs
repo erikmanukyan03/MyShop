@@ -13,6 +13,7 @@ namespace BLL.Service
 		void Delete(int Id);
 		void DeleteAll(string cookieId, int categoryId);
         Dictionary<string, List<string>> GetAll(string cookieId);
+		int GetCount(string cookieId);
 
 	}
 }

@@ -33,6 +33,7 @@ namespace MyShop.Controllers
             ViewBag.Pavs = a;
             ViewBag.Filter = filter;
             ViewBag.CategoryId = Id;
+            ViewBag.Vendors = _productService.GetVendors(Id);
             ViewBag.Memories = await _productService.GetMemories(Id);
             var category = _categoryService.GetById(Id);
             var ctg = new CategoryVM

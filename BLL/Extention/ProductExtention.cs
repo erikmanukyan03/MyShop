@@ -56,6 +56,7 @@ namespace BLL.Extention
 				MainImage = p.MainImage,
 				Discount = p.Discount,
 				Memory = p.Memory,
+                Vendor=p.Vendor,
 				ProdColor = p.ProdColor,
 				MetaDescription = p.MetaDescription,
 				Slug = p.Slug,
@@ -88,6 +89,7 @@ namespace BLL.Extention
                 MainImage = p.MainImage,
                 PAVs=p.PAVs,
                 Discount = p.Discount,
+                Vendor=p.Vendor,
                 CategoryId = p.CategoryId,
                 Memory = p.Memory,
                 ProdColor = p.ProdColor,
@@ -113,6 +115,11 @@ namespace BLL.Extention
 
 
             return list;
+        }
+
+        public static List<string> GetVendors(this DbSet<Product> db,int categoryId)
+        {
+           return db.Where(p=>p.CategoryId==categoryId).Select(p=>p.Vendor).Distinct().ToList();
         }
     }
 }

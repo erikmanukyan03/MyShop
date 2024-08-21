@@ -40,6 +40,7 @@ namespace BLL.Service
                 MetaDescription= model.MetaDescription,
                 Slug= model.Slug,
                 PageTitle= model.PageTitle,
+                Vendor= model.Vendor,
                 IsHot = model.IsHot,
 				Images = model.Images.Select(pi => new ProductImage
 				{
@@ -75,6 +76,7 @@ namespace BLL.Service
                 MainImage = model.MainImage,
                 Memory = model.Memory,
                 ProdColor = model.ProdColor,
+                Vendor=model.Vendor,
                 Price = model.Price,
                 MetaDescription = model.MetaDescription,
                 Slug = model.Slug,
@@ -111,6 +113,7 @@ namespace BLL.Service
                 IsDeleted = entity.IsDeleted,
                 IsHot = entity.IsHot,
                 MetaDescription = entity.MetaDescription,
+                Vendor= entity.Vendor,
                 Slug = entity.Slug,
                 PageTitle = entity.PageTitle,
 				Images = entity.Images.Select(pi => new ProductImageVM
@@ -128,7 +131,10 @@ namespace BLL.Service
                 FinalPrice = (double)(entity.Discount > 0 ? entity.Price - entity.Price * entity.Discount / 100 : entity.Price),
             };
         }
-
+        public List<string> GetVendors(int categoryId)
+        {
+            return _context.Products.GetVendors(categoryId);
+        }
         public async Task<List<ProductForSearch>> GetAll(int? categoryId, bool IsDeleted)
         {
             var list = new List<ProductForSearch>();
@@ -286,6 +292,7 @@ namespace BLL.Service
                 MetaDescription = entity.MetaDescription,
                 Slug = entity.Slug,
                 PageTitle = entity.PageTitle,
+                Vendor=entity.Vendor,   
                 PAVVMs = entity.PAVs.Select(av => new Atribute_ValueVM
                 {
                     Id = av.Id,
