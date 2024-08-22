@@ -36,34 +36,4 @@
 		<a asp-area="Admin" asp-controller="Order" asp-action="Index" asp-route-IsDeleted="@false" class="add__btn btn">Активные</a>
 	</div>
 </div>
-<section class="product">
-	<div class="container">
-		<div class="product__table">
-			<table class="table">
-				<tr>
-					<th> Номер заказа </th>
-					<th>Дата заказа</th>
-					<th>Имя заказчика</th>
-					<th>Тел. заказчика</th>
-					<th>Подробное</th>
-					@*<th>Архивировать</th>*@
-				</tr>
 
-				@foreach (var item in Model)
-				{
-
-					<tr style="background-color:@(item.IsDeleted?"red":"white")">
-						<td>@item.Id</td>
-						<td>@item.OrderDate</td>
-						<td>@item.Customer.Name</td>
-						<td>@item.Customer.PhoneNumber</td>
-						<td class="table__btn"><a asp-area="Admin" asp-controller="Order" asp-action="Details" asp-route-Id="@item.Id">Подробное</a></td>
-					</tr>
-				}
-
-
-			</table>
-
-		</div>
-	</div>
-</section>

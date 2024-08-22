@@ -58,7 +58,6 @@
     function sendAjaxRequest() {
         const form = document.getElementById('filter-form');
         const categoryId = form.dataset.categoryid;
-        console.log(categoryId)
         const formData = new FormData(form);
         const queryString = new URLSearchParams(formData).toString().split("&__");
         const splitQueryString = queryString[0]
@@ -73,12 +72,17 @@
                 }
             })
             .then(data => {
+                console.log(data)
                 const tempContainer = document.createElement('div');
                 tempContainer.innerHTML = data;
 
-                const newItemsContent = tempContainer.querySelector('.category__items').innerHTML;
-
-                document.querySelector('.category__items').innerHTML = newItemsContent;
+                const categoryItemsElement = tempContainer.querySelector('.category__items');
+                if (categoryItemsElement) {
+                    const newItemsContent = categoryItemsElement.innerHTML;
+                    document.querySelector('.category__items').innerHTML = newItemsContent;
+                } else {
+                    console.warn('No .category__items element found in the response.');
+                }
             })
             .catch(error => console.error('Error:', error));
     }

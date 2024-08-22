@@ -972,8 +972,12 @@ nav {
         height: 25px;
     }
 
-@media (max-width: 1440px) {
-    .header__search {
+    .item__compare button {
+        background: transparent;
+    }
+
+    @media (max-width: 1440px) {
+        .header__search {
         max-width: 300px;
     }
 

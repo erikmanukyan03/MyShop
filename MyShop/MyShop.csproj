@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\assets\js\addToBasket.js" />
+    <Content Remove="wwwroot\assets\js\addToCompare.js" />
     <Content Remove="wwwroot\assets\js\category.js" />
   </ItemGroup>
 
@@ -33,10 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\img\product\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="wwwroot\assets\js\addToCompare.js" />
     <None Include="wwwroot\assets\js\addToBasket.js" />
     <None Include="wwwroot\assets\js\category.js" />
   </ItemGroup>

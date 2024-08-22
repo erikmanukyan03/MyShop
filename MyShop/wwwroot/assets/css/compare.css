@@ -39,11 +39,12 @@
 .table__img {
     position: relative;
 }
+
 .remove__item svg {
     width: 20px;
     height: 20px;
     color: red;
     position: absolute;
     top: 50%;
-    transform:translateY(-50%)
+    transform: translateY(-50%)
 }

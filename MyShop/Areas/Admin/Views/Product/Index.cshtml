@@ -7,17 +7,18 @@
 
 
     <div class="container">
-        <div class="add__product">
-            <a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" class="add__btn btn">Добавить</a>
-            <a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-IsDeleted="@true" class="add__btn btn">Удаленные</a>
-            <a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-IsDeleted="@false" class="add__btn btn">Активные</a>
-        </div>
+      
     </div>
 
 
 
 	<section class="dashboard">
-		<h2>Category</h2>
+		<h2>Product</h2>
+	<div class="add__product" style="margin-bottom: 30px">
+		<a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" class="add__btn btn">Добавить</a>
+		<a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-IsDeleted="@true" class="add__btn btn">Удаленные</a>
+		<a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-IsDeleted="@false" class="add__btn btn">Активные</a>
+	</div>
 		<div class="dashboard__table">
 			@foreach (var item in Model)
 			{
@@ -72,37 +73,3 @@
 		</div>
 	</section>
 
-    <section class="product">
-        <div class="container">
-            <div class="product__table">
-                <table class="table">
-                    <tr>
-                        <th>Название</th>
-                        <th>Короткое Описание</th>
-@*                         <th>Цена</th>
-                        <th>Скидка</th> *@
-                        <th>Добавить атрибуты</th>
-                        <th>Редактировать</th>
-                        <th>Удалить</th>
-                        <th>Ещё</th>
-                        
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Title @item.Memory GB (@item.ProdColor)</td>
-                            <td>@item.ShortDescription</td>
-@*                             <td>@item.Price</td>
-                            <td>@item.Discount</td> *@
-                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="AddEditAttribute" asp-route-Id="@item.Id">Добавить атрибуты</a></td>
-                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="AddEdit" asp-route-Id="@item.Id">Редактировать</a></td>
-                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-Id="@item.Id">Удалить</a></td>
-                            <td class="table__btn"><a asp-area="Admin" asp-controller="Product" asp-action="Details" asp-route-Id="@item.Id">Ещё</a></td>
-
-                        </tr>
-                    }
-                </table>
-            </div>
-        </div>
-    </section>

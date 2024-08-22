@@ -47,7 +47,7 @@
 	@if (ViewBag.Memories != null)
 	{
 		<div class="filter__memory filter__item">
-			<span>Vendor</span>
+			<span>Արտադրող</span>
 			@foreach (var item in ViewBag.Vendors as List<string>)
 			{
 				<div class="">
@@ -55,7 +55,6 @@
 					<label for="@item">@item</label>
 				</div>
 			}
-
 		</div>
 	}
 	<div class="filter__color filter__item">

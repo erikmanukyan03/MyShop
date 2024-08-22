@@ -8,68 +8,70 @@
         <div class="compare__title title">Համեմատել</div>
         <table class="compare__table">
             <tbody>
-                @foreach(var item in Model)
+                @foreach (var item in Model)
                 {
-                    <tr>    
+                    <tr>
                         <td>@item.Key</td>
-                        @foreach(var item1 in item.Value)
+                        @foreach (var item1 in item.Value)
                         {
                             <td>@Html.Raw(item1)</td>
                         }
                     </tr>
                 }
                 @*      <tr>
-                    <td>Անուն</td>
-                    <td>Iphone 15 Pro</td>
-                    <td>Iphone 15 Pro</td>
+                <td>Անուն</td>
+                <td>Iphone 15 Pro</td>
+                <td>Iphone 15 Pro</td>
                 </tr>
                 <tr>
-                    <td>Նկար</td>
-                    <td class="table__img">
-                        <img src="~/assets/img/product/3ff6902c-caff-4be2-ae4b-1d9cb0128a47.png" alt="" />
-                        <a href="" class="remove__item">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                            </svg>
-                        </a>
-                    </td>
-                    <td class="table__img">
-                        <img src="~/assets/img/product/41e92ac4-4211-48dc-9214-b2b0054f3905.png" alt="" />
-                        <a href="" class="remove__item">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                            </svg>
-                        </a>
-                    </td>
+                <td>Նկար</td>
+                <td class="table__img">
+                <img src="~/assets/img/product/3ff6902c-caff-4be2-ae4b-1d9cb0128a47.png" alt="" />
+                <a href="" class="remove__item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+                </a>
+                </td>
+                <td class="table__img">
+                <img src="~/assets/img/product/41e92ac4-4211-48dc-9214-b2b0054f3905.png" alt="" />
+                <a href="" class="remove__item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+                </a>
+                </td>
                 </tr>
                 <tr>
-                    <td>Գին</td>
-                    <td>
-                        395.000 AMD
-                    </td>
-                    <td>
-                        305.000 AMD
-                    </td>
+                <td>Գին</td>
+                <td>
+                395.000 AMD
+                </td>
+                <td>
+                305.000 AMD
+                </td>
                 </tr>
                 <tr>
-                    <td>Քաշ</td>
-                    <td>
-                        390 գր.
-                    </td>
-                    <td>
-                        360 գր.
-                    </td>
+                <td>Քաշ</td>
+                <td>
+                390 գր.
+                </td>
+                <td>
+                360 գր.
+                </td>
                 </tr>
                 <tr>
-                    <td>Չափսեր</td>
-                    <td>
-                        75.7x164.2x8.3 мм
-                    </td>
-                    <td>
-                        82x174.4x19.2 мм
-                    </td>
+                <td>Չափսեր</td>
+                <td>
+                75.7x164.2x8.3 мм
+                </td>
+                <td>
+                82x174.4x19.2 мм
+                </td>
                 </tr> *@
             </tbody>
         </table>
     </div>
 </section>
+
+

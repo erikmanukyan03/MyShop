@@ -49,11 +49,11 @@
                             </div>
                         }
                         <div class="item__compare" title="Համեմատել">
-                            <a asp-area="" asp-controller="Compare" asp-action="Add" asp-route-prodId="@item.Id">
+                            <button type="submit" class="addToCompare add-toast-compare" data-prodId="@item.Id">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
                                 </svg>
-                            </a>
+                            </button>
                         </div>
                         <div class="item__image">
                             <img src="~/assets/img/product/@item.ImageFile" alt="" />
@@ -171,4 +171,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js" integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/assets/js/home.js"></script>
     <script src="~/assets/js/addToBasket.js"></script>
+    <script src="~/assets/js/addToCompare.js"></script>
 }

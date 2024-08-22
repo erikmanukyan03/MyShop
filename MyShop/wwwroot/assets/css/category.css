@@ -124,7 +124,9 @@
         background: #f5f3f3;
         transform: scale(1)
     }
-
+.category__wrapper .item__compare {
+    background: transparent;
+}
 .category__wrapper.horizontal .item__compare {
     left: auto;
     right: 20px;
