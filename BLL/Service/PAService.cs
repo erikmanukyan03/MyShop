@@ -115,7 +115,7 @@ namespace BLL.Service
         {
             var entity = _context.ProductAttributes.GetById(model.Id);
             entity.Name=model.Name;
-            entity.AttributeType=model.AttributeType;
+            entity.AttributeType="a";
             entity.AttributeValues = model.Values.Select(p => new ProductAttributeValue
             {
                 Id = p.Id,

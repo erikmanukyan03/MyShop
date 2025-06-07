@@ -1,5 +1,5 @@
 ﻿@model List<CategoryName>
-<ul class="nav__list">
+<ul class="nav__list" style="display: none">
 	@foreach (var item in Model)
 	{
 		<li><a asp-area="" asp-controller="Category" asp-action="Details" asp-route-Id="@item.Id">@item.Name</a></li>
@@ -7,3 +7,42 @@
 </ul>
 
 
+<div id="menuzord" class="menuzord green">
+	<ul class="menuzord-menu">
+		<li class="active">
+			<a href="#">Մենյու</a>
+			<ul class="dropdown">
+				@foreach(var item in Model)
+				{
+					<li><a asp-area="" asp-controller="Category" asp-action="Details" asp-route-Id="@item.Id">@item.Name</a></li>			
+				}
+			</ul>
+		</li>
+	</ul>
+</div>
+
+@* <ul class="dropdown">
+				<li><a href="#">Second level</a></li>
+				<li><a href="#">Second level</a></li>
+				<li><a href="#">Second level</a></li>
+				<li>
+					<a href="#">Second level</a>
+					<ul class="dropdown">
+						<li><a href="#">Third level</a></li>
+						<li><a href="#">Third level</a></li>
+						<li><a href="#">Third level</a></li>
+						<li>
+							<a href="#">Third level</a>
+							<ul class="dropdown">
+								<li><a href="#">Fourth level</a></li>
+								<li><a href="#">Fourth level</a></li>
+								<li><a href="#">Fourth level</a></li>
+								<li><a href="#">Fourth level</a></li>
+								<li><a href="#">Fourth level</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Third level</a></li>
+					</ul>
+				</li>
+				<li><a href="#">Second level</a></li>
+			</ul> *@

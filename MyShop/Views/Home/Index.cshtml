@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Mymobile - Գլխավոր";
+    ViewData["Title"] = "HomeDelivery - Գլխավոր";
 }
 
 @section head {
@@ -19,13 +19,10 @@
     <div class="swiper home-banner">
         <div class="swiper-wrapper">
             <div class="swiper-slide">
-                <img alt="" src="~/assets/img/banner/580fd5a01b98cc54c233_macbookmecкопия.png" />
+                <img alt="" src="~/assets/img/home/hd.png" />
             </div>
             <div class="swiper-slide">
-                <img alt="" src="~/assets/img/banner/227fac25e3637fd878a5_webBig1920x550.png" />
-            </div>
-            <div class="swiper-slide">
-                <img alt="" src="~/assets/img/banner/1091025300f659243c2d_MecMacBook.png" />
+                <img alt="" src="~/assets/img/home/hd2.png" />
             </div>
         </div>
     </div>
@@ -48,13 +45,6 @@
                                 </div>
                             </div>
                         }
-                        <div class="item__compare" title="Համեմատել">
-                            <button type="submit" class="addToCompare add-toast-compare" data-prodId="@item.Id">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
-                                </svg>
-                            </button>
-                        </div>
                         <div class="item__image">
                             <img src="~/assets/img/product/@item.ImageFile" alt="" />
                         </div>
@@ -62,14 +52,7 @@
                             <span class="field__title">Անուն:</span>
                             <span>@item.Title</span>
                         </div>
-                        <div class="item__field">
-                            <span class="field__title">Հիշողություն:</span>
-                            <span>@item.Memory GB</span>
-                        </div>
-                        <div class="item__field">
-                            <span class="field__title">Գույն:</span>
-                            <span>@item.ProdColor</span>
-                        </div>
+                       
                         <div class="item__field">
                             <span class="field__title">Գին:</span>
                             @if (item.Discount > 0)
@@ -106,7 +89,7 @@
 </section>
 
 
-
+@* 
 <section class="manufacturers">
     <div class="container">
         <div class="slider" dir="rtl">
@@ -120,7 +103,7 @@
             <div class="img"><img src="~/assets/img/xiaomi.png" alt="Apple"></div>
         </div>
     </div>
-</section>
+</section> *@
 
 @* <div class="hots">
 @foreach (var item in ViewBag.Hots as List<ShortProductVM>)

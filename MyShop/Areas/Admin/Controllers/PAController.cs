@@ -36,6 +36,7 @@ namespace MyShop.Areas.Admin.Controllers
         {
            if(model.Id == 0)
             {
+                model.AttributeType = "a";
                 var paid = _paService.Add(model);
                 model.Id = paid;
                 var list = values.Split(',');
